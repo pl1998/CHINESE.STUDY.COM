@@ -1,30 +1,8 @@
 <template>
   <div class="min-h-screen bg-white">
-    <!-- 顶部导航 -->
-    <header class="w-full border-b border-gray-200">
-      <div class="max-w-7xl mx-auto flex items-center justify-between py-2 px-4">
-        <div class="flex items-center space-x-2">
-          <img src="/images/logo/logo.png" alt="logo" class="h-10 w-10" />
-        </div>
-        <nav class="flex-1 flex items-center justify-center space-x-6">
-          <Link href="/" class="text-[#009FE8] font-semibold">Home</Link>
-          <Link href="/lessons" class="text-gray-700 hover:text-[#009FE8]">1V1 LESSON</Link>
-          <Link href="/recorded" class="text-gray-700 hover:text-[#009FE8]">Recorded Lesson</Link>
-          <Link href="/practice" class="text-gray-700 hover:text-[#009FE8]">Daily Pratice</Link>
-          <Link href="/about" class="text-gray-700 hover:text-[#009FE8]">About Me</Link>
-          <Link href="/contact" class="text-gray-700 hover:text-[#009FE8]">Contact</Link>
-        </nav>
-        <div class="flex flex-col items-end">
-          <div class="flex items-center space-x-2">
-            <svg class="w-5 h-5 text-[#009FE8]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M21 10.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4.5l-7-3.5-7 3.5" />
-            </svg>
-            <span class="text-xs font-semibold">email</span>
-          </div>
-          <span class="text-xs font-semibold text-gray-800">chineseteacherelena@outlook.com</span>
-        </div>
-      </div>
-    </header>
+
+      <!-- 导航栏 -->
+      <Navbar />
 
     <!-- Hero 区域 -->
     <section class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between py-10 px-4">
@@ -185,58 +163,13 @@
     </section>
 
     <!-- 页脚 -->
-    <footer class="bg-white border-t border-gray-200 py-8">
-      <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-4 text-sm">
-        <div>
-          <img src="/images/logo/logo.png" alt="logo" class="h-10 mb-2" />
-          <div class="text-gray-500">Copyright © 2025. All rights reserved.<br />ELENA MANDARIN</div>
-          <div class="flex space-x-4 mt-2">
-            <a href="#" class="text-gray-400 hover:text-[#009FE8] transition-colors">
-              <i class="fab fa-instagram text-xl"></i>
-            </a>
-            <a href="#" class="text-gray-400 hover:text-[#009FE8] transition-colors">
-              <i class="fab fa-facebook text-xl"></i>
-            </a>
-            <a href="#" class="text-gray-400 hover:text-[#009FE8] transition-colors">
-              <i class="fab fa-youtube text-xl"></i>
-            </a>
-          </div>
-        </div>
-        <div>
-          <div class="font-bold mb-2">Site Navigation</div>
-          <ul class="space-y-1">
-            <li><Link href="/">Home</Link></li>
-            <li><Link href="/lessons">1V1 LESSON</Link></li>
-            <li><Link href="/recorded">Recorded Lesson</Link></li>
-            <li><Link href="/practice">Daily Pratice</Link></li>
-            <li><Link href="/about">About Me</Link></li>
-            <li><Link href="/contact">Contact</Link></li>
-          </ul>
-        </div>
-        <div>
-          <div class="font-bold mb-2">1V1 LESSON</div>
-          <ul class="space-y-1">
-            <li>hsk-1-6</li>
-            <li>survival chinese</li>
-            <li>conversational chinese</li>
-            <li>Fun Chinese Debate Topics</li>
-          </ul>
-        </div>
-        <div>
-          <div class="font-bold mb-2">Newsletter</div>
-          <div class="text-gray-500 mb-2">We love sharing tips, resources and stories to help Chinese language learners just like you. Subscribe and learn with us!</div>
-          <form class="flex space-x-2">
-            <input type="email" placeholder="Submit Now" class="flex-1 border border-gray-300 rounded px-2 py-1 focus:outline-none focus:border-[#009FE8]" />
-            <button type="submit" class="bg-[#009FE8] text-white px-4 py-1 rounded hover:bg-[#007bb5]">Submit</button>
-          </form>
-        </div>
-      </div>
-      <div class="text-center text-gray-400 text-xs mt-6">Copyright @ 2025 . All rights reserved. ELENA MANDARIN</div>
-    </footer>
+    <Footer />
   </div>
 </template>
 
 <script setup>
+import Navbar from '../components/Navbar.vue'
+import Footer from '../components/Footer.vue'
 import { Link } from '@inertiajs/vue3';
 import { ref } from 'vue';
 

@@ -2,8 +2,8 @@
   <header class="w-full border-b border-gray-200">
     <div class="max-w-7xl mx-auto flex items-center justify-between py-2 px-4">
       <div class="flex items-center space-x-2">
-        <img src="/images/logo/logo.png" alt="logo" class="h-10 w-10" />
-        <span class="font-bold text-lg tracking-wide">ELENA MANDARIN</span>
+        <img src="/images/logo/logo.png" alt="logo" class="h-15 w-20" />
+        <!-- <span class="font-bold text-lg tracking-wide">ELENA MANDARIN</span> -->
       </div>
       <nav class="flex-1 flex items-center justify-center space-x-6">
         <Link href="/" class="text-[#009FE8] font-semibold" :class="{ 'font-bold underline': url === '/' }">Home</Link>
