@@ -42,6 +42,22 @@ Route::get('/contact', function () {
     return Inertia::render('Contact');
 });
 
+Route::get('/hsk-lesson', function () {
+    return Inertia::render('HskLesson');
+});
+
+Route::get('/survival-chinese', function () {
+    return Inertia::render('SurvivalChinese');
+});
+
+Route::get('/debate-topics', function () {
+    return Inertia::render('DebateTopics');
+});
+
+Route::get('/conversational-chinese', function () {
+    return Inertia::render('ConversationalChinese');
+});
+
 Route::get('/courses/{type}', function ($type) {
     return Inertia::render('Course', ['type' => $type]);
 });
