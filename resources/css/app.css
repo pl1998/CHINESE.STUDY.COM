@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 添加一个测试样式 */
+.test-class {
+    @apply bg-red-500 p-4 text-white;
+}
