@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-white">
+  <div class="min-h-screen bg-white mt-30">
     <!-- 导航栏复用 -->
     <Navbar />
 

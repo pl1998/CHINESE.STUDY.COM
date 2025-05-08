@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-white">
+  <div class="min-h-screen bg-white mt-20">
     <!-- 导航栏 -->
     <Navbar />
 
@@ -14,7 +14,9 @@
 
     <!-- 主体内容 -->
     <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-end py-12 px-4 min-h-[320px]">
-      <div class="flex-1"></div>
+      <div class="flex-1">
+        <img src="/images/about/about_left.png" alt="about-banner" class="w-full h-full object-cover" />
+      </div>
       <div class="flex-1 flex flex-col space-y-8">
         <div>
           <div class="font-bold text-lg mb-1">A clearly structured curriculum</div>
