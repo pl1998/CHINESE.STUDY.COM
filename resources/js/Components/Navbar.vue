@@ -1,5 +1,32 @@
 <template>
-  <header class="fixed top-0 left-0 w-full z-50 bg-white border-b border-gray-200">
+  <!-- 顶部广告栏，fixed在最上方 -->
+  <div class="fixed top-0 left-0 w-full z-50 bg-[#7a8b6a] text-white text-sm h-8 flex items-center">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-4 w-full">
+      <div class="flex items-center space-x-6">
+        <span>
+          <i class="fas fa-phone-alt mr-1"></i>
+          88-3439943434
+        </span>
+        <span>
+          <i class="fas fa-envelope mr-1"></i>
+          chineseteacherelena@outlook.com
+        </span>
+      </div>
+      <div class="flex items-center space-x-3">
+        <a href="#" class="hover:text-gray-200 transition-colors">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#" class="hover:text-gray-200 transition-colors">
+          <i class="fab fa-facebook"></i>
+        </a>
+        <a href="#" class="hover:text-gray-200 transition-colors">
+          <i class="fab fa-youtube"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- 主导航栏，fixed并且top-8（32px）紧贴广告栏下方 -->
+  <header class="fixed top-8 left-0 w-full z-40 bg-white border-b border-gray-200">
     <div class="max-w-7xl mx-auto flex items-center py-2 px-4">
       <!-- 左侧 logo -->
       <div class="flex items-center">
@@ -38,15 +65,6 @@
           :class="url.startsWith('/contact') ? 'text-[#009FE8] font-bold' : 'text-gray-700'"
         >Contact</Link>
       </nav>
-      <!-- <div class="flex flex-col items-end">
-        <div class="flex items-center space-x-2">
-          <svg class="w-5 h-5 text-[#009FE8]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path d="M21 10.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4.5l-7-3.5-7 3.5" />
-          </svg>
-          <span class="text-xs font-semibold">email</span>
-        </div>
-        <span class="text-xs font-semibold text-gray-800">chineseteacherelena@outlook.com</span>
-      </div> -->
     </div>
   </header>
 </template>
