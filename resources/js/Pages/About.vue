@@ -1,8 +1,8 @@
 <template>
-  <div class="min-h-screen bg-white mt-20">
+  <div class="min-h-screen bg-white">
     <!-- 导航栏 -->
     <Navbar />
-
+    <div class="pt-[88px]">
     <!-- 顶部大图 -->
     <div class="w-full h-[260px] md:h-[320px] bg-gray-200">
       <img
@@ -47,6 +47,7 @@
 
     <!-- 页脚 -->
     <Footer />
+    </div>
   </div>
 </template>
 

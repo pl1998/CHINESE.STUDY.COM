@@ -27,7 +27,7 @@ Route::get('/lessons', function () {
 });
 
 Route::get('/recorded', function () {
-    return Inertia::render('RecordedLessons');
+    return Inertia::render('RecordedLesson');
 });
 
 Route::get('/practice', function () {

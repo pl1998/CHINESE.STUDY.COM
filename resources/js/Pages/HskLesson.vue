@@ -2,9 +2,9 @@
   <div class="min-h-screen bg-white">
     <!-- 导航栏 -->
     <Navbar />
-
+    <div class="pt-[88px]">
     <!-- 课程介绍主区域 -->
-    <div class="w-full bg-[#eaf2f3] py-12">
+    <div class="w-full bg-[#eaf2f3] py-12 mt-30">
       <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-8 px-4">
         <!-- 左侧标题和图片 -->
         <div class="flex-1 flex flex-col justify-center">
@@ -294,6 +294,7 @@
 
     <!-- 页脚 -->
     <Footer />
+  </div>
   </div>
 </template>
 

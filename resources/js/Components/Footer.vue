@@ -9,7 +9,7 @@
             <i class="fab fa-instagram text-xl"></i>
           </a>
           <a href="#" class="text-gray-400 hover:text-[#009FE8] transition-colors">
-            <i class="fab fa-facebook text-xl"></i>
+            <i class="fab fa-tiktok text-xl"></i>
           </a>
           <a href="#" class="text-gray-400 hover:text-[#009FE8] transition-colors">
             <i class="fab fa-youtube text-xl"></i>

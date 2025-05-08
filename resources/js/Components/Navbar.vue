@@ -17,7 +17,7 @@
           <i class="fab fa-instagram"></i>
         </a>
         <a href="#" class="hover:text-gray-200 transition-colors">
-          <i class="fab fa-facebook"></i>
+          <i class="fab fa-tiktok"></i>
         </a>
         <a href="#" class="hover:text-gray-200 transition-colors">
           <i class="fab fa-youtube"></i>
@@ -26,8 +26,8 @@
     </div>
   </div>
   <!-- 主导航栏，fixed并且top-8（32px）紧贴广告栏下方 -->
-  <header class="fixed top-8 left-0 w-full z-40 bg-white border-b border-gray-200">
-    <div class="max-w-7xl mx-auto flex items-center py-2 px-4">
+  <header class="fixed top-8 left-0 w-full z-40 bg-white border-b border-gray-200 h-20">
+    <div class="max-w-7xl mx-auto flex items-center h-20 px-4">
       <!-- 左侧 logo -->
       <div class="flex items-center">
         <img src="/images/logo/logo.png" alt="logo" class="h-15 w-20" />

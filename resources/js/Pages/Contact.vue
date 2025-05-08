@@ -1,8 +1,8 @@
 <template>
-  <div class="min-h-screen bg-white mt-40">
+  <div class="min-h-screen bg-white">
     <!-- 导航栏 -->
     <Navbar />
-
+    <div class="pt-[88px]">
     <!-- 联系方式标题 -->
     <div class="max-w-4xl mx-auto mt-8 mb-4 text-center">
       <h2 class="text-2xl font-semibold text-[#009FE8] mb-2">•Contact us•</h2>
@@ -64,6 +64,7 @@
     <!-- 页脚 -->
     <Footer />
   </div>
+</div>
 </template>
 
 <script setup>
