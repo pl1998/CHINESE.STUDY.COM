@@ -89,7 +89,7 @@
             <img src="/images/home_left.jpg" alt="home1" class="w-full h-full object-cover" />
           </span>
           <!-- 悬浮文字层 -->
-          <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center  group-hover:opacity-100 transition-opacity duration-300">
+          <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <span class="text-white text-lg font-semibold text-center px-4">One-on-one online courses, personalized customization, flexible arrangement</span>
           </div>
         </div>

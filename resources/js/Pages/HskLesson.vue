@@ -262,22 +262,59 @@
           </div>
           <!-- 步骤5：订单确认和支付 -->
           <div v-else-if="currentStep === 4">
-            <div class="text-xl font-bold mb-4">Order Confirmation</div>
-            <div class="mb-4">
-              <div>Service: <b>Survival Chinese Lesson</b></div>
-              <div>Date: <b>{{ selectedDate }}</b></div>
-              <div>Time: <b>{{ selectedTime }}</b></div>
-              <div>Repeat: <b>{{ repeatSummary }}</b></div>
-              <div>Name: <b>{{ userInfo.firstName }} {{ userInfo.lastName }}</b></div>
-              <div>Email: <b>{{ userInfo.email }}</b></div>
-              <div>Phone: <b>{{ userInfo.phone }}</b></div>
-              <div class="mt-2 text-lg font-bold text-[#3487fe]">Total: ${{ totalPrice }}</div>
+            <div class="text-2xl font-extrabold mb-6 text-[#22336a] text-center tracking-wide">Order Confirmation</div>
+            <div class="bg-white rounded-xl shadow-lg p-8 max-w-lg mx-auto mb-8 border border-gray-100">
+              <!-- 服务信息 -->
+              <div class="flex items-center justify-between mb-6 pb-2 border-b">
+                <span class="font-semibold text-gray-600">Service</span>
+                <span class="font-bold text-[#3487fe]">Survival Chinese Lesson</span>
+              </div>
+              <!-- 时间信息 -->
+              <div class="grid grid-cols-2 gap-x-6 gap-y-3 mb-6">
+                <div>
+                  <div class="text-xs text-gray-400">Date</div>
+                  <div class="font-medium text-gray-800">{{ selectedDate }}</div>
+                </div>
+                <div>
+                  <div class="text-xs text-gray-400">Time</div>
+                  <div class="font-medium text-gray-800">{{ selectedTime }}</div>
+                </div>
+                <div class="col-span-2">
+                  <div class="text-xs text-gray-400">Repeat</div>
+                  <div class="font-medium text-gray-800">{{ repeatSummary }}</div>
+                </div>
+              </div>
+              <!-- 用户信息 -->
+              <div class="grid grid-cols-2 gap-x-6 gap-y-3 mb-6">
+                <div>
+                  <div class="text-xs text-gray-400">Name</div>
+                  <div class="font-medium text-gray-800">{{ userInfo.firstName }} {{ userInfo.lastName }}</div>
+                </div>
+                <div>
+                  <div class="text-xs text-gray-400">Email</div>
+                  <div class="font-medium text-gray-800">{{ userInfo.email }}</div>
+                </div>
+                <div class="col-span-2">
+                  <div class="text-xs text-gray-400">Phone</div>
+                  <div class="font-medium text-gray-800">{{ userInfo.phone }}</div>
+                </div>
+              </div>
+              <!-- 总价 -->
+              <div class="flex items-center justify-between border-t pt-4 mt-2">
+                <span class="text-lg font-bold text-[#22336a]">Total</span>
+                <span class="text-2xl font-extrabold text-[#3487fe]">${{ totalPrice }}</span>
+              </div>
             </div>
-            <div class="mb-4">
-              <!-- PayPal 按钮占位 -->
-              <button class="px-8 py-2 bg-yellow-400 text-black rounded font-bold" @click="pay">Pay with PayPal</button>
+            <div class="flex justify-center mb-4">
+              <button
+                class="flex items-center gap-2 px-8 py-2 bg-[#3487fe] text-white rounded font-bold shadow hover:bg-blue-700 transition"
+                @click="submitReservation"
+              >
+                <i class="fab fa-paypal text-2xl"></i>
+                Pay with PayPal
+              </button>
             </div>
-            <div class="mt-8 flex justify-between">
+            <div class="flex justify-between max-w-lg mx-auto">
               <button class="px-6 py-2 border rounded" @click="prevStep">Back</button>
             </div>
           </div>
@@ -302,6 +339,7 @@
 import Navbar from '../components/Navbar.vue'
 import Footer from '../components/Footer.vue'
 import { ref, computed } from 'vue'
+import axios from 'axios'
 
 // 步骤栏
 const steps = [
@@ -348,12 +386,12 @@ function selectDate(date) {
 
 // 时间段
 const timeSlots = [
-  '3:00 下午 - 4:00 下午', '3:30 下午 - 4:30 下午', '4:00 下午 - 5:00 下午',
-  '4:30 下午 - 5:30 下午', '5:00 下午 - 6:00 下午', '5:30 下午 - 6:30 下午',
-  '6:00 下午 - 7:00 下午', '6:30 下午 - 7:30 下午', '7:00 下午 - 8:00 下午',
-  '7:30 下午 - 8:30 下午', '8:00 下午 - 9:00 下午', '8:30 下午 - 9:30 下午',
-  '9:00 下午 - 10:00 下午', '9:30 下午 - 10:30 下午', '10:00 下午 - 11:00 下午',
-  '10:30 下午 - 11:00 下午'
+  '12:00 - 13:00', '12:30 - 13:30', '13:00 - 14:00',
+  '15:00 - 16:00', '15:30 - 16:30', '16:00 - 17:00',
+  '16:30 - 17:30', '17:00 - 18:00', '17:30 - 18:30',
+  '18:30 - 19:30', '18:00 - 19:00', '19:30 - 20:30',
+  '21:00 - 22:00', '21:30 - 22:30', '22:00 - 23:00',
+  '22:30 - 23:00'
 ]
 const selectedTime = ref('')
 function selectTime(slot) {
@@ -402,6 +440,29 @@ function prevStep() {
 function submitUserInfo() {
   if (userInfoValid.value) nextStep()
 }
+
+async function submitReservation() {
+  // 构造要提交的数据
+  const payload = {
+    first_name: userInfo.value.firstName,
+    last_name: userInfo.value.lastName,
+    email: userInfo.value.email,
+    phone: userInfo.value.phone,
+    start_time: selectedDate.value + ' ' + (selectedTime.value ? selectedTime.value.split(' - ')[0] : ''),
+    end_time: selectedDate.value + ' ' + (selectedTime.value ? selectedTime.value.split(' - ')[1] : ''),
+    repeat: repeatSummary.value,
+    pay_price: totalPrice.value,
+    // 你可以根据需要添加更多字段
+  }
+  try {
+    const res = await axios.post('/api/course-reservation', payload)
+    // 成功后进入下一步
+    nextStep()
+  } catch (e) {
+    alert('预约失败，请重试')
+  }
+}
+
 function pay() {
   // 这里可集成 PayPal 支付
   nextStep()
