@@ -15,7 +15,10 @@
           <div class="w-full h-64 bg-white flex items-center justify-center border border-gray-200 rounded mb-6">
             <img src="/images/lesson_book.png" alt="hsk lesson" class="w-auto h-full object-contain rounded-lg" />
           </div>
-          <button class="bg-[#6ec1e4] text-white px-8 py-2 rounded font-semibold hover:bg-[#009FE8] transition text-lg shadow-md">book now</button>
+          <button
+            class="bg-[#6ec1e4] text-white px-8 py-2 rounded font-semibold hover:bg-[#009FE8] transition text-lg shadow-md"
+            @click="scrollToBooking"
+          >book now</button>
         </div>
         <!-- 右侧介绍 -->
         <div class="flex-1 flex flex-col justify-center">
@@ -80,9 +83,30 @@
         </div>
       </div>
     </div>
-
+    <!-- -->
+    <section class="w-full border ">
+  <div class="max-w-3xl mx-auto flex flex-col items-center justify-center py-16">
+    <!-- 日历图标 -->
+    <svg class="w-14 h-14 text-[#22336a] mb-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+      <rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" fill="none"/>
+      <path d="M16 3v4M8 3v4M3 9h18" stroke="currentColor"/>
+    </svg>
+    <!-- 主标题 -->
+    <h1 class="text-4xl md:text-5xl font-extrabold text-[#1a2233] text-center mb-2">
+      Book a Survival Chinese lesson now
+    </h1>
+    <!-- 副标题 -->
+    <div class="text-xl font-semibold text-[#1a2233] text-center mb-6">
+      (1 hr/50 USD)
+    </div>
+    <!-- 描述文字 -->
+    <p class="text-lg text-[#2d3a4a] text-center max-w-2xl">
+      Scheduling your lesson is easy with my user-friendly online calendar. Simply choose a time that fits your schedule and begin your learning journey right away! After booking, you'll receive an email with payment instructions. A Zoom link will be sent separately before your lesson begins.
+    </p>
+  </div>
+</section> 
     <!-- 课程预约 -->
-    <section class="flex justify-center items-start py-16 bg-white">
+    <section ref="bookingSectionRef" class="flex justify-center items-start py-16 bg-white">
       <div class="w-full max-w-4xl flex shadow-lg rounded-lg overflow-hidden bg-white">
         <!-- 步骤侧边栏 -->
         <div class="w-64 bg-[#1a2950] text-white py-8 px-4 flex flex-col gap-4">
@@ -392,4 +416,13 @@ function resetAll() {
   repeatCount.value = 1
   userInfo.value = { firstName: '', lastName: '', email: '', phone: '' }
 }
-</script> 
+
+// 新增ref
+const bookingSectionRef = ref(null)
+
+// 滚动函数
+function scrollToBooking() {
+  bookingSectionRef.value?.scrollIntoView({ behavior: 'smooth' })
+}
+</script>
+
