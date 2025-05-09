@@ -21,6 +21,7 @@ class PaypalController extends Controller
             'paypal.currency' => $config->currency,
             'paypal.http.verify' => env('APP_ENV') == 'pro' ? true: false,
         ]);
+        return $config;
 
     }
 
@@ -29,7 +30,7 @@ class PaypalController extends Controller
         $orderNo = $request->input('order_no');
         $reservation = CourseReservation::where('order_no', $orderNo)->firstOrFail();
         // 读取 config_pay 配置
-        $this->setConfig();
+        $config = $this->setConfig();
 
       
         $provider = new PayPalClient;
