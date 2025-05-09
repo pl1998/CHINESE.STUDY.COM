@@ -22,13 +22,13 @@
         <div class="w-[680px] h-[390px] bg-gray-200 rounded-lg flex items-center justify-center relative shadow">
           <video
             ref="homeVideo"
-            src="/video/logo.mp4"
+            src="https://102335809.r.cloudnexus.cc/video/logo.mp4"
             webkit-playsinline="true"
             playsinline
             class="w-full h-full object-cover rounded-lg"
             :controls="isPlaying"
             @click="playVideo"
-            poster="/images/video_poster.png"
+            poster="https://102335809.r.cloudnexus.cc/images/video_poster.png"
             preload="auto"
           ></video>
           <!-- 播放按钮，播放后隐藏 -->
@@ -86,7 +86,7 @@
       <div class="flex-1 flex justify-center">
         <div class="relative w-[680px] h-[380px] rounded-lg flex items-center justify-center group overflow-hidden">
           <span class="text-gray-400">
-            <img src="/images/home_left.jpg" alt="home1" class="w-full h-full object-cover" />
+            <img src="https://102335809.r.cloudnexus.cc/images/home_left.jpg" alt="home1" class="w-full h-full object-cover" />
           </span>
           <!-- 悬浮文字层 -->
           <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -97,7 +97,7 @@
       <div class="flex-1 flex justify-center">
         <div class="relative w-[680px] h-[380px] rounded-lg flex items-center justify-center group overflow-hidden">
           <span class="text-gray-400">
-            <img src="/images/home_right.png" alt="home2" class="w-full h-full object-cover" />
+            <img src="https://102335809.r.cloudnexus.cc/images/home_right.png" alt="home2" class="w-full h-full object-cover" />
           </span>
           <!-- 悬浮文字层 -->
           <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -230,7 +230,7 @@ onMounted(async () => {
       // 先尝试静音播放
       homeVideo.value.muted = true;
       await homeVideo.value.play();
-      
+
       // 播放成功后，延迟一小段时间再取消静音
       setTimeout(() => {
         if (homeVideo.value) {
@@ -238,7 +238,7 @@ onMounted(async () => {
           isMuted.value = false;
         }
       }, 100);
-      
+
       isPlaying.value = true;
     } catch (error) {
       console.log('Auto-play failed:', error);
@@ -276,7 +276,7 @@ onMounted(async () => {
 <style>
 /* 添加过渡效果 */
 .transform {
-  transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1), 
+  transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1),
               opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform, opacity;
 }

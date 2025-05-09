@@ -13,7 +13,7 @@
             HSK 1-6<br>Lessons
           </div>
           <div class="w-full h-64 bg-white flex items-center justify-center border border-gray-200 rounded mb-6">
-            <img src="/images/lesson_book.png" alt="hsk lesson" class="w-auto h-full object-contain rounded-lg" />
+            <img src="https://102335809.r.cloudnexus.cc/images/lesson_book.png" alt="hsk lesson" class="w-auto h-full object-contain rounded-lg" />
           </div>
           <button
             class="bg-[#6ec1e4] text-white px-8 py-2 rounded font-semibold hover:bg-[#009FE8] transition text-lg shadow-md"
@@ -39,7 +39,7 @@
     </div>
 
     <!-- FAQ 区域 -->
-    <div class="w-full bg-cover bg-center py-16" style="background-image: url('/images/lesson_bg.png');">
+    <div class="w-full bg-cover bg-center py-16" style="background-image: url('https://102335809.r.cloudnexus.cc/images/lesson_bg.png');">
       <div class="max-w-6xl mx-auto px-4">
         <div class="text-center text-white text-lg mb-2 tracking-widest">FAQ</div>
         <div class="text-center text-white text-5xl font-bold mb-12 tracking-wider">QUESTIONS</div>
@@ -104,7 +104,7 @@
       Scheduling your lesson is easy with my user-friendly online calendar. Simply choose a time that fits your schedule and begin your learning journey right away! After booking, you'll receive an email with payment instructions. A Zoom link will be sent separately before your lesson begins.
     </p>
   </div>
-</section> 
+</section>
     <!-- 课程预约 -->
     <section ref="bookingSectionRef" class="flex justify-center items-start py-16 bg-white">
       <div class="w-full max-w-4xl flex shadow-lg rounded-lg overflow-hidden bg-white">

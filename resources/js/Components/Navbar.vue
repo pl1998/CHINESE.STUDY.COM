@@ -30,7 +30,7 @@
     <div class="max-w-7xl mx-auto flex items-center h-20 px-4">
       <!-- 左侧 logo -->
       <div class="flex items-center">
-        <img src="/images/logo/logo.png" alt="logo" class="h-15 w-20" />
+        <img src="https://102335809.r.cloudnexus.cc/images/logo/logo.png" alt="logo" class="h-15 w-20" />
       </div>
       <!-- 中间导航菜单，左侧加 margin-left:25px -->
       <nav class="flex items-center space-x-6 ml-[25px]">
