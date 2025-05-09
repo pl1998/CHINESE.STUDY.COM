@@ -27,7 +27,7 @@ class CourseReservationController extends Controller
             'fisrt_name' => $data['first_name'], // 注意你的表字段是 fisrt_name
             'last_name' => $data['last_name'],
             'email' => $data['email'],
-            'phone' => substr_replace(' ','',$data['phone'] ?? ''),
+            'phone' => $data['phone'] ?? '',
             'phone_dial_code' => $data['phone_dial_code'] ?? '',
             'start_time' => strtotime($data['start_time']),
             'end_time' => strtotime($data['end_time']),
