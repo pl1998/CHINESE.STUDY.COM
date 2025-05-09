@@ -42,6 +42,7 @@ class ConfigEmailController extends AdminController
             $grid->column('mail_from_name');
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();
+
             // $grid->setActionClass(Grid\Displayers\Actions::class); // 行操作按钮显示方式 图标方式
             $grid->actions(function (Grid\Displayers\Actions $actions) {
                 // $actions->disableDelete(); //  禁用删除
@@ -95,9 +96,8 @@ class ConfigEmailController extends AdminController
             $form->text('mail_encryption');
             $form->text('mail_from_address');
             $form->text('mail_from_name');
-        
-            $form->display('created_at');
-            $form->display('updated_at');
+            $form->action(admin_url('config/email/1'));
+
         });
     }
 }

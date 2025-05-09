@@ -21,7 +21,7 @@
           </div>
           <!-- 你可以复制上面div，渲染更多课程 -->
         </div>
-        
+
         <!-- 分页 -->
         <div class="flex justify-center items-center gap-2 mt-8">
           <button class="border px-2 py-1 text-xs rounded bg-gray-100 text-gray-500" disabled>Home</button>
@@ -41,4 +41,4 @@
 <script setup>
 import Navbar from '../components/Navbar.vue'
 import Footer from '../components/Footer.vue'
-</script> 
+</script>

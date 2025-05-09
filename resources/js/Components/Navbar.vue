@@ -4,23 +4,23 @@
     <div class="max-w-7xl mx-auto flex items-center justify-between px-4 w-full">
       <div class="flex items-center space-x-6">
         <span>
-          <i class="fas fa-phone-alt mr-1"></i>
+          <font-awesome-icon :icon="['fas', 'phone-alt']" class="mr-1" />
           88-3439943434
         </span>
         <span>
-          <i class="fas fa-envelope mr-1"></i>
+          <font-awesome-icon :icon="['fas', 'envelope']" class="mr-1" />
           chineseteacherelena@outlook.com
         </span>
       </div>
       <div class="flex items-center space-x-3">
         <a href="#" class="hover:text-gray-200 transition-colors">
-          <i class="fab fa-instagram"></i>
+          <font-awesome-icon :icon="['fab', 'instagram']" />
         </a>
         <a href="#" class="hover:text-gray-200 transition-colors">
-          <i class="fab fa-tiktok"></i>
+          <font-awesome-icon :icon="['fab', 'tiktok']" />
         </a>
         <a href="#" class="hover:text-gray-200 transition-colors">
-          <i class="fab fa-youtube"></i>
+          <font-awesome-icon :icon="['fab', 'youtube']" />
         </a>
       </div>
     </div>

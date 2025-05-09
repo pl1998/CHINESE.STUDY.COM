@@ -230,7 +230,7 @@ onMounted(async () => {
       // 先尝试静音播放
       homeVideo.value.muted = true;
       await homeVideo.value.play();
-      
+
       // 播放成功后，延迟一小段时间再取消静音
       setTimeout(() => {
         if (homeVideo.value) {
@@ -238,7 +238,7 @@ onMounted(async () => {
           isMuted.value = false;
         }
       }, 100);
-      
+
       isPlaying.value = true;
     } catch (error) {
       console.log('Auto-play failed:', error);
@@ -276,7 +276,7 @@ onMounted(async () => {
 <style>
 /* 添加过渡效果 */
 .transform {
-  transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1), 
+  transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1),
               opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform, opacity;
 }

@@ -1,0 +1,1 @@
+.transform{transition:transform 1s cubic-bezier(.4,0,.2,1),opacity 1s cubic-bezier(.4,0,.2,1);will-change:transform,opacity}

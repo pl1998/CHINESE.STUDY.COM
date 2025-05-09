@@ -27,7 +27,7 @@
             <div class="text-base font-semibold">PRACTICAL CHINESE<br />FOR EVERYDAY LIFE</div>
           </div>
         </Link>
-      
+
         <!-- Fun Chinese Debate Topics -->
         <Link href="/debate-topics" class="relative group border-2 border-white hover:border-[#009FE8] transition rounded block">
           <img src="/images/lessons/lessons_c.jpg" alt="Fun Chinese Debate Topics" class="w-full h-56 object-cover rounded" />
@@ -57,4 +57,4 @@
 import Navbar from '../components/Navbar.vue'
 import Footer from '../components/Footer.vue'
 import { Link } from '@inertiajs/vue3'
-</script> 
+</script>

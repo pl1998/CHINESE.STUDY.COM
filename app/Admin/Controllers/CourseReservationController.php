@@ -54,6 +54,7 @@ class CourseReservationController extends AdminController
                 2 => '结束',
             ]);
             $grid->column('phone');
+            $grid->column('phone_dial_code', '区号');
             $grid->column('pay_price');
             $grid->column('zoom_url');
             $grid->column('repeat');
@@ -111,6 +112,7 @@ class CourseReservationController extends AdminController
             $show->field('status');
             $show->field('end_time');
             $show->field('phone');
+            $show->field('phone_dial_code', '区号');
             $show->field('pay_price');
             $show->field('zoom_url');
             $show->field('repeat');

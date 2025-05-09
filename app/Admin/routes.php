@@ -15,8 +15,7 @@ Route::group([
     $router->get('/', 'HomeController@index');
     
     $router->resource('/course_reservation', 'CourseReservationController')->only(['show','index','destroy','edit','update']);
-    $router->resource('config/pay', 'ConfigPayController');
-    $router->get('config/email', 'ConfigEmailController@index');
+    $router->resource('config/pay', 'ConfigPayController');   
     $router->resource('config/email', 'ConfigEmailController');
-    $router->get('config/pay', 'ConfigPayController@index');
+
 });

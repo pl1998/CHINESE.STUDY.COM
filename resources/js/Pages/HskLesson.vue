@@ -104,7 +104,7 @@
       Scheduling your lesson is easy with my user-friendly online calendar. Simply choose a time that fits your schedule and begin your learning journey right away! After booking, you'll receive an email with payment instructions. A Zoom link will be sent separately before your lesson begins.
     </p>
   </div>
-</section> 
+</section>
     <!-- 课程预约 -->
     <section ref="bookingSectionRef" class="flex justify-center items-start py-16 bg-white">
       <div class="w-full max-w-4xl flex shadow-lg rounded-lg overflow-hidden bg-white">
@@ -159,7 +159,7 @@
             </div>
             <div class="mt-8 flex justify-end">
               <button
-                class="px-6 py-2 bg-[#3487fe] text-white rounded disabled:opacity-50"
+                class="px-6 py-2 bg-[#3487fe] text-white rounded"
                 :disabled="!selectedDate"
                 @click="nextStep"
               >Continue</button>
@@ -183,8 +183,7 @@
             <div class="mt-8 flex justify-between">
               <button class="px-6 py-2 border rounded" @click="prevStep">Back</button>
               <button
-                class="px-6 py-2 bg-[#3487fe] text-white rounded disabled:opacity-50"
-                :disabled="!selectedTime"
+                class="px-6 py-2 bg-[#3487fe] text-white rounded"
                 @click="nextStep"
               >Continue</button>
             </div>
@@ -237,26 +236,36 @@
               <div>
                 <label class="block mb-1 font-semibold">First Name *</label>
                 <input v-model="userInfo.firstName" class="border rounded px-2 py-1 w-full" required />
+                <div v-if="firstNameError" class="text-red-500 text-xs mt-1">{{ firstNameError }}</div>
               </div>
               <div>
                 <label class="block mb-1 font-semibold">Last Name *</label>
                 <input v-model="userInfo.lastName" class="border rounded px-2 py-1 w-full" required />
+                <div v-if="lastNameError" class="text-red-500 text-xs mt-1">{{ lastNameError }}</div>
               </div>
               <div>
                 <label class="block mb-1 font-semibold">Email *</label>
                 <input v-model="userInfo.email" type="email" class="border rounded px-2 py-1 w-full" required />
+                <div v-if="emailError" class="text-red-500 text-xs mt-1">{{ emailError }}</div>
               </div>
               <div>
                 <label class="block mb-1 font-semibold">Phone</label>
-                <input v-model="userInfo.phone" class="border rounded px-2 py-1 w-full" />
+                <VueTelInput
+                  v-model="userInfo.phone"
+                  :inputoptions="telInputOptions"
+                  :preferred-countries="preferredCountries"
+                  :show-search-box="true"
+                  class="w-full"
+                  @validate="onPhoneInput"
+                />
+                <div v-if="phoneError" class="text-red-500 text-xs mt-1">{{ phoneError }}</div>
               </div>
             </form>
             <div class="mt-8 flex justify-between">
               <button class="px-6 py-2 border rounded" @click="prevStep">Back</button>
               <button
                 class="px-6 py-2 bg-[#3487fe] text-white rounded"
-                :disabled="!userInfoValid"
-                @click="nextStep"
+                @click="submitUserInfo"
               >Continue</button>
             </div>
           </div>
@@ -338,8 +347,11 @@
 <script setup>
 import Navbar from '../components/Navbar.vue'
 import Footer from '../components/Footer.vue'
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import axios from 'axios'
+import Swal from 'sweetalert2'
+import { VueTelInput } from 'vue-tel-input'
+import 'vue-tel-input/vue-tel-input.css';
 
 // 步骤栏
 const steps = [
@@ -419,10 +431,68 @@ const userInfo = ref({
   email: '',
   phone: '',
 })
-const userInfoValid = computed(() =>
-  userInfo.value.firstName && userInfo.value.lastName &&
-  /^[\w\-\.]+@[\w\-]+\.[\w\-]+$/.test(userInfo.value.email)
-)
+const firstNameError = ref('')
+const lastNameError = ref('')
+const emailError = ref('')
+const phoneError = ref('')
+const phoneDialCode = ref('')
+
+const telInputOptions = {
+  showDialCode: true,
+  placeholder: 'Enter your phone number',
+  defaultCountry: 'cn'
+}
+const preferredCountries = ['cn', 'us', 'gb', 'au']
+
+function onPhoneInput(value, info) {
+  if (!info) {
+    phoneError.value = 'Invalid phone number'
+    phoneDialCode.value = ''
+    return
+  }
+  if (!info.valid) {
+    phoneError.value = 'Invalid phone number'
+  } else {
+    phoneError.value = ''
+  }
+  console.log('info:', info)
+  if (info.country && info.country.dialCode) {
+    phoneDialCode.value = `+${info.country.dialCode}`
+  } else if (info.dialCode) {
+    phoneDialCode.value = `+${info.dialCode}`
+  } else {
+    phoneDialCode.value = ''
+  }
+}
+
+function validateUserInfo() {
+  firstNameError.value = ''
+  lastNameError.value = ''
+  emailError.value = ''
+  phoneError.value = ''
+
+  // 姓名校验
+  if (!userInfo.value.firstName) {
+    firstNameError.value = 'First name is required'
+  }
+  if (!userInfo.value.lastName) {
+    lastNameError.value = 'Last name is required'
+  }
+
+  // 邮箱校验
+  if (!userInfo.value.email) {
+    emailError.value = 'Email is required'
+  } else if (!/^[\w\-\.]+@[\w\-]+\.[\w\-]+$/.test(userInfo.value.email)) {
+    emailError.value = 'Invalid email format'
+  }
+
+  // 电话校验
+  if (!userInfo.value.phone) {
+    phoneError.value = 'Phone is required'
+  } // 不再用正则，onPhoneInput 已处理格式
+
+  return !firstNameError.value && !lastNameError.value && !emailError.value && !phoneError.value
+}
 
 // 价格
 const totalPrice = computed(() => {
@@ -438,7 +508,9 @@ function prevStep() {
   if (currentStep.value > 0) currentStep.value--
 }
 function submitUserInfo() {
-  if (userInfoValid.value) nextStep()
+  if (validateUserInfo()) {
+    nextStep()
+  }
 }
 
 async function submitReservation() {
@@ -448,18 +520,27 @@ async function submitReservation() {
     last_name: userInfo.value.lastName,
     email: userInfo.value.email,
     phone: userInfo.value.phone,
+    phone_dial_code: phoneDialCode.value,
     start_time: selectedDate.value + ' ' + (selectedTime.value ? selectedTime.value.split(' - ')[0] : ''),
     end_time: selectedDate.value + ' ' + (selectedTime.value ? selectedTime.value.split(' - ')[1] : ''),
     repeat: repeatSummary.value,
     pay_price: totalPrice.value,
-    // 你可以根据需要添加更多字段
   }
   try {
+    // 1. 提交预约，生成订单
     const res = await axios.post('/api/course-reservation', payload)
-    // 成功后进入下一步
-    nextStep()
+    const orderNo = res.data.order_no
+
+    // 2. 调用后端生成 PayPal 支付链接
+    const payRes = await axios.post('/api/paypal/pay', { order_no: orderNo })
+    if (payRes.data.paypal_url) {
+      // 跳转到 PayPal 支付
+      window.location.href = payRes.data.paypal_url
+    } else {
+      Swal.fire({ icon: 'error', title: 'Payment failed', text: 'Failed to obtain the payment link' })
+    }
   } catch (e) {
-    alert('预约失败，请重试')
+    Swal.fire({ icon: 'error', title: 'Operation failure', text: 'The reservation or payment failed. Please try again' })
   }
 }
 
@@ -486,5 +567,13 @@ const bookingSectionRef = ref(null)
 function scrollToBooking() {
   bookingSectionRef.value?.scrollIntoView({ behavior: 'smooth' })
 }
+
+onMounted(() => {
+  // 检查 URL 参数，支付成功后自动跳到完成页
+  const params = new URLSearchParams(window.location.search)
+  if (params.get('step') == 6) {
+    currentStep.value = 5
+  }
+})
 </script>
 

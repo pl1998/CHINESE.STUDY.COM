@@ -87,9 +87,12 @@ class ConfigPayController extends AdminController
             $form->text('paypal_secret');
             $form->text('paypal_mode');
             $form->text('currency');
-        
-            $form->display('created_at');
-            $form->display('updated_at');
+            $form->text('app_name');
+    
+            // 设置表单提交的URL
+            $form->action(admin_url('config/pay/1'));
+            // 设置表单提交方法
+          
         });
     }
 }
