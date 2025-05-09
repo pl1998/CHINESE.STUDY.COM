@@ -9,11 +9,9 @@ use App\Models\CourseReservation;
 
 class PaypalController extends Controller
 {
-    public function pay(Request $request)
+
+    private function setConfig()
     {
-        $orderNo = $request->input('order_no');
-        $reservation = CourseReservation::where('order_no', $orderNo)->firstOrFail();
-        // 读取 config_pay 配置
         $config = \App\Models\ConfigPay::first();
         config([
             'paypal.mode'    => $config->paypal_mode,
@@ -23,6 +21,15 @@ class PaypalController extends Controller
             'paypal.currency' => $config->currency,
             'paypal.http.verify' => env('APP_ENV') == 'pro' ? true: false,
         ]);
+
+    }
+
+    public function pay(Request $request)
+    {
+        $orderNo = $request->input('order_no');
+        $reservation = CourseReservation::where('order_no', $orderNo)->firstOrFail();
+        // 读取 config_pay 配置
+        $this->setConfig();
 
       
         $provider = new PayPalClient;
@@ -60,6 +67,8 @@ class PaypalController extends Controller
     public function success(Request $request)
     {
         $orderNo = $request->input('order_no');
+           // 读取 config_pay 配置
+           $this->setConfig();
         $provider = new PayPalClient;
         $provider->setApiCredentials(config('paypal'));
         $provider->getAccessToken();
