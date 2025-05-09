@@ -77,12 +77,12 @@ class PaypalController extends Controller
         $response = $provider->capturePaymentOrder($token);
         $reservation = CourseReservation::where('order_no', $orderNo)->first();
         if ($response['status'] == 'COMPLETED') {
-            $reservation->status = 1;
+            $reservation->pay_status = 1;
             $reservation->save();
             // 跳转回前端页面并带上参数
             return redirect("/hsk-lesson?order_no={$orderNo}&step=6");
         } else {
-            $reservation->status = 2;
+            $reservation->pay_status = 2;
             $reservation->save();
             return redirect("/hsk-lesson?order_no={$orderNo}&step=error");
         }
