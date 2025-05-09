@@ -1,0 +1,1 @@
+import{_ as s,a}from"./Footer-5193c389.js";import{o as c,c as o,a as e}from"./app-c3bf8b90.js";const t={class:"min-h-screen bg-white"},p={__name:"RecordedLessons",setup(_){return(r,n)=>(c(),o("div",t,[e(s),e(a)]))}};export{p as default};

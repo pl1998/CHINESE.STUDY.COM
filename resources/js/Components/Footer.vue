@@ -6,13 +6,13 @@
         <div class="text-gray-500">Copyright © 2025. All rights reserved.<br />ELENA MANDARIN</div>
         <div class="flex space-x-4 mt-2">
           <a href="#" class="text-gray-400 hover:text-[#009FE8] transition-colors">
-            <i class="fab fa-instagram text-xl"></i>
+            <font-awesome-icon :icon="['fab', 'instagram']" class="text-xl" />
           </a>
           <a href="#" class="text-gray-400 hover:text-[#009FE8] transition-colors">
-            <i class="fab fa-tiktok text-xl"></i>
+            <font-awesome-icon :icon="['fab', 'tiktok']"  class="text-xl"/>
           </a>
           <a href="#" class="text-gray-400 hover:text-[#009FE8] transition-colors">
-            <i class="fab fa-youtube text-xl"></i>
+            <font-awesome-icon :icon="['fab', 'youtube']" class="text-xl" />
           </a>
         </div>
       </div>
@@ -52,3 +52,4 @@
 <script setup>
 import { Link } from '@inertiajs/vue3'
 </script>
+
