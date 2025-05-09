@@ -16,7 +16,7 @@
         <!-- 课程卡片 -->
         <div class="flex flex-wrap gap-8">
           <div class="w-64 border rounded bg-white shadow-sm p-2 flex flex-col items-center">
-            <img src="https://102335809.r.cloudnexus.cc/images/lesson_book.png" alt="course" class="w-full h-40 object-cover rounded mb-2" />
+            <img src="/images/lesson_book.png" alt="course" class="w-full h-40 object-cover rounded mb-2" />
             <div class="text-center text-sm text-gray-700 mt-2">course</div>
           </div>
           <!-- 你可以复制上面div，渲染更多课程 -->

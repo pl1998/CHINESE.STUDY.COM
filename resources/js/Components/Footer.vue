@@ -2,7 +2,7 @@
   <footer class="bg-white border-t border-gray-200 py-8">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-4 text-sm">
       <div>
-        <img src="https://102335809.r.cloudnexus.cc/images/logo/logo.png" alt="logo" class="h-10 mb-2" />
+        <img src="/images/logo/logo.png" alt="logo" class="h-10 mb-2" />
         <div class="text-gray-500">Copyright © 2025. All rights reserved.<br />ELENA MANDARIN</div>
         <div class="flex space-x-4 mt-2">
           <a href="#" class="text-gray-400 hover:text-[#009FE8] transition-colors">

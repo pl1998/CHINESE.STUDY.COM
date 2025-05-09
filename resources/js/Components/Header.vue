@@ -6,7 +6,7 @@
           <!-- Logo -->
           <div class="flex-shrink-0 flex items-center">
             <Link href="/">
-              <img class="h-8 w-auto" src="https://102335809.r.cloudnexus.cc/images/logo/logo.png" alt="Elena Mandarin" />
+              <img class="h-8 w-auto" src="/images/logo/logo.png" alt="Elena Mandarin" />
             </Link>
           </div>
 

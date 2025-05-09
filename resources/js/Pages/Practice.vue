@@ -5,7 +5,7 @@
     <div class="min-h-screen bg-white">
       <!-- Brand 图 -->
       <div class="w-full">
-        <img src="https://102335809.r.cloudnexus.cc/images/daily_pratice/brander.jpg" alt="Brander" class="w-full h-56 object-cover" />
+        <img src="/images/daily_pratice/brander.jpg" alt="Brander" class="w-full h-56 object-cover" />
       </div>
 
       <!-- 面包屑导航 -->
@@ -18,7 +18,7 @@
       <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8 py-8 px-4">
         <div class="flex-1 flex flex-col items-center">
           <img
-            src="https://102335809.r.cloudnexus.cc/images/daily_pratice/product.jpg"
+            src="/images/daily_pratice/product.jpg"
             alt="Product"
             class="w-80 h-48 object-cover rounded shadow cursor-pointer"
             @click="toggleAudio"
