@@ -347,7 +347,7 @@
 <script setup>
 import Navbar from '../components/Navbar.vue'
 import Footer from '../components/Footer.vue'
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, nextTick } from 'vue'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import { VueTelInput } from 'vue-tel-input'
@@ -573,6 +573,10 @@ onMounted(() => {
   const params = new URLSearchParams(window.location.search)
   if (params.get('step') == 6) {
     currentStep.value = 5
+    // 滚动到预约部分
+    nextTick(() => {
+      scrollToBooking()
+    })
   }
 })
 </script>
