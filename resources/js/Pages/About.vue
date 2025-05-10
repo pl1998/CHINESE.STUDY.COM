@@ -1,7 +1,7 @@
 <template>
+<Layout :config="config">
   <div class="min-h-screen bg-white">
     <!-- 导航栏 -->
-    <Navbar />
     <div class="pt-[88px]">
     <!-- 顶部大图 -->
     <div class="w-full h-[260px] md:h-[320px] bg-gray-200">
@@ -44,14 +44,17 @@
         </div>
       </div>
     </div>
-
-    <!-- 页脚 -->
-    <Footer />
     </div>
   </div>
+</Layout>
 </template>
 
 <script setup>
-import Navbar from '../components/Navbar.vue'
-import Footer from '../components/Footer.vue'
+import Layout from '@/Layouts/App.vue'
+defineProps({
+  config: {
+    type: Object,
+    required: true
+  }
+})
 </script>

@@ -1,7 +1,8 @@
 <template>
+<Layout :config="config">
   <div class="min-h-screen bg-white">
     <!-- 导航栏 -->
-    <Navbar />
+
     <div class="pt-[88px]">
     <!-- 课程介绍主区域 -->
     <div class="w-full bg-[#eaf2f3] py-12 mt-30">
@@ -337,16 +338,19 @@
         </div>
       </div>
     </section>
-
-    <!-- 页脚 -->
-    <Footer />
   </div>
   </div>
+</Layout>
 </template>
 
 <script setup>
-import Navbar from '../components/Navbar.vue'
-import Footer from '../components/Footer.vue'
+import Layout from '@/Layouts/App.vue'
+defineProps({
+  config: {
+    type: Object,
+    required: true
+  }
+})
 import { ref, computed, onMounted, nextTick } from 'vue'
 import axios from 'axios'
 import Swal from 'sweetalert2'

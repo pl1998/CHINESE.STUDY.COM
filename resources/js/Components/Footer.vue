@@ -2,16 +2,16 @@
   <footer class="bg-white border-t border-gray-200 py-8">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-4 text-sm">
       <div>
-        <img src="/images/logo/logo.png" alt="logo" class="h-10 mb-2" />
+        <img src="/images/logo/logo.png" alt="logo" class="h-20 mb-2" />
         <div class="text-gray-500">Copyright © 2025. All rights reserved.<br />ELENA MANDARIN</div>
         <div class="flex space-x-4 mt-2">
-          <a href="#" class="text-gray-400 hover:text-[#009FE8] transition-colors">
+          <a :href="config.instagram_url" target="_blank" class="text-gray-400 hover:text-[#009FE8] transition-colors">
             <font-awesome-icon :icon="['fab', 'instagram']" class="text-xl" />
           </a>
-          <a href="#" class="text-gray-400 hover:text-[#009FE8] transition-colors">
+          <a :href="config.tiktok_url" target="_blank" class="text-gray-400 hover:text-[#009FE8] transition-colors">
             <font-awesome-icon :icon="['fab', 'tiktok']"  class="text-xl"/>
           </a>
-          <a href="#" class="text-gray-400 hover:text-[#009FE8] transition-colors">
+          <a :href="config.youtube_url" target="_blank" class="text-gray-400 hover:text-[#009FE8] transition-colors">
             <font-awesome-icon :icon="['fab', 'youtube']" class="text-xl" />
           </a>
         </div>
@@ -39,8 +39,13 @@
       <div>
         <div class="font-bold mb-2">Newsletter</div>
         <div class="text-gray-500 mb-2">We love sharing tips, resources and stories to help Chinese language learners just like you. Subscribe and learn with us!</div>
-        <form class="flex space-x-2">
-          <input type="email" placeholder="Submit Now" class="flex-1 border border-gray-300 rounded px-2 py-1 focus:outline-none focus:border-[#009FE8]" />
+        <form @submit.prevent="handleSubmit" class="flex space-x-2">
+          <input 
+            v-model="email" 
+            type="email" 
+            placeholder="Submit Now" 
+            class="flex-1 border border-gray-300 rounded px-2 py-1 focus:outline-none focus:border-[#009FE8]" 
+          />
           <button type="submit" class="bg-[#009FE8] text-white px-4 py-1 rounded hover:bg-[#007bb5]">Submit</button>
         </form>
       </div>
@@ -51,6 +56,36 @@
 
 <script setup>
 import { Link } from '@inertiajs/vue3'
+import { ref } from 'vue'
+import axios from 'axios'
+import Swal from 'sweetalert2'
+
+const props = defineProps({
+  config: {
+    type: Object,
+    required: true,
+    default: () => ({
+      instagram_url: '#',
+      tiktok_url: '#',
+      youtube_url: '#'
+    })
+  }
+})
+
+const email = ref('')
+const handleSubmit = async () => {
+  try {
+    const response = await axios.post('/api/subscribe', {
+      email: email.value
+    })
+    if (response.data.state == 200) {
+      Swal.fire({ icon: 'success', title: 'Subscription successful', text: 'Welcome to subscribe. We will push the first consultation to you immediately' })
+      email.value = ''
+    } else {
+      Swal.fire({ icon: 'error', title: 'Order failure', text: response.data.message })
+    }
+  } catch (error) {
+    Swal.fire({ icon: 'error', title: 'Order failure', text: 'Please enter the correct email address' })
+  }
+}
 </script>
-
-

@@ -1,9 +1,6 @@
 <template>
-  <div class="min-h-screen bg-white mt-40">
-
-      <!-- 导航栏 -->
-      <Navbar />
-
+<Layout :config="config">
+  <div class=" min-h-screen bg-white mt-40">
     <!-- Hero 区域 -->
     <section class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between py-10 px-4">
       <div class="flex-1">
@@ -58,7 +55,6 @@
         </div>
       </div>
     </section>
-
     <!-- 统计数据 -->
     <section class="bg-[#F7F9FA] py-8">
       <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
@@ -175,18 +171,20 @@
         </Link>
       </div>
     </section>
-
-    <!-- 页脚 -->
-    <Footer />
   </div>
+</Layout>
 </template>
 
 <script setup>
-import Navbar from '../components/Navbar.vue'
-import Footer from '../components/Footer.vue'
+import Layout from '@/Layouts/App.vue'
 import { Link } from '@inertiajs/vue3';
 import { ref, onMounted, nextTick } from 'vue';
-
+defineProps({
+  config: {
+    type: Object,
+    required: true
+  }
+})
 const isPlaying = ref(true);
 const isMuted = ref(false);
 const homeVideo = ref(null);

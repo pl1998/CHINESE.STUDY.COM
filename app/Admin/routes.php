@@ -14,8 +14,11 @@ Route::group([
 
     $router->get('/', 'HomeController@index');
     
-    $router->resource('/course_reservation', 'CourseReservationController')->only(['show','index','destroy','edit','update']);
+    $router->resource('course_reservation', 'CourseReservationController')->only(['show','index','destroy','edit','update']);
     $router->resource('config/pay', 'ConfigPayController');   
     $router->resource('config/email', 'ConfigEmailController');
+    $router->get('feedback/subscribes', 'SubscribeController@index');
+    $router->get('feedback/contact-records', 'ContactRecordController@index');
+    $router->resource('config/site', 'ConfigSiteController');
 
 });

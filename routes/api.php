@@ -19,5 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::post('/course-reservation', [\App\Http\Controllers\Api\CourseReservationController::class, 'store']);
 Route::post('/paypal/pay', [\App\Http\Controllers\Api\PaypalController::class, 'pay']);
-Route::get('/paypal/success', [PaypalController::class, 'success']);
-Route::get('/paypal/cancel', [PaypalController::class, 'cancel']);
+Route::post('/subscribe', [App\Http\Controllers\SubscribeController::class, 'store']);
+Route::post('/contact', [App\Http\Controllers\ContactController::class, 'store']);

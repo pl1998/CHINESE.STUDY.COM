@@ -1,8 +1,7 @@
 <template>
-  <div>
-    <Navbar />
+<Layout :config="config">
   <div class="pt-[88px]">
-    <div class="min-h-screen bg-white">
+    <div class="bg-white">
       <!-- Brand 图 -->
       <div class="w-full">
         <img src="/images/daily_pratice/brander.jpg" alt="Brander" class="w-full h-56 object-cover" />
@@ -13,7 +12,7 @@
       <div class="w-full bg-[#f7f7f7] py-2 px-4 text-sm text-gray-600">
       Home &gt;&gt; <span class="text-[#009FE8]">1Daily Pratice</span>
     </div>
-</div>
+  </div>
       <!-- 产品图和播放按钮 -->
       <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8 py-8 px-4">
         <div class="flex-1 flex flex-col items-center">
@@ -27,7 +26,6 @@
           <audio ref="audioRef" :src="audioSrc" @ended="isPlaying = false"></audio>
         </div>
       </div>
-
       <!-- 分页组件 -->
       <div class="max-w-4xl mx-auto flex justify-center items-center gap-2 py-8">
         <button class="border px-3 py-1 rounded hover:bg-gray-100">Home</button>
@@ -38,13 +36,17 @@
       </div>
     </div>
   </div>
-    <Footer />
-  </div>
+</Layout>
 </template>
 
 <script setup>
-import Navbar from '../components/Navbar.vue'
-import Footer from '../components/Footer.vue'
+import Layout from '@/Layouts/App.vue'
+defineProps({
+  config: {
+    type: Object,
+    required: true
+  }
+})
 import { ref } from 'vue'
 
 const audioRef = ref(null)
