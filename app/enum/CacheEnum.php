@@ -19,4 +19,6 @@ class CacheEnum
      * @var string
      */
     const CONFIG_PAY = 'cache:config:pay';
+
+    
 }   
