@@ -6,13 +6,18 @@ use Illuminate\Http\Request;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 use App\Models\ConfigPay;
 use App\Models\CourseReservation;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\CourseReservationMail;
+use App\Http\Traits\EmailConfig;
 class PaypalController extends Controller
 {
 
+    use EmailConfig;
+
     private function setConfig()
     {
-        $config = \App\Models\ConfigPay::first();
+        $config = ConfigPay::first();
         config([
             'paypal.mode'    => $config->paypal_mode,
             'paypal.sandbox.client_id' => $config->paypal_client_id,
@@ -68,7 +73,6 @@ class PaypalController extends Controller
     public function success(Request $request)
     {
         $orderNo = $request->input('order_no');
-           // 读取 config_pay 配置
            $this->setConfig();
         $provider = new PayPalClient;
         $provider->setApiCredentials(config('paypal'));
@@ -81,6 +85,12 @@ class PaypalController extends Controller
             $reservation->pay_status = 1;
             $reservation->save();
             // 跳转回前端页面并带上参数
+            try {
+                $this->setEmailConfig();
+                Mail::to($reservation->email)->send(new CourseReservationMail($reservation));
+            } catch (\Exception $e) {
+                Log::error('CourseReservationMail send failed: ' . $e->getMessage());
+            }
             return redirect("/hsk-lesson?order_no={$orderNo}&step=6");
         } else {
             $reservation->pay_status = 2;
@@ -88,6 +98,7 @@ class PaypalController extends Controller
             return redirect("/hsk-lesson?order_no={$orderNo}&step=error");
         }
  
+        
     }
 
     // 支付取消回调

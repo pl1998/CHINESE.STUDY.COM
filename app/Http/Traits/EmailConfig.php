@@ -1,19 +1,10 @@
 <?php
 
-namespace App\Models;
-
-use Dcat\Admin\Traits\HasDateTimeFormatter;
-
-use Illuminate\Database\Eloquent\Model;
+namespace App\Http\Traits;
 use App\Models\ConfigEmail;
-class CourseReservation extends Model
+trait EmailConfig
 {
-	use HasDateTimeFormatter;
-    protected $table = 'course_reservation';
-
-    protected $primaryKey = 'id';
-
-    public static function setEmailConfig()
+    public function setEmailConfig()
     {
         $emailConfig = ConfigEmail::getConfig();
         if(!empty($emailConfig)){
@@ -33,8 +24,4 @@ class CourseReservation extends Model
          ]);
         }
     }
-
-    protected $guarded  = [
-      
-    ];
 }

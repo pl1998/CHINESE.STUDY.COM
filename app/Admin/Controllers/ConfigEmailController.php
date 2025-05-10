@@ -9,6 +9,8 @@ use Dcat\Admin\Show;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Admin;
+use Illuminate\Support\Facades\Cache;
+use App\Enum\CacheEnum;
 
 class ConfigEmailController extends AdminController
 {
@@ -33,16 +35,13 @@ class ConfigEmailController extends AdminController
     {
         return Grid::make(new ConfigEmail(), function (Grid $grid) {
             $grid->column('id')->sortable();
-            $grid->column('mail_host');
-            $grid->column('mail_port');
-            $grid->column('mail_username');
-            $grid->column('mail_password');
-            $grid->column('mail_encryption');
-            $grid->column('mail_from_address');
-            $grid->column('mail_from_name');
-            $grid->column('created_at');
-            $grid->column('updated_at')->sortable();
-
+            $grid->column('mail_host','邮箱服务器');
+            $grid->column('mail_port','邮箱端口');
+            $grid->column('mail_username','邮箱账号');
+            $grid->column('mail_password','邮箱密码');
+            $grid->column('mail_encryption','邮箱加密');
+            $grid->column('mail_from_address','邮箱发件人');
+            $grid->column('mail_from_name','邮箱发件人名称');
             // $grid->setActionClass(Grid\Displayers\Actions::class); // 行操作按钮显示方式 图标方式
             $grid->actions(function (Grid\Displayers\Actions $actions) {
                 // $actions->disableDelete(); //  禁用删除
@@ -89,15 +88,17 @@ class ConfigEmailController extends AdminController
     {
         return Form::make(new ConfigEmail(), function (Form $form) {
             $form->display('id');
-            $form->text('mail_host');
-            $form->text('mail_port');
-            $form->text('mail_username');
-            $form->text('mail_password');
-            $form->text('mail_encryption');
-            $form->text('mail_from_address');
-            $form->text('mail_from_name');
+            $form->text('mail_host','邮箱服务器');
+            $form->text('mail_port','邮箱端口');
+            $form->text('mail_username','邮箱账号');
+            $form->text('mail_password','邮箱密码');
+            $form->text('mail_encryption','邮箱加密');
+            $form->text('mail_from_address','邮箱发件人');
+            $form->text('mail_from_name','邮箱发件人名称');
             $form->action(admin_url('config/email/1'));
-
+            $form->saved(function (Form $form) {
+                Cache::forget(CacheEnum::CONFIG_EMAIL);
+            });
         });
     }
 }

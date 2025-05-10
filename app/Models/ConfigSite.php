@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Enum\CacheEnum;
 class ConfigSite extends Model
 {
     protected $fillable = [
@@ -21,7 +21,7 @@ class ConfigSite extends Model
 
     public static function getConfig()
     {
-        return cache()->remember('config_site', 3600, function () {
+        return cache()->remember(CacheEnum::CONFIG_SITE, 3600, function () {
             return self::first()?->toArray();
         });
     }

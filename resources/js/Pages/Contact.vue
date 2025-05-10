@@ -1,6 +1,6 @@
 <template>
 <Layout :config="config">
-<div class="min-h-screen bg-white">
+<div class="bg-white min-h-[420px]">
     <div class="pt-[88px]">
     <!-- 联系方式标题 -->
     <div class="max-w-4xl mx-auto mt-8 mb-4 text-center">

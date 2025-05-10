@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\CoursePracticeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +22,4 @@ Route::post('/course-reservation', [\App\Http\Controllers\Api\CourseReservationC
 Route::post('/paypal/pay', [\App\Http\Controllers\Api\PaypalController::class, 'pay']);
 Route::post('/subscribe', [App\Http\Controllers\SubscribeController::class, 'store']);
 Route::post('/contact', [App\Http\Controllers\ContactController::class, 'store']);
+Route::get('course-practices', [CoursePracticeController::class, 'index']);

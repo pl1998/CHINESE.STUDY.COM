@@ -9,7 +9,9 @@ use Dcat\Admin\Show;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Admin;
-
+use Dcat\Admin\Widgets\Alert;
+use Illuminate\Support\Facades\Cache;
+use App\Enum\CacheEnum;
 class ConfigPayController extends AdminController
 {
     /**
@@ -17,11 +19,12 @@ class ConfigPayController extends AdminController
      */
     public function index(Content $content)
     {
+        $alert = Alert::make('<h3>沙箱测试</h3> <br> <span style="color: red; font-weight: bold;">支付账号: sb-xjszp41794632@personal.example.com <br> 密码：28I_WE$y</span>');
            // 自动创建一条数据（如不存在）
     $model = \App\Models\ConfigPay::firstOrCreate(['id' => 1]);
     return $content
         ->header('Paypal配置')
-        ->description('')
+        ->row($alert->info())
         ->body($this->form()->edit($model->id));
     }
 
@@ -65,12 +68,10 @@ class ConfigPayController extends AdminController
     {
         return Show::make($id, new ConfigPay(), function (Show $show) {
             $show->field('id');
-            $show->field('paypal_client_id');
-            $show->field('paypal_secret');
-            $show->field('paypal_mode');
-            $show->field('currency');
-            $show->field('created_at');
-            $show->field('updated_at');
+            $show->field('paypal_client_id','Paypal Client ID');
+            $show->field('paypal_secret','Paypal Secret');
+            $show->field('paypal_mode','Paypal Mode');
+            $show->field('currency','货币');
         });
     }
 
@@ -83,16 +84,18 @@ class ConfigPayController extends AdminController
     {
         return Form::make(new ConfigPay(), function (Form $form) {
             $form->display('id');
-            $form->text('paypal_client_id');
-            $form->text('paypal_secret');
-            $form->text('paypal_mode');
-            $form->text('currency');
-            $form->text('app_name');
-    
+            $form->text('app_name','应用名称');
+            $form->text('paypal_client_id','Paypal Client ID');
+            $form->text('paypal_secret','Paypal Secret');
+            $form->text('paypal_mode','Paypal Mode');
+            $form->text('currency','货币');
+        
             // 设置表单提交的URL
             $form->action(admin_url('config/pay/1'));
             // 设置表单提交方法
-          
+            $form->saved(function (Form $form) {
+                Cache::forget(CacheEnum::CONFIG_PAY);
+            });
         });
     }
 }

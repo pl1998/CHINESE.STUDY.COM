@@ -18,7 +18,7 @@
               </div>
             </Link>
             <!-- survival chinese -->
-            <Link href="/survival-chinese" class="relative group border-2 border-white hover:border-[#009FE8] transition rounded block">
+            <Link href="/hsk-lesson" class="relative group border-2 border-white hover:border-[#009FE8] transition rounded block">
               <img src="/images/lessons/lessons_b.jpg" alt="survival chinese" class="w-full h-56 object-cover rounded" />
               <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center text-white text-center px-4">
                 <div class="text-2xl font-bold mb-2">survival chinese</div>
@@ -27,7 +27,7 @@
             </Link>
     
             <!-- Fun Chinese Debate Topics -->
-            <Link href="/debate-topics" class="relative group border-2 border-white hover:border-[#009FE8] transition rounded block">
+            <Link href="/hsk-lesson" class="relative group border-2 border-white hover:border-[#009FE8] transition rounded block">
               <img src="/images/lessons/lessons_c.jpg" alt="Fun Chinese Debate Topics" class="w-full h-56 object-cover rounded" />
               <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center text-white text-center px-4">
                 <div class="text-2xl font-bold mb-2">Fun Chinese Debate Topics</div>
@@ -35,7 +35,7 @@
               </div>
             </Link>
             <!-- conversational chinese -->
-            <Link href="/conversational-chinese" class="relative group border-2 border-white hover:border-[#009FE8] transition rounded block">
+            <Link href="/hsk-lesson" class="relative group border-2 border-white hover:border-[#009FE8] transition rounded block">
               <img src="/images/lessons/lessons_d.jpg" alt="conversational chinese" class="w-full h-56 object-cover rounded" />
               <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center text-white text-center px-4">
                 <div class="text-2xl font-bold mb-2">conversational chinese</div>

@@ -20,5 +20,5 @@ Route::group([
     $router->get('feedback/subscribes', 'SubscribeController@index');
     $router->get('feedback/contact-records', 'ContactRecordController@index');
     $router->resource('config/site', 'ConfigSiteController');
-
+    $router->resource('course-practice', 'CoursePracticeController');
 });

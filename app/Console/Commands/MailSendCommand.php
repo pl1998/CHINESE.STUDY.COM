@@ -1,19 +1,32 @@
 <?php
 
-namespace App\Models;
+namespace App\Console\Commands;
 
-use Dcat\Admin\Traits\HasDateTimeFormatter;
-
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\CourseReservationMail;
+use App\Models\CourseReservation;
 use App\Models\ConfigEmail;
-class CourseReservation extends Model
+class MailSendCommand extends Command
 {
-	use HasDateTimeFormatter;
-    protected $table = 'course_reservation';
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'app:mail-send-command';
 
-    protected $primaryKey = 'id';
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Command description';
 
-    public static function setEmailConfig()
+    /**
+     * Execute the console command.
+     */
+    public function handle()
     {
         $emailConfig = ConfigEmail::getConfig();
         if(!empty($emailConfig)){
@@ -32,9 +45,6 @@ class CourseReservation extends Model
              ]
          ]);
         }
+        Mail::to('2540463097@qq.com')->send(new CourseReservationMail(CourseReservation::first()));
     }
-
-    protected $guarded  = [
-      
-    ];
 }

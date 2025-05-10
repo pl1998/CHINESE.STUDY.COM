@@ -8,6 +8,8 @@ use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Content;
+use Illuminate\Support\Facades\Cache;
+use App\Enum\CacheEnum;
 
 class ConfigSiteController extends AdminController
 {
@@ -80,6 +82,9 @@ class ConfigSiteController extends AdminController
             // 禁用查看按钮
             $form->disableViewButton();
             $form->action(admin_url('config/site/1'));
+            $form->saved(function (Form $form) {
+                Cache::forget(CacheEnum::CONFIG_SITE);
+            });
         });
     }
 }

@@ -15,6 +15,6 @@ trait InertiaTrait
     {
         $config = ConfigSite::getConfig();
    
-        return Inertia::render($view, array_merge($data, ['config' => $config?->toArray()]));
+        return Inertia::render($view, array_merge($data, ['config' => $config]));
     }
 }
