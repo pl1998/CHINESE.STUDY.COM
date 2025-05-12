@@ -6,7 +6,7 @@
     <!-- 顶部大图 -->
     <div class="w-full h-[260px] md:h-[320px] bg-gray-200">
       <img
-        src="/images/about/about_banner.jpg"
+        src="/images/banner/about.jpg"
         alt="about-banner"
         class="w-full h-full object-cover"
       />
