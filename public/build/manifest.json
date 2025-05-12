@@ -1,6 +1,6 @@
 {
-  "_App-2c0627c0.js": {
-    "file": "assets/App-2c0627c0.js",
+  "_App-22f5f58c.js": {
+    "file": "assets/App-22f5f58c.js",
     "imports": [
       "resources/js/app.js"
     ]
@@ -10,19 +10,19 @@
     "src": "resources/js/app.css"
   },
   "resources/js/Pages/About.vue": {
-    "file": "assets/About-98fa902e.js",
+    "file": "assets/About-3a25d869.js",
     "imports": [
-      "_App-2c0627c0.js",
+      "_App-22f5f58c.js",
       "resources/js/app.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/About.vue"
   },
   "resources/js/Pages/Contact.vue": {
-    "file": "assets/Contact-251107f9.js",
+    "file": "assets/Contact-c347bd26.js",
     "imports": [
       "resources/js/app.js",
-      "_App-2c0627c0.js"
+      "_App-22f5f58c.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Contact.vue"
@@ -35,9 +35,9 @@
     "css": [
       "assets/Home-7e92eab4.css"
     ],
-    "file": "assets/Home-0a795a07.js",
+    "file": "assets/Home-d2ed6ecb.js",
     "imports": [
-      "_App-2c0627c0.js",
+      "_App-22f5f58c.js",
       "resources/js/app.js"
     ],
     "isDynamicEntry": true,
@@ -51,36 +51,36 @@
     "css": [
       "assets/HskLesson-0ba478fb.css"
     ],
-    "file": "assets/HskLesson-5431c700.js",
+    "file": "assets/HskLesson-bbb98442.js",
     "imports": [
       "resources/js/app.js",
-      "_App-2c0627c0.js"
+      "_App-22f5f58c.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/HskLesson.vue"
   },
   "resources/js/Pages/Lessons.vue": {
-    "file": "assets/Lessons-daf3ca60.js",
+    "file": "assets/Lessons-1de6ab0b.js",
     "imports": [
-      "_App-2c0627c0.js",
+      "_App-22f5f58c.js",
       "resources/js/app.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Lessons.vue"
   },
   "resources/js/Pages/Practice.vue": {
-    "file": "assets/Practice-2bdc98ac.js",
+    "file": "assets/Practice-42173a96.js",
     "imports": [
-      "_App-2c0627c0.js",
+      "_App-22f5f58c.js",
       "resources/js/app.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Practice.vue"
   },
   "resources/js/Pages/RecordedLesson.vue": {
-    "file": "assets/RecordedLesson-4663ea6e.js",
+    "file": "assets/RecordedLesson-23e0309f.js",
     "imports": [
-      "_App-2c0627c0.js",
+      "_App-22f5f58c.js",
       "resources/js/app.js"
     ],
     "isDynamicEntry": true,
@@ -103,7 +103,7 @@
       "resources/js/Pages/Practice.vue",
       "resources/js/Pages/RecordedLesson.vue"
     ],
-    "file": "assets/app-5c7dbf2d.js",
+    "file": "assets/app-a8c09ebb.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   }

@@ -4,13 +4,18 @@
     <!-- 导航栏 -->
     <div class="pt-[88px]">
     <!-- 顶部大图 -->
-    <div class="w-full h-[260px] md:h-[320px] bg-gray-200">
+    <!-- <div class="w-full h-[260px] md:h-[320px] bg-gray-200">
       <img
-        src="/images/about/about_banner.jpg"
+        src="/images/banner/about.jpg"
         alt="about-banner"
         class="w-full h-full object-cover"
       />
-    </div>
+    </div> -->
+
+      <!-- 顶部大图 -->
+      <div class="w-full">
+          <img src="/images/banner/about.jpg" alt="Brander" class="w-full h-56 object-cover" />
+        </div>
 
     <!-- 主体内容 -->
     <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-end py-12 px-4 min-h-[320px]">
