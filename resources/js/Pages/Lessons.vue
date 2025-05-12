@@ -2,6 +2,17 @@
 <Layout :config="config">
   <div class="bg-white">
     <div class="pt-[88px]">
+       <!-- 顶部大图 -->
+       <div class="w-full">
+          <img src="/images/banner/lesson.jpg" alt="Brander" class="w-full h-56 object-cover" />
+        </div>
+    <!-- <div class="w-full h-[260px] md:h-[320px] bg-gray-200">
+      <img
+        src="/images/banner/lesson.jpg"
+        alt="about-banner"
+        class="w-full h-full object-cover"
+      />
+    </div> -->
       <div class="max-w-6xl mx-auto w-full px-4 py-8">
            <!-- 面包屑导航 -->
            <div class="w-full bg-[#f7f7f7] py-2 px-4 text-sm text-gray-600">

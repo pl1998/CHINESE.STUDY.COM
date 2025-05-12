@@ -1,6 +1,6 @@
 <template>
   <!-- 顶部广告栏，fixed在最上方 -->
-  <div class="fixed top-0 left-0 w-full z-50 bg-[#7a8b6a] text-white text-sm h-8 flex items-center">
+  <div class="fixed top-0 left-0 w-full z-50 bg-[#7a8b6a]  text-white text-sm h-8 flex items-center">
     <div class="max-w-7xl mx-auto flex items-center justify-between px-4 w-full">
       <div class="flex items-center space-x-6">
         <span>

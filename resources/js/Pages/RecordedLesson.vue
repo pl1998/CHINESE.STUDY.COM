@@ -3,6 +3,10 @@
   <div class="bg-white">
 
     <div class="pt-[88px]">
+       <!-- Brand 图 -->
+       <div class="w-full">
+          <img src="/images/banner/recorded_lesson.jpg" alt="Brander" class="w-full h-56 object-cover" />
+        </div>
       <!-- 课程筛选和列表 -->
       <div class="max-w-6xl mx-auto w-full px-4 py-8">
              <!-- 面包屑 -->

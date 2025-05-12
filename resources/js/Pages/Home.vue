@@ -166,7 +166,7 @@
     <section class="bg-[#F7F9FA] py-10">
       <div class="max-w-3xl mx-auto text-center">
         <h2 class="text-[50px] font-bold mb-4 transition-all duration-1000">Join us and have fun learning Chinese!</h2>
-        <Link href="/register" class="inline-block bg-[#009FE8] hover:bg-[#007bb5] text-white font-semibold rounded px-8 py-2 transition">
+        <Link href="/lessons" class="inline-block bg-[#009FE8] hover:bg-[#007bb5] text-white font-semibold rounded px-8 py-2 transition">
           Get started
         </Link>
       </div>

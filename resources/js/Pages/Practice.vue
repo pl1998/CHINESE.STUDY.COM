@@ -4,7 +4,7 @@
       <div class="bg-white">
         <!-- Brand 图 -->
         <div class="w-full">
-          <img src="/images/daily_pratice/brander.jpg" alt="Brander" class="w-full h-56 object-cover" />
+          <img src="/images/banner/pratice.jpg" alt="Brander" class="w-full h-56 object-cover" />
         </div>
 
         <!-- 面包屑导航 -->
