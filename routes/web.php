@@ -2,11 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\LessonController;
-use App\Http\Controllers\CourseController;
-
+use App\Http\Controllers\Api\PaypalController;
+use App\Http\Controllers\InertiaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,48 +14,28 @@ use App\Http\Controllers\CourseController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/', [InertiaController::class, 'index']);
 
-Route::get('/', function () {
-    return Inertia::render('Home');
-});
+Route::get('/lessons', [InertiaController::class, 'lessons']);
 
-Route::get('/lessons', function () {
-    return Inertia::render('Lessons');
-});
+Route::get('/recorded', [InertiaController::class, 'recorded']);
 
-Route::get('/recorded', function () {
-    return Inertia::render('RecordedLesson');
-});
+Route::get('/practice', [InertiaController::class, 'practice']);
 
-Route::get('/practice', function () {
-    return Inertia::render('Practice');
-});
+Route::get('/about', [InertiaController::class, 'about']);
 
-Route::get('/about', function () {
-    return Inertia::render('About');
-});
+Route::get('/contact', [InertiaController::class, 'contact']);
 
-Route::get('/contact', function () {
-    return Inertia::render('Contact');
-});
+Route::get('/hsk-lesson', [InertiaController::class, 'hskLesson']);
 
-Route::get('/hsk-lesson', function () {
-    return Inertia::render('HskLesson');
-});
+Route::get('/survival-chinese', [InertiaController::class, 'survivalChinese']);
 
-Route::get('/survival-chinese', function () {
-    return Inertia::render('SurvivalChinese');
-});
+Route::get('/debate-topics', [InertiaController::class, 'debateTopics']);
 
-Route::get('/debate-topics', function () {
-    return Inertia::render('DebateTopics');
-});
+Route::get('/conversational-chinese', [InertiaController::class, 'conversationalChinese']);
 
-Route::get('/conversational-chinese', function () {
-    return Inertia::render('ConversationalChinese');
-});
+Route::get('/courses/{type}', [InertiaController::class, 'courses']);
 
-Route::get('/courses/{type}', function ($type) {
-    return Inertia::render('Course', ['type' => $type]);
-});
+Route::get('/paypal/success', [PaypalController::class, 'success']);
 
+Route::get('/paypal/cancel', [PaypalController::class, 'cancel']);

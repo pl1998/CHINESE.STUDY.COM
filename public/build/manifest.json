@@ -1,28 +1,28 @@
 {
-  "_Footer-5193c389.js": {
-    "file": "assets/Footer-5193c389.js",
+  "_App-2c0627c0.js": {
+    "file": "assets/App-2c0627c0.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
   "resources/css/app.css": {
-    "file": "assets/app-f6cc3799.css",
+    "file": "assets/app-f4214a17.css",
     "src": "resources/js/app.css"
   },
   "resources/js/Pages/About.vue": {
-    "file": "assets/About-07813875.js",
+    "file": "assets/About-98fa902e.js",
     "imports": [
-      "_Footer-5193c389.js",
+      "_App-2c0627c0.js",
       "resources/js/app.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/About.vue"
   },
   "resources/js/Pages/Contact.vue": {
-    "file": "assets/Contact-6fce3bb1.js",
+    "file": "assets/Contact-251107f9.js",
     "imports": [
-      "_Footer-5193c389.js",
-      "resources/js/app.js"
+      "resources/js/app.js",
+      "_App-2c0627c0.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Contact.vue"
@@ -35,66 +35,64 @@
     "css": [
       "assets/Home-7e92eab4.css"
     ],
-    "file": "assets/Home-98bf8d79.js",
+    "file": "assets/Home-0a795a07.js",
     "imports": [
-      "_Footer-5193c389.js",
+      "_App-2c0627c0.js",
       "resources/js/app.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Home.vue"
   },
+  "resources/js/Pages/HskLesson.css": {
+    "file": "assets/HskLesson-0ba478fb.css",
+    "src": "resources/js/Pages/HskLesson.css"
+  },
   "resources/js/Pages/HskLesson.vue": {
-    "file": "assets/HskLesson-24b79cc6.js",
+    "css": [
+      "assets/HskLesson-0ba478fb.css"
+    ],
+    "file": "assets/HskLesson-5431c700.js",
     "imports": [
       "resources/js/app.js",
-      "_Footer-5193c389.js"
+      "_App-2c0627c0.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/HskLesson.vue"
   },
   "resources/js/Pages/Lessons.vue": {
-    "file": "assets/Lessons-824cbd13.js",
+    "file": "assets/Lessons-daf3ca60.js",
     "imports": [
-      "_Footer-5193c389.js",
+      "_App-2c0627c0.js",
       "resources/js/app.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Lessons.vue"
   },
   "resources/js/Pages/Practice.vue": {
-    "file": "assets/Practice-d8565796.js",
+    "file": "assets/Practice-2bdc98ac.js",
     "imports": [
-      "_Footer-5193c389.js",
+      "_App-2c0627c0.js",
       "resources/js/app.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Practice.vue"
   },
   "resources/js/Pages/RecordedLesson.vue": {
-    "file": "assets/RecordedLesson-eb900dd4.js",
+    "file": "assets/RecordedLesson-4663ea6e.js",
     "imports": [
-      "_Footer-5193c389.js",
+      "_App-2c0627c0.js",
       "resources/js/app.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/RecordedLesson.vue"
   },
-  "resources/js/Pages/RecordedLessons.vue": {
-    "file": "assets/RecordedLessons-1c8ec892.js",
-    "imports": [
-      "_Footer-5193c389.js",
-      "resources/js/app.js"
-    ],
-    "isDynamicEntry": true,
-    "src": "resources/js/Pages/RecordedLessons.vue"
-  },
   "resources/js/app.css": {
-    "file": "assets/app-f6cc3799.css",
+    "file": "assets/app-f4214a17.css",
     "src": "resources/js/app.css"
   },
   "resources/js/app.js": {
     "css": [
-      "assets/app-f6cc3799.css"
+      "assets/app-f4214a17.css"
     ],
     "dynamicImports": [
       "resources/js/Pages/About.vue",
@@ -103,10 +101,9 @@
       "resources/js/Pages/HskLesson.vue",
       "resources/js/Pages/Lessons.vue",
       "resources/js/Pages/Practice.vue",
-      "resources/js/Pages/RecordedLesson.vue",
-      "resources/js/Pages/RecordedLessons.vue"
+      "resources/js/Pages/RecordedLesson.vue"
     ],
-    "file": "assets/app-c3bf8b90.js",
+    "file": "assets/app-5c7dbf2d.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   }

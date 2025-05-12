@@ -5,21 +5,21 @@
       <div class="flex items-center space-x-6">
         <span>
           <font-awesome-icon :icon="['fas', 'phone-alt']" class="mr-1" />
-          88-3439943434
+          {{ config.ipone }}
         </span>
         <span>
           <font-awesome-icon :icon="['fas', 'envelope']" class="mr-1" />
-          chineseteacherelena@outlook.com
+          {{ config.email }}
         </span>
       </div>
       <div class="flex items-center space-x-3">
-        <a href="#" class="hover:text-gray-200 transition-colors">
+        <a :href="config.instagram_url" target="_blank" class="hover:text-gray-200 transition-colors">
           <font-awesome-icon :icon="['fab', 'instagram']" />
         </a>
-        <a href="#" class="hover:text-gray-200 transition-colors">
+        <a :href="config.tiktok_url" target="_blank" class="hover:text-gray-200 transition-colors">
           <font-awesome-icon :icon="['fab', 'tiktok']" />
         </a>
-        <a href="#" class="hover:text-gray-200 transition-colors">
+        <a :href="config.youtube_url" target="_blank" class="hover:text-gray-200 transition-colors">
           <font-awesome-icon :icon="['fab', 'youtube']" />
         </a>
       </div>
@@ -71,5 +71,20 @@
 
 <script setup>
 import { Link, usePage } from '@inertiajs/vue3'
+
+const props = defineProps({
+  config: {
+    type: Object,
+    required: true,
+    default: () => ({
+      ipone: '',
+      email: '',
+      instagram_url: '#',
+      tiktok_url: '#',
+      youtube_url: '#'
+    })
+  }
+})
+
 const url = usePage().url
 </script>

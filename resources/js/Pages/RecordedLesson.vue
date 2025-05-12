@@ -1,6 +1,7 @@
 <template>
+<Layout :config="config">
   <div class="bg-white">
-    <Navbar />
+
     <div class="pt-[88px]">
       <!-- 课程筛选和列表 -->
       <div class="max-w-6xl mx-auto w-full px-4 py-8">
@@ -32,13 +33,16 @@
         </div>
       </div>
     </div>
-
-    <!-- 页脚 -->
-<Footer/>
   </div>
+</Layout>
 </template>
 
 <script setup>
-import Navbar from '../components/Navbar.vue'
-import Footer from '../components/Footer.vue'
+import Layout from '@/Layouts/App.vue'
+defineProps({
+  config: {
+    type: Object,
+    required: true
+  }
+})
 </script>

@@ -1,7 +1,6 @@
 <template>
-  <div class="min-h-screen bg-white">
-    <!-- 导航栏 -->
-    <Navbar />
+<Layout :config="config">
+<div class="bg-white min-h-[420px]">
     <div class="pt-[88px]">
     <!-- 联系方式标题 -->
     <div class="max-w-4xl mx-auto mt-8 mb-4 text-center">
@@ -52,22 +51,67 @@
       </div>
       <!-- 右侧表单 -->
       <div class="flex-1">
-        <form class="space-y-3">
-          <input type="text" placeholder="Name" class="w-full border border-gray-300 rounded px-2 py-2 focus:outline-none focus:border-[#009FE8]" />
-          <input type="email" placeholder="Email" class="w-full border border-gray-300 rounded px-2 py-2 focus:outline-none focus:border-[#009FE8]" />
-          <textarea placeholder="Message" class="w-full border border-gray-300 rounded px-2 py-2 focus:outline-none focus:border-[#009FE8]" rows="4"></textarea>
+        <form @submit.prevent="handleSubmit" class="space-y-3">
+          <input 
+            v-model="form.name" 
+            type="text" 
+            placeholder="Name" 
+            class="w-full border border-gray-300 rounded px-2 py-2 focus:outline-none focus:border-[#009FE8]" 
+          />
+          <input 
+            v-model="form.email" 
+            type="email" 
+            placeholder="Email" 
+            class="w-full border border-gray-300 rounded px-2 py-2 focus:outline-none focus:border-[#009FE8]" 
+          />
+          <textarea 
+            v-model="form.message" 
+            placeholder="Message" 
+            class="w-full border border-gray-300 rounded px-2 py-2 focus:outline-none focus:border-[#009FE8]" 
+            rows="4"
+          ></textarea>
           <button type="submit" class="w-full bg-white border border-[#009FE8] text-[#009FE8] px-4 py-2 rounded hover:bg-[#009FE8] hover:text-white transition">Submit Now</button>
         </form>
       </div>
     </div>
-
-    <!-- 页脚 -->
-    <Footer />
   </div>
 </div>
+</Layout>
 </template>
-
 <script setup>
-import Navbar from '../components/Navbar.vue'
-import Footer from '../components/Footer.vue'
+import Layout from '@/Layouts/App.vue'
+defineProps({
+  config: {
+    type: Object,
+    required: true
+  }
+})
+import Swal from 'sweetalert2'
+import { ref } from 'vue'
+import axios from 'axios'
+
+const form = ref({
+  name: '',
+  email: '',
+  message: ''
+})
+
+const handleSubmit = async () => {
+  try {
+    const response = await axios.post('/api/contact', form.value)
+    
+    if (response.data.success) {
+    
+      Swal.fire({ icon: 'success', title: 'successful', text: response.data.message })
+      // 重置表单
+      form.value = {
+        name: '',
+        email: '',
+        message: ''
+      }
+    }
+  } catch (error) {
+    Swal.fire({ icon: 'error', title: 'error', text: error.response?.data?.message || 'An error occurred' })
+  }
+}
 </script> 

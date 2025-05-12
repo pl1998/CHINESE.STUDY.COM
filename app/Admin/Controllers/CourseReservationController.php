@@ -3,15 +3,18 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Repositories\CourseReservation;
+use App\Http\Traits\EmailConfig;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Admin;
-
+use App\Mail\ZoomUrlNotificationMail;
+use Illuminate\Support\Facades\Mail;
 class CourseReservationController extends AdminController
 {
+    use EmailConfig;
     /**
      * page index
      */
@@ -54,6 +57,7 @@ class CourseReservationController extends AdminController
                 2 => '结束',
             ]);
             $grid->column('phone');
+            $grid->column('phone_dial_code', '区号');
             $grid->column('pay_price');
             $grid->column('zoom_url');
             $grid->column('repeat');
@@ -111,6 +115,7 @@ class CourseReservationController extends AdminController
             $show->field('status');
             $show->field('end_time');
             $show->field('phone');
+            $show->field('phone_dial_code', '区号');
             $show->field('pay_price');
             $show->field('zoom_url');
             $show->field('repeat');
@@ -151,7 +156,8 @@ class CourseReservationController extends AdminController
             $form->saved(function (Form $form) {
                 $model = $form->model();
                 if (!empty($model->zoom_url)) {
-                    \Mail::to($model->email)->send(new \App\Mail\ZoomUrlNotification($model));
+                    static::setEmailConfig();
+                    Mail::to($model->email)->send(new ZoomUrlNotificationMail($model));
                 }
             });
         });

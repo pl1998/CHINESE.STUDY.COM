@@ -18,7 +18,7 @@ return [
     |
     */
 
-    'default' => env('LOG_CHANNEL', 'stack'),
+    'default' => env('LOG_CHANNEL', 'daily'),
 
     /*
     |--------------------------------------------------------------------------
@@ -66,11 +66,19 @@ return [
         ],
 
         'daily' => [
-            'driver' => 'daily',
-            'path' => storage_path('logs/laravel.log'),
+            'driver' => 'monolog',
             'level' => env('LOG_LEVEL', 'debug'),
-            'days' => 14,
-            'replace_placeholders' => true,
+            'handler' => \App\Logging\EmptyStringFilterHandler::class,
+            'handler_with' => [
+                'handler' => new \Monolog\Handler\RotatingFileHandler(
+                    storage_path('logs/laravel.log'),
+                    30,
+                    \Monolog\Logger::DEBUG,
+                    true,
+                    0664
+                ),
+            ],
+            'processors' => [PsrLogMessageProcessor::class],
         ],
 
         'slack' => [
