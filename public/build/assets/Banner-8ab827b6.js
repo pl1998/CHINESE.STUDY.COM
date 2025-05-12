@@ -1,0 +1,1 @@
+import{o as t,j as a,a as r}from"./app-330e85c2.js";const c={class:"w-full"},s=["src","alt"],i={__name:"Banner",props:{imageSrc:{type:String,required:!0},alt:{type:String,default:"Banner"}},setup(e){return(l,n)=>(t(),a("div",c,[r("img",{src:e.imageSrc,alt:e.alt,class:"w-full object-cover",style:{height:"400px"}},null,8,s)]))}};export{i as _};
