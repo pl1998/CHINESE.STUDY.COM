@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 use App\Http\Traits\InertiaTrait;
-
+use App\Models\CourseLesson;
 class InertiaController extends Controller
 {
     use InertiaTrait;
@@ -20,7 +20,8 @@ class InertiaController extends Controller
 
     public function lessons()
     {
-        return $this->inertiaConfig('Lessons');
+        $courses = CourseLesson::orderBy('id', 'desc')->paginate(6);
+        return $this->inertiaConfig('Lessons', ['courses' => $courses]);
 
     }
 
@@ -48,9 +49,10 @@ class InertiaController extends Controller
 
     }
 
-    public function hskLesson()
+    public function hskLesson($id)
     {
-        return $this->inertiaConfig('HskLesson');
+        $lesson = CourseLesson::find($id);
+        return $this->inertiaConfig('HskLesson', ['lesson' => $lesson]);
 
     }
 

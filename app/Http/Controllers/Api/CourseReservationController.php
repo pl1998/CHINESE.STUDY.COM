@@ -36,6 +36,7 @@ class CourseReservationController extends Controller
             'pay_status' => 0, // 默认未支付
             'status' => 0,     // 默认未开始
             'order_no' => $data['order_no'],
+            'course_id' => $data['course_id'] ?? 0,
         ]);
 
         

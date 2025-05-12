@@ -18,4 +18,8 @@ class ConfigPay extends Model
             return self::first()?->toArray();
         });
     }
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:i:s',
+        'updated_at' => 'datetime:Y-m-d H:i:s',
+    ];
 }

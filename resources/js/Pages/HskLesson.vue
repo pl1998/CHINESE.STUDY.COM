@@ -10,11 +10,16 @@
         <!-- 左侧标题和图片 -->
         <div class="flex-1 flex flex-col justify-center">
           <div class="text-[#6b7a8f] text-xs mb-2 tracking-widest">YOUR PATH TO FLUENCY</div>
-          <div class="text-[56px] leading-tight font-bold mb-6 text-[#2d3a4a]">
-            HSK 1-6<br>Lessons
+          <div class="text-[40px] md:text-[56px] leading-tight font-bold mb-6 text-[#2d3a4a]">
+            {{ lesson.name }}
           </div>
           <div class="w-full h-64 bg-white flex items-center justify-center border border-gray-200 rounded mb-6">
-            <img src="/images/lesson_book.png" alt="hsk lesson" class="w-auto h-full object-contain rounded-lg" />
+            <img
+              v-if="lesson.detail_image"
+              :src="lesson.detail_image"
+              :alt="lesson.name"
+              class="w-auto h-full object-contain rounded-lg"
+            />
           </div>
           <button
             class="bg-[#6ec1e4] text-white px-8 py-2 rounded font-semibold hover:bg-[#009FE8] transition text-lg shadow-md"
@@ -23,18 +28,8 @@
         </div>
         <!-- 右侧介绍 -->
         <div class="flex-1 flex flex-col justify-center">
-          <div class="text-[#2d3a4a] font-semibold mb-2 text-base">Living In China</div>
-          <div class="text-gray-700 text-sm leading-relaxed">
-            The HSK (Hanyu Shuiping Kaoshi) Chinese Proficiency Materials are a comprehensive and well-structured resource designed to help learners of all levels master the Chinese language. Developed by Hanban, the official Chinese Language Council International, these materials align with the HSK exam, which is the most widely recognized Chinese language proficiency test globally.<br><br>
-            <b>1. Structured Learning Path</b><br>
-            The six-level system (HSK 1-6) provides a clear, step-by-step progression for learners of all levels.<br>
-            <b>2. Real-Life Language Skills</b><br>
-            Focused on practical vocabulary and grammar, the materials prepare learners for everyday communication.<br>
-            <b>3. Exam-Oriented Preparation</b><br>
-            Tailored to the HSK exam format, they include practice tests and strategies for success.<br>
-            <b>4. Comprehensive Resources</b><br>
-            Covering listening, speaking, reading, and writing, they ensure balanced language development.
-          </div>
+          <div class="text-[#2d3a4a] font-semibold mb-2 text-base">{{ lesson.description }}</div>
+          <div class="text-gray-700 text-sm leading-relaxed prose max-w-none" v-html="lesson.content"></div>
         </div>
       </div>
     </div>
@@ -345,17 +340,16 @@
 
 <script setup>
 import Layout from '@/Layouts/App.vue'
-defineProps({
-  config: {
-    type: Object,
-    required: true
-  }
-})
+import { usePage } from '@inertiajs/vue3'
 import { ref, computed, onMounted, nextTick } from 'vue'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import { VueTelInput } from 'vue-tel-input'
 import 'vue-tel-input/vue-tel-input.css';
+
+const { lesson } = usePage().props
+
+const { config } = usePage().props
 
 // 步骤栏
 const steps = [
@@ -518,8 +512,8 @@ function submitUserInfo() {
 }
 
 async function submitReservation() {
-  // 构造要提交的数据
   const payload = {
+    course_id: lesson.id,
     first_name: userInfo.value.firstName,
     last_name: userInfo.value.lastName,
     email: userInfo.value.email,
@@ -531,11 +525,11 @@ async function submitReservation() {
     pay_price: totalPrice.value,
   }
   try {
-    // 1. 提交预约，生成订单
+    // 提交预约
     const res = await axios.post('/api/course-reservation', payload)
     const orderNo = res.data.order_no
 
-    // 2. 调用后端生成 PayPal 支付链接
+    // 调用后端生成 PayPal 支付链接
     const payRes = await axios.post('/api/paypal/pay', { order_no: orderNo })
     if (payRes.data.paypal_url) {
       // 跳转到 PayPal 支付

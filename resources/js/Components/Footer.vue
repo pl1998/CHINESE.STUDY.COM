@@ -60,6 +60,7 @@ import { ref } from 'vue'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 
+
 const props = defineProps({
   config: {
     type: Object,

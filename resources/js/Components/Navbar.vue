@@ -1,32 +1,32 @@
 <template>
   <!-- 顶部广告栏，fixed在最上方 -->
-  <div class="fixed top-0 left-0 w-full z-50 bg-[#7a8b6a]  text-white text-sm h-8 flex items-center">
+  <div class="fixed top-0 left-0 w-full z-50 bg-[#009FE8] text-white text-base h-[50px] flex items-center">
     <div class="max-w-7xl mx-auto flex items-center justify-between px-4 w-full">
       <div class="flex items-center space-x-6">
         <span>
-          <font-awesome-icon :icon="['fas', 'phone-alt']" class="mr-1" />
+          <font-awesome-icon :icon="['fas', 'phone-alt']" class="mr-1 text-xl" />
           {{ config.ipone }}
         </span>
         <span>
-          <font-awesome-icon :icon="['fas', 'envelope']" class="mr-1" />
+          <font-awesome-icon :icon="['fas', 'envelope']" class="mr-1 text-xl" />
           {{ config.email }}
         </span>
       </div>
       <div class="flex items-center space-x-3">
-        <a :href="config.instagram_url" target="_blank" class="hover:text-gray-200 transition-colors">
-          <font-awesome-icon :icon="['fab', 'instagram']" />
+        <a :href="config.instagram_url" target="_blank" class="text-white hover:text-[#009FE8] transition-colors">
+          <font-awesome-icon :icon="['fab', 'instagram']" class="text-xl" />
         </a>
-        <a :href="config.tiktok_url" target="_blank" class="hover:text-gray-200 transition-colors">
-          <font-awesome-icon :icon="['fab', 'tiktok']" />
+        <a :href="config.tiktok_url" target="_blank" class="text-white hover:text-[#009FE8] transition-colors">
+          <font-awesome-icon :icon="['fab', 'tiktok']" class="text-xl" />
         </a>
-        <a :href="config.youtube_url" target="_blank" class="hover:text-gray-200 transition-colors">
-          <font-awesome-icon :icon="['fab', 'youtube']" />
+        <a :href="config.youtube_url" target="_blank" class="text-white hover:text-[#009FE8] transition-colors">
+          <font-awesome-icon :icon="['fab', 'youtube']" class="text-xl" />
         </a>
       </div>
     </div>
   </div>
   <!-- 主导航栏，fixed并且top-8（32px）紧贴广告栏下方 -->
-  <header class="fixed top-8 left-0 w-full z-40 bg-white border-b border-gray-200 h-20">
+  <header class="fixed top-12 left-0 w-full z-40 bg-white border-b border-gray-200 h-20">
     <div class="max-w-7xl mx-auto flex items-center h-20 px-4">
       <!-- 左侧 logo -->
       <div class="flex items-center">

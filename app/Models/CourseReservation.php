@@ -37,4 +37,13 @@ class CourseReservation extends Model
     protected $guarded  = [
       
     ];
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:i:s',
+        'updated_at' => 'datetime:Y-m-d H:i:s',
+    ];
+
+    public function courseLesson()
+    {
+        return $this->belongsTo(\App\Models\CourseLesson::class, 'course_id');
+    }
 }

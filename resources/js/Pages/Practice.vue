@@ -1,10 +1,9 @@
 <template>
   <Layout :config="config">
-    <div class="pt-[88px]">
-      <div class="bg-white">
+      <div class="bg-white pt-[112px]">
         <!-- Brand 图 -->
         <div class="w-full">
-          <img src="/images/banner/pratice.jpg" alt="Brander" class="w-full h-56 object-cover" />
+          <Banner imageSrc="/images/banner/pratice.jpg" alt="Practice Banner" />
         </div>
 
         <!-- 面包屑导航 -->
@@ -15,38 +14,28 @@
         </div>
 
         <!-- 课程实战卡片 -->
-        <div class="max-w-4xl mx-auto py-8 px-4">
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div
-              v-for="item in practices"
-              :key="item.id"
-              class="flex flex-col items-center"
-            >
-              <img
-                :src="item.cover"
-                alt="cover"
-                :class="[
-                  'w-80 h-48 object-cover rounded shadow cursor-pointer transition-all duration-200',
-                  playingId === item.id ? 'ring-4 ring-blue-400 scale-105' : ''
-                ]"
-                @click="playAudio(item.id)"
-              />
-              <div class="mt-2 font-bold text-center">{{ item.name }}</div>
-              <!-- <a v-if="item.link" :href="item.link" target="_blank" class="text-blue-500">课程链接</a> -->
-              <audio
-                v-if="item.audio"
-                :ref="el => {
-                  if (el) {
-                    audioRefs[item.id] = el
-                  } else {
-                    delete audioRefs[item.id]
-                  }
-                }"
-                :src="item.audio"
-                @ended="playingId = null"
-                style="display:none"
-              ></audio>
+        <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 py-8 px-4">
+          <div
+            v-for="item in practices"
+            :key="item.id"
+            class="relative group border-2 border-white hover:border-[#009FE8] transition rounded block"
+          >
+            <img
+              :src="item.cover"
+              alt="cover"
+              class="w-full h-56 object-cover rounded"
+              @click="playAudio(item.id)"
+            />
+            <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center text-white text-center px-4">
+              <div class="text-2xl font-bold mb-2">{{ item.name }}</div>
             </div>
+            <audio
+              v-if="item.audio"
+              :ref="el => { if (el) { audioRefs[item.id] = el } else { delete audioRefs[item.id] } }"
+              :src="item.audio"
+              @ended="playingId = null"
+              style="display:none"
+            ></audio>
           </div>
         </div>
 
@@ -79,7 +68,7 @@
             @click="goToPage(pagination.last_page)"
           >End</button>
         </div>
-      </div>
+
     </div>
   </Layout>
 </template>
@@ -88,6 +77,7 @@
 import Layout from '@/Layouts/App.vue'
 import { ref, onMounted, computed, reactive } from 'vue'
 import axios from 'axios'
+import Banner from '@/Components/Banner.vue'
 
 defineProps({
   config: {

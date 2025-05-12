@@ -1,11 +1,10 @@
 <template>
 <Layout :config="config">
-  <div class="bg-white">
+  <div class="bg-white pt-[112px]">
 
-    <div class="pt-[88px]">
        <!-- Brand 图 -->
        <div class="w-full">
-          <img src="/images/banner/recorded_lesson.jpg" alt="Brander" class="w-full h-56 object-cover" />
+          <Banner imageSrc="/images/banner/recorded_lesson.jpg" alt="Recorded Lesson Banner" />
         </div>
       <!-- 课程筛选和列表 -->
       <div class="max-w-6xl mx-auto w-full px-4 py-8">
@@ -19,10 +18,12 @@
           <!-- 可添加更多筛选按钮 -->
         </div>
         <!-- 课程卡片 -->
-        <div class="flex flex-wrap gap-8">
-          <div class="w-64 border rounded bg-white shadow-sm p-2 flex flex-col items-center">
-            <img src="/images/lesson_book.png" alt="course" class="w-full h-40 object-cover rounded mb-2" />
-            <div class="text-center text-sm text-gray-700 mt-2">course</div>
+        <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 py-8 px-4">
+          <div class="relative group border-2 border-white hover:border-[#009FE8] transition rounded block">
+            <img src="/images/lesson_book.png" alt="course" class="w-full h-56 object-cover rounded mb-2" />
+            <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center text-white text-center px-4">
+              <div class="text-2xl font-bold mb-2">course</div>
+            </div>
           </div>
           <!-- 你可以复制上面div，渲染更多课程 -->
         </div>
@@ -37,12 +38,17 @@
         </div>
       </div>
     </div>
-  </div>
+
 </Layout>
 </template>
 
 <script setup>
 import Layout from '@/Layouts/App.vue'
+import Banner from '@/Components/Banner.vue'
+import { usePage } from '@inertiajs/vue3'
+
+const { lesson } = usePage().props
+
 defineProps({
   config: {
     type: Object,

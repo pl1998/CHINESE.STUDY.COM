@@ -34,8 +34,9 @@ class CourseReservationController extends AdminController
      */
     protected function grid()
     {
-        return Grid::make(new CourseReservation(), function (Grid $grid) {
+        return Grid::make(CourseReservation::with('courseLesson'), function (Grid $grid) {
             $grid->column('id')->sortable();
+            $grid->column('courseLesson.name', '预约课程');
             $grid->column('full_name', '姓名')->display(function () {
                 return ($this->fisrt_name ?? '') . ' ' . ($this->last_name ?? '');
             });
@@ -90,6 +91,7 @@ class CourseReservationController extends AdminController
                     '1' => '已填充zoom地址',
                     '2' => '结束',
                 ])->width(width: 2);
+                $filter->like('courseLesson.name', '预约课程');
             });
             $grid->disableCreateButton();
             $grid->showFilter();

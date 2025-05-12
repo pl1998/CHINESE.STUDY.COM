@@ -1,21 +1,12 @@
 <template>
 <Layout :config="config">
-  <div class="min-h-screen bg-white">
+  <div class="min-h-screen bg-white pt-[112px]">
     <!-- 导航栏 -->
-    <div class="pt-[88px]">
-    <!-- 顶部大图 -->
-    <!-- <div class="w-full h-[260px] md:h-[320px] bg-gray-200">
-      <img
-        src="/images/banner/about.jpg"
-        alt="about-banner"
-        class="w-full h-full object-cover"
-      />
-    </div> -->
 
-      <!-- 顶部大图 -->
+    <!-- 顶部大图 -->
       <div class="w-full">
-          <img src="/images/banner/about.jpg" alt="Brander" class="w-full h-56 object-cover" />
-        </div>
+        <Banner imageSrc="/images/banner/about.jpg" alt="About Banner" />
+      </div>
 
     <!-- 主体内容 -->
     <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-end py-12 px-4 min-h-[320px]">
@@ -50,12 +41,14 @@
       </div>
     </div>
     </div>
-  </div>
+ 
 </Layout>
 </template>
 
 <script setup>
 import Layout from '@/Layouts/App.vue'
+import Banner from '@/Components/Banner.vue'
+
 defineProps({
   config: {
     type: Object,

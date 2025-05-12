@@ -26,7 +26,7 @@ Route::get('/about', [InertiaController::class, 'about']);
 
 Route::get('/contact', [InertiaController::class, 'contact']);
 
-Route::get('/hsk-lesson', [InertiaController::class, 'hskLesson']);
+Route::get('/hsk-lesson/{id}', [InertiaController::class, 'hskLesson']);
 
 Route::get('/survival-chinese', [InertiaController::class, 'survivalChinese']);
 

@@ -1,10 +1,10 @@
 <template>
 <Layout :config="config">
-  <div class="bg-white">
-    <div class="pt-[88px]">
+  <div class="bg-white pt-[112px]">
+    <div>
        <!-- 顶部大图 -->
        <div class="w-full">
-          <img src="/images/banner/lesson.jpg" alt="Brander" class="w-full h-56 object-cover" />
+          <Banner imageSrc="/images/banner/lesson.jpg" alt="Lessons Banner" />
         </div>
     <!-- <div class="w-full h-[260px] md:h-[320px] bg-gray-200">
       <img
@@ -19,41 +19,38 @@
             Home &gt;&gt; <span class="text-[#009FE8]">1V1 LESSON</span>
           </div>
           <!-- 课程内容区域 -->
-          <section class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 py-8 px-4">
-            <!-- HSK 1-6 -->
-            <Link href="/hsk-lesson" class="relative group border-2 border-white hover:border-[#009FE8] transition rounded block">
-              <img src="/images/lessons/lessons_a.jpg" alt="HSK 1-6" class="w-full h-56 object-cover rounded" />
+          <section v-if="courses && courses.data" class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 py-8 px-4">
+            <Link
+              v-for="item in courses.data"
+              :key="item.id"
+              :href="`/hsk-lesson/${item.id}`"
+              class="relative group border-2 border-white hover:border-[#009FE8] transition rounded block"
+            >
+              <img :src="item.cover" :alt="item.name" class="w-full h-56 object-cover rounded" />
               <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center text-white text-center px-4">
-                <div class="text-2xl font-bold mb-2">HSK 1-6</div>
-                <div class="text-base font-semibold">MASTER THE HSK<br />WITH STRUCTURED LESSONS</div>
-              </div>
-            </Link>
-            <!-- survival chinese -->
-            <Link href="/hsk-lesson" class="relative group border-2 border-white hover:border-[#009FE8] transition rounded block">
-              <img src="/images/lessons/lessons_b.jpg" alt="survival chinese" class="w-full h-56 object-cover rounded" />
-              <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center text-white text-center px-4">
-                <div class="text-2xl font-bold mb-2">survival chinese</div>
-                <div class="text-base font-semibold">PRACTICAL CHINESE<br />FOR EVERYDAY LIFE</div>
-              </div>
-            </Link>
-    
-            <!-- Fun Chinese Debate Topics -->
-            <Link href="/hsk-lesson" class="relative group border-2 border-white hover:border-[#009FE8] transition rounded block">
-              <img src="/images/lessons/lessons_c.jpg" alt="Fun Chinese Debate Topics" class="w-full h-56 object-cover rounded" />
-              <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center text-white text-center px-4">
-                <div class="text-2xl font-bold mb-2">Fun Chinese Debate Topics</div>
-                <div class="text-base font-semibold">EXCEL IN PROFESSIONAL CHINESE COMMUNICATION</div>
-              </div>
-            </Link>
-            <!-- conversational chinese -->
-            <Link href="/hsk-lesson" class="relative group border-2 border-white hover:border-[#009FE8] transition rounded block">
-              <img src="/images/lessons/lessons_d.jpg" alt="conversational chinese" class="w-full h-56 object-cover rounded" />
-              <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center text-white text-center px-4">
-                <div class="text-2xl font-bold mb-2">conversational chinese</div>
-                <div class="text-base font-semibold">Learn Mandarin Through Real Conversations</div>
+                <div class="text-2xl font-bold mb-2">{{ item.name }}</div>
+                <div class="text-base font-semibold">{{ item.description }}</div>
               </div>
             </Link>
           </section>
+          <div v-else class="text-center text-gray-400 py-8">No courses available at the moment</div>
+          <!-- 分页 -->
+          <div class="flex justify-center gap-2 py-8">
+            <template v-for="page in courses.links" :key="page.label">
+              <Link
+                v-if="page.url"
+                :href="page.url"
+                v-html="page.label"
+                :class="['px-3 py-1 rounded', { 'bg-[#009FE8] text-white': page.active, 'text-gray-500': !page.active }]"
+                preserve-scroll
+              />
+              <span
+                v-else
+                v-html="page.label"
+                class="px-3 py-1 rounded text-gray-300 cursor-not-allowed"
+              />
+            </template>
+          </div>
     </div>
     </div>
       </div>
@@ -61,12 +58,15 @@
 </template>
 <script setup>
 import Layout from '@/Layouts/App.vue'
-defineProps({
+import { Link, usePage } from '@inertiajs/vue3'
+import Banner from '@/Components/Banner.vue'
+
+const { config } = defineProps({
   config: {
     type: Object,
     required: true
   }
 })
-import { Link } from '@inertiajs/vue3'
 
+const { courses } = usePage().props
 </script>
