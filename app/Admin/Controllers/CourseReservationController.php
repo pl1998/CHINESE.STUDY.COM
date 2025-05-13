@@ -12,6 +12,7 @@ use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Admin;
 use App\Mail\ZoomUrlNotificationMail;
 use Illuminate\Support\Facades\Mail;
+use App\Models\ConfigSite;
 class CourseReservationController extends AdminController
 {
     use EmailConfig;
