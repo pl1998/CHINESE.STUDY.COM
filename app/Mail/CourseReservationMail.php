@@ -19,7 +19,7 @@ class CourseReservationMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct( public CourseReservation $courseReservation,public ConfigSite $site){
+    public function __construct( public CourseReservation $courseReservation,public  $site){
  
     }
 
