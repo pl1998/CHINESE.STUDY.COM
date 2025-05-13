@@ -18,16 +18,23 @@
           <div
             v-for="item in practices"
             :key="item.id"
-            class="relative group border-2 border-white hover:border-[#009FE8] transition rounded block"
+            class="relative group border-2 border-white hover:border-[#009FE8] transition rounded block cursor-pointer overflow-hidden"
+            @click="playAudio(item.id)"
           >
             <img
               :src="item.cover"
               alt="cover"
-              class="w-full h-56 object-cover rounded"
-              @click="playAudio(item.id)"
+              class="w-full h-56 object-cover rounded transition-transform duration-300 group-hover:scale-105"
             />
-            <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center text-white text-center px-4">
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-40 flex flex-col items-center justify-center text-white text-center px-4 transition-all duration-300">
               <div class="text-2xl font-bold mb-2">{{ item.name }}</div>
+              <div v-if="playingId === item.id" class="text-sm flex items-center">
+                <font-awesome-icon :icon="['fas', 'volume-up']" class="mr-1" />
+                正在播放...
+              </div>
+              <div v-if="item.description" class="text-base font-semibold opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                {{ item.description }}
+              </div>
             </div>
             <audio
               v-if="item.audio"
@@ -98,6 +105,7 @@ const playingId = ref(null)
 
 const fetchPractices = async (page = 1) => {
   const res = await axios.get(`/api/course-practices?page=${page}&per_page=${pagination.value.per_page}`)
+
   practices.value = res.data.data
   pagination.value = {
     current_page: res.data.current_page,
@@ -122,13 +130,20 @@ const playAudio = (id) => {
       audioRefs[key].currentTime = 0
     }
   })
+  
   const audio = audioRefs[id]
-  if (!audio) return
+  
+  if (!audio) {
+    return
+  }
+  
   if (playingId.value === id) {
     audio.pause()
     playingId.value = null
   } else {
-    audio.play()
+    audio.play().catch(error => {
+      console.error('Error playing audio:', error)
+    })
     playingId.value = id
   }
 }

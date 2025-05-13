@@ -7,7 +7,7 @@
 
 **Your reservation details:**
 
-- **Date:** {{ $courseReservation->start_time }} ~ {{ $courseReservation->end_time }}
+- **Date:** {{ date('Y-m-d H:i:s', $courseReservation->start_time) }} ~ {{ date('Y-m-d H:i:s', $courseReservation->end_time) }}
 - **Course:** 1V1 LESSON
 - **Teacher:** 1V1 LESSON
 - **Recurring:** {{ $courseReservation->repeat }}

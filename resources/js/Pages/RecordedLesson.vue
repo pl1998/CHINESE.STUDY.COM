@@ -19,9 +19,13 @@
         </div>
         <!-- 课程卡片 -->
         <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 py-8 px-4">
-          <div class="relative group border-2 border-white hover:border-[#009FE8] transition rounded block">
-            <img src="/images/lesson_book.png" alt="course" class="w-full h-56 object-cover rounded mb-2" />
-            <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center text-white text-center px-4">
+          <div class="relative group border-2 border-white hover:border-[#009FE8] transition rounded block overflow-hidden">
+            <img 
+              src="/images/lesson_book.png" 
+              alt="course" 
+              class="w-full h-56 object-cover rounded transition-transform duration-300 group-hover:scale-105" 
+            />
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-40 flex flex-col items-center justify-center text-white text-center px-4 transition-all duration-300">
               <div class="text-2xl font-bold mb-2">course</div>
             </div>
           </div>

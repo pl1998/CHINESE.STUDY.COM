@@ -9,6 +9,9 @@ use Dcat\Admin\Http\Controllers\AdminController;
 
 class CoursePracticeController extends AdminController
 {
+
+    protected $title = '课程练习';
+
     protected function grid()
     {
         return Grid::make(new CoursePractice(), function (Grid $grid) {
@@ -29,6 +32,7 @@ class CoursePracticeController extends AdminController
 
     protected function form()
     {
+        
         return Form::make(new CoursePractice(), function (Form $form) {
             $form->text('name', '课程名称')->required();
             $form->url('link', '课程链接');

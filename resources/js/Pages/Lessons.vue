@@ -24,12 +24,18 @@
               v-for="item in courses.data"
               :key="item.id"
               :href="`/hsk-lesson/${item.id}`"
-              class="relative group border-2 border-white hover:border-[#009FE8] transition rounded block"
+              class="relative group border-2 border-white hover:border-[#009FE8] transition rounded block overflow-hidden"
             >
-              <img :src="item.cover" :alt="item.name" class="w-full h-56 object-cover rounded" />
-              <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center text-white text-center px-4">
+              <img 
+                :src="item.cover" 
+                :alt="item.name" 
+                class="w-full h-56 object-cover rounded transition-transform duration-300 group-hover:scale-105" 
+              />
+              <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-40 flex flex-col items-center justify-center text-white text-center px-4 transition-all duration-300">
                 <div class="text-2xl font-bold mb-2">{{ item.name }}</div>
-                <div class="text-base font-semibold">{{ item.description }}</div>
+                <div class="text-base font-semibold opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                  {{ item.description }}
+                </div>
               </div>
             </Link>
           </section>
