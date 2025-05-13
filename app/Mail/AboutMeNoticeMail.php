@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-use App\Models\ConfigSite;
+
 use App\Models\ContactRecord;
 class AboutMeNoticeMail extends Mailable
 {
@@ -17,7 +17,7 @@ class AboutMeNoticeMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(public ContactRecord $contactRecord,public ConfigSite $site)
+    public function __construct(public ContactRecord $contactRecord,public  $site)
     {
         //
     }
@@ -33,7 +33,7 @@ class AboutMeNoticeMail extends Mailable
     }
     public function build()
     {
-    return $this->markdown('email.about_me_notice');
+    return $this->markdown('email.notice_email');
     }
 
 
