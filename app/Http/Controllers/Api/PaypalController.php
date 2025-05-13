@@ -91,7 +91,7 @@ class PaypalController extends Controller
             } catch (\Exception $e) {
                 Log::error('CourseReservationMail send failed: ' . $e->getMessage());
             }
-            return redirect("/hsk-lesson?order_no={$orderNo}&step=6");
+            return redirect("/hsk-lesson/{$reservation->course_id}?order_no={$orderNo}&step=6");
         } else {
             $reservation->pay_status = 2;
             $reservation->save();
