@@ -83,6 +83,7 @@ class PaypalController extends Controller
         $token = $request->input('token');
         $response = $provider->capturePaymentOrder($token);
         $reservation = CourseReservation::where('order_no', $orderNo)->first();
+       try {
         if (isset($response['status']) && $response['status'] == 'COMPLETED') {
             $reservation->pay_status = 1;
             $reservation->save();
@@ -103,14 +104,18 @@ class PaypalController extends Controller
             $reservation->save();
             return redirect("/hsk-lesson/{$reservation->course_id}?order_no={$orderNo}&step=error");
         }
- 
-        
+       } catch (\Exception $e) {
+        return redirect("/hsk-lesson/{$reservation->course_id}?order_no={$orderNo}&step=error");
+        Log::error('CourseReservation update failed: ' . $e->getMessage());
+       }
+
     }
 
     // 支付取消回调
     public function cancel(Request $request)
     {
         $orderNo = $request->input('order_no');
-        return redirect("/hsk-lesson?order_no={$orderNo}&step=cancel");
+        $reservation = CourseReservation::where('order_no', $orderNo)->first();
+        return redirect("/hsk-lesson/{$reservation->course_id}?order_no={$orderNo}&step=cancel");
     }
 }
