@@ -34,7 +34,8 @@ class ContactController extends Controller
         ]);
         $this->setEmailConfig();
 
-        Mail::to('chineseteacherelena@outlook.com')->send(new AboutMeNoticeMail(ContactRecord::find($id),ConfigSite::getConfig()));
+        Mail::to('chineseteacherelena@outlook.com')
+        ->queue(new AboutMeNoticeMail(ContactRecord::find($id),ConfigSite::getConfig()));
 
         return response()->json([
             'success' => true,

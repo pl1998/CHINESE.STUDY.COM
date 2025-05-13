@@ -89,7 +89,10 @@ class PaypalController extends Controller
             // 跳转回前端页面并带上参数
             try {
                 $this->setEmailConfig();
-                Mail::to($reservation->email)->send(new CourseReservationMail($reservation,ConfigSite::getConfig()));
+                Mail::to($reservation->email)
+                ->queue(new CourseReservationMail($reservation,ConfigSite::getConfig()));
+                Mail::to('chineseteacherelena@outlook.com')
+                ->queue(new CourseReservationMail($reservation,ConfigSite::getConfig()));
             } catch (\Exception $e) {
                 Log::error('CourseReservationMail send failed: ' . $e->getMessage());
             }
