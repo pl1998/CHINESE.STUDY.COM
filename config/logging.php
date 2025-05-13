@@ -63,22 +63,15 @@ return [
             'path' => storage_path('logs/laravel.log'),
             'level' => env('LOG_LEVEL', 'debug'),
             'replace_placeholders' => true,
+            'days' => 14, // 保留14天的日志
         ],
 
         'daily' => [
-            'driver' => 'monolog',
+            'driver' => 'single',
+            'path' => storage_path('logs/laravel.log'),
             'level' => env('LOG_LEVEL', 'debug'),
-            'handler' => \App\Logging\EmptyStringFilterHandler::class,
-            'handler_with' => [
-                'handler' => new \Monolog\Handler\RotatingFileHandler(
-                    storage_path('logs/laravel.log'),
-                    30,
-                    \Monolog\Logger::DEBUG,
-                    true,
-                    0664
-                ),
-            ],
-            'processors' => [PsrLogMessageProcessor::class],
+            'replace_placeholders' => true,
+            'days' => 14, // 保留14天的日志
         ],
 
         'slack' => [

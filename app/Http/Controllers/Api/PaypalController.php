@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\CourseReservationMail;
 use App\Http\Traits\EmailConfig;
 use App\Models\ConfigSite;
+use Illuminate\Support\Facades\Log;
 class PaypalController extends Controller
 {
 
@@ -82,7 +83,7 @@ class PaypalController extends Controller
         $token = $request->input('token');
         $response = $provider->capturePaymentOrder($token);
         $reservation = CourseReservation::where('order_no', $orderNo)->first();
-        if ($response['status'] == 'COMPLETED') {
+        if (isset($response['status']) && $response['status'] == 'COMPLETED') {
             $reservation->pay_status = 1;
             $reservation->save();
             // 跳转回前端页面并带上参数
@@ -94,6 +95,7 @@ class PaypalController extends Controller
             }
             return redirect("/hsk-lesson/{$reservation->course_id}?order_no={$orderNo}&step=6");
         } else {
+            Log::error('Paypal payment failed: ',['response' => $response]);
             $reservation->pay_status = 2;
             $reservation->save();
             return redirect("/hsk-lesson?order_no={$orderNo}&step=error");
