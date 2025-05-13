@@ -19,21 +19,21 @@
       <div>
         <div class="font-bold mb-2">Site Navigation</div>
         <ul class="space-y-1">
-          <li><Link href="/">Home</Link></li>
-          <li><Link href="/lessons">1V1 LESSON</Link></li>
-          <li><Link href="/recorded">Recorded Lesson</Link></li>
-          <li><Link href="/practice">Daily Pratice</Link></li>
-          <li><Link href="/about">About Me</Link></li>
-          <li><Link href="/contact">Contact</Link></li>
+          <li><Link href="/" :class="{ 'text-[#009FE8]': $page.url === '/' }">Home</Link></li>
+          <li><Link href="/lessons" :class="{ 'text-[#009FE8]': $page.url === '/lessons' }">1V1 LESSON</Link></li>
+          <li><Link href="/recorded" :class="{ 'text-[#009FE8]': $page.url === '/recorded' }">Recorded Lesson</Link></li>
+          <li><Link href="/practice" :class="{ 'text-[#009FE8]': $page.url === '/practice' }">Daily Practice</Link></li>
+          <li><Link href="/about" :class="{ 'text-[#009FE8]': $page.url === '/about' }">About Me</Link></li>
+          <li><Link href="/contact" :class="{ 'text-[#009FE8]': $page.url === '/contact' }">Contact</Link></li>
         </ul>
       </div>
       <div>
         <div class="font-bold mb-2">1V1 LESSON</div>
         <ul class="space-y-1">
-          <li>hsk-1-6</li>
-          <li>survival chinese</li>
-          <li>conversational chinese</li>
-          <li>Fun Chinese Debate Topics</li>
+          <li><Link href="/lessons">hsk-1-6</Link></li>
+          <li><Link href="/lessons">survival chinese</Link></li>
+          <li><Link href="/lessons">conversational chinese</Link></li>
+          <li><Link href="/lessons">Fun Chinese Debate Topics</Link></li>
         </ul>
       </div>
       <div>

@@ -22,7 +22,16 @@ class ConfigSite extends Model
     public static function getConfig()
     {
         return cache()->remember(CacheEnum::CONFIG_SITE, 3600, function () {
-            return self::first()?->toArray();
+            if (self::first()) {
+                return self::first()?->toArray();
+            }
+            return [
+                'instagram_url' => '',
+                'tiktok_url' => '',
+                'youtube_url' => '',
+                'ipone' => '',
+                'email' => '',
+            ];
         });
     }
 }

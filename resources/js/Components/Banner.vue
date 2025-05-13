@@ -1,6 +1,10 @@
 <template>
-  <div class="w-full">
-    <img :src="imageSrc" :alt="alt" class="w-full object-cover" style="height: 400px;" />
+  <div class="w-full h-[400px] overflow-hidden">
+    <img 
+      :src="imageSrc" 
+      :alt="alt" 
+      class="w-full h-full object-cover object-center"
+    />
   </div>
 </template>
 
