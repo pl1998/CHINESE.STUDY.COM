@@ -13,10 +13,9 @@
 - **Zoom URL:** {{ $courseReservation->zoom_url }}
 ---
 You can add this course to your calendar:
-- [Google Calendar](#)
-- [Outlook Calendar](#)
-- [Yahoo Calendar](#)
-- [Apple Calendar](#)
+- [instagram Calendar](#{{ $site->instagram_url }})
+- [Tiktok Calendar](#{{ $site->tiktok_url }})
+- [Youtube Calendar](#{{ $site->youtube_url }})
 To manage your reservation, please visit the
 Thank you.<br>
 {{ config('app.name') }}

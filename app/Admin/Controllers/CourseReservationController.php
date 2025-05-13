@@ -159,7 +159,7 @@ class CourseReservationController extends AdminController
                 $model = $form->model();
                 if (!empty($model->zoom_url)) {
                     static::setEmailConfig();
-                    Mail::to($model->email)->send(new ZoomUrlNotificationMail($model));
+                    Mail::to($model->email)->send(new ZoomUrlNotificationMail($model,ConfigSite::getConfig()));
                 }
             });
         });

@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use App\Models\CourseReservation;
-
+use App\Models\ConfigSite;
 
 class ZoomUrlNotificationMail extends Mailable
 {
@@ -19,7 +19,7 @@ class ZoomUrlNotificationMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct( public CourseReservation $courseReservation){
+    public function __construct( public CourseReservation $courseReservation,public ConfigSite $site){
  
     }
 

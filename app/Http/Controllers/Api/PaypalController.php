@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CourseReservationMail;
 use App\Http\Traits\EmailConfig;
+use App\Models\ConfigSite;
 class PaypalController extends Controller
 {
 
@@ -87,7 +88,7 @@ class PaypalController extends Controller
             // 跳转回前端页面并带上参数
             try {
                 $this->setEmailConfig();
-                Mail::to($reservation->email)->send(new CourseReservationMail($reservation));
+                Mail::to($reservation->email)->send(new CourseReservationMail($reservation,ConfigSite::getConfig()));
             } catch (\Exception $e) {
                 Log::error('CourseReservationMail send failed: ' . $e->getMessage());
             }
