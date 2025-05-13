@@ -101,7 +101,7 @@ class PaypalController extends Controller
             Log::error('Paypal payment failed: ',['response' => $response]);
             $reservation->pay_status = 2;
             $reservation->save();
-            return redirect("/hsk-lesson?order_no={$orderNo}&step=error");
+            return redirect("/hsk-lesson/{$reservation->course_id}?order_no={$orderNo}&step=error");
         }
  
         
