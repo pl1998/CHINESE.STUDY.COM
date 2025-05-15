@@ -10,9 +10,9 @@
           <span class="text-[#009FE8]">in <span class="text-[#F9B233]">6 months</span> or less!</span>
         </h1>
         <p class="text-gray-700 mb-4">With the internet's <b>BEST</b> Chinese lessons!</p>
-        <Link href="/lessons" class="inline-block bg-[#009FE8] hover:bg-[#007bb5] text-white font-semibold rounded px-6 py-2 transition">
+        <button class="inline-block bg-[#009FE8] hover:bg-[#007bb5] text-white font-semibold rounded px-6 py-2 transition" @click="scrollToHowItWorks">
           Check detail
-        </Link>
+        </button>
       </div>
       <div class="flex-1 flex justify-center mt-8 md:mt-0">
         <!-- 视频占位 -->
@@ -68,8 +68,8 @@
     </section>
 
     <!-- 图片区域 -->
-    <section class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-center gap-8 py-8 px-4">
-      <div class="flex-1 flex justify-center">
+    <section class="max-w-5xl mx-auto flex flex-col md:flex-row items-start justify-center gap-8 py-8 px-4">
+      <div class="flex-1 flex flex-col items-start h-full">
         <div class="relative w-[680px] h-[380px] rounded-lg flex items-center justify-center group overflow-hidden">
           <span class="text-gray-400">
             <img src="/images/home_left.jpg" alt="home1" class="w-full h-full object-cover" />
@@ -79,8 +79,42 @@
             <span class="text-white text-lg font-semibold text-center px-4">One-on-one online courses, personalized customization, flexible arrangement</span>
           </div>
         </div>
+        <!-- 新内容模块 -->
+        <div class="w-full text-left mt-8 flex flex-col h-full">
+          <div class="h-[560px]">
+          <div class="mb-2">
+            <div class="text-[1.5rem] font-extrabold text-gray-800 mb-1">1. Personalized Attention:</div>
+            <div class="text-gray-500 text-base">Personalized Attention: Each lesson is tailored to your specific needs, goals, and learning pace, ensuring maximum progress.</div>
+          </div>
+          <div class="mb-2">
+            <div class="text-[1.5rem] font-extrabold text-gray-800 mb-1">2. Interactive Learning:</div>
+            <div class="text-gray-500 text-base"> Real-time feedback and conversations with a professional teacher help you improve quickly and confidently.</div>
+          </div>
+          <div class="mb-2">
+            <div class="text-[1.5rem] font-extrabold text-gray-800 mb-1">3. Flexible Scheduling:</div>
+            <div class="text-gray-500 text-base"> Choose lesson times that fit your busy lifestyle, making it easy to balance learning with other commitments.</div>
+          </div>
+          <div class="mb-2"> 
+            <div class="text-[1.5rem] font-extrabold text-gray-800 mb-1">4. Cultural Immersion: </div>
+            <div class="text-gray-500 text-base">Learn not just the language but also the cultural nuances directly from a native speaker. </div>
+          </div>
+          <div class="mb-2">
+            <div class="text-[1.5rem] font-extrabold text-gray-800 mb-1">5. Motivation and Accountability: </div>
+            <div class="text-gray-500 text-base">Regular sessions with a dedicated teacher keep you motivated and on track with your goals.  </div>
+          </div>
+          <div class="mb-2">
+            <div class="text-[1.5rem] font-extrabold text-gray-800 mb-1">6. Ideal for： </div>
+            <div class="text-gray-500 text-base">Beginners who need guidance, advanced learners aiming for fluency, or anyone seeking a structured and interactive learning experience.  </div>
+          </div>
+          </div>
+          <div class="flex justify-center mt-auto">
+            <Link  href="/lessons"  class="inline-block bg-[#00D2E0] hover:bg-[#05BFCC] text-white font-semibold rounded px-8 py-2 transition">
+              Book now
+            </Link>
+          </div>
+        </div>
       </div>
-      <div class="flex-1 flex justify-center">
+      <div class="flex-1 flex flex-col items-start h-full">
         <div class="relative w-[680px] h-[380px] rounded-lg flex items-center justify-center group overflow-hidden">
           <span class="text-gray-400">
             <img src="/images/home_right.png" alt="home2" class="w-full h-full object-cover" />
@@ -90,19 +124,46 @@
             <span class="text-white text-lg font-semibold text-center px-4">Immersive Chinese experience helps you speak with confidence</span>
           </div>
         </div>
+        <!-- 新内容模块 -->
+        <div class="w-full text-left mt-8 flex flex-col h-full">
+          <div class="h-[560px]">
+          <div class="mb-2">
+            <div class="text-[1.5rem] font-extrabold text-gray-800 mb-1">1. Learn at Your Own Pace</div>
+            <div class="text-gray-500 text-base">1.Study whenever and wherever you want, fitting lessons into your schedule without pressure.</div>
+          </div>
+          <div class="mb-2">
+            <div class="text-[1.5rem] font-extrabold text-gray-800 mb-1">2. Affordable and Accessible:</div>
+            <div class="text-gray-500 text-base">High-quality lessons at a lower cost, available for repeated viewing to reinforce learning.</div>
+          </div>
+          <div class="mb-2">
+            <div class="text-[1.5rem] font-extrabold text-gray-800 mb-1">3. Flexible Content：</div>
+            <div class="text-gray-500 text-base">Choose topics or skills you want to focus on, from grammar to pronunciation, at your convenience. </div>
+          </div>
+          <div class="mb-2">
+            <div class="text-[1.5rem] font-extrabold text-gray-800 mb-1">4. No Time Constraints:</div>
+            <div class="text-gray-500 text-base">Pause, rewind, or replay lessons as needed, ensuring you fully understand each concept. </div>
+          </div>
+          <div class="mb-2">
+            <div class="text-[1.5rem] font-extrabold text-gray-800 mb-1">5. Self-directed Learning: </div>
+            <div class="text-gray-500 text-base">Perfect for independent learners who prefer to take control of their own study process.  </div>
+          </div>
+          <div class="mb-2">
+            <div class="text-[1.5rem] font-extrabold text-gray-800 mb-1">6. Ideal for: </div>
+            <div class="text-gray-500 text-base">Busy professionals, self-motivated learners, or those who prefer a more flexible and budget-friendly approach to learning.   </div>
+          </div>
+         </div>
+          <div class="flex justify-center mt-auto">
+            <Link href="/practice" class="inline-block bg-[#E47938] hover:bg-[#E46416] text-white font-semibold rounded px-8 py-2 transition">
+              Book now
+            </Link>
+          </div>
+        </div>
       </div>
     </section>
-
-    <!-- 标题与介绍 -->
-    <section class="max-w-3xl mx-auto text-center py-6 px-4">
-      <h2 ref="title" class="text-[50px] font-bold mb-2 opacity-0 transform -translate-x-20 transition-all duration-1000">Master Mandarin with <span class="text-[#009FE8]">Confidence</span></h2>
-      <p ref="description" class="text-[16px] text-gray-700 opacity-0 transform -translate-x-20">
-        My courses are designed to meet you where you are and take you where you want to go. From everyday communication to specialized topics like travel, business, or exam preparation, each lesson is tailored to your learning style. With clear goals, engaging methods, andpersonalized support, I'll help you unlock the full potential of your Chinese language journey.
-      </p>
-    </section>
+ 
 
     <!-- How it works -->
-    <section class="max-w-5xl mx-auto py-8 px-4">
+    <section id="how-it-works" class="max-w-5xl mx-auto py-8 px-4">
       <div class="flex flex-col items-center justify-center mb-10">
         <h2 class="text-2xl text-[50px] font-bold text-center mb-6 transition-all duration-1000">
           How <span class="text-[#F9B233]">it works</span>
@@ -135,7 +196,8 @@
         </div>
       </div>
     </section>
-     
+
+
 
     <!-- FAQ -->
     <section class="max-w-5xl mx-auto py-8 px-4">
@@ -291,18 +353,29 @@ function showLessonDialog() {
     html: `
       <div style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
         <button id="lv1-btn" style="width: 220px; padding: 12px 0; background: #009FE8; color: #fff; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer;">Lv1 Lessons</button>
-        <button id="daily-btn" style="width: 220px; padding: 12px 0; background: #F9B233; color: #fff; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer;">Daily Practice</button>
+        <button id="recorded-btn" style="width: 220px; padding: 12px 0; background: #F9B233; color: #fff; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer;">Recorded Lesson</button>
+        <button id="daily-btn" style="width: 220px; padding: 12px 0; background: #00C2FF; color: #fff; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer;">Daily Practice</button>
       </div>
     `,
     didOpen: () => {
       document.getElementById('lv1-btn').onclick = () => {
         window.location.href = '/lessons';
       };
+      document.getElementById('recorded-btn').onclick = () => {
+        window.location.href = '/recorded';
+      };
       document.getElementById('daily-btn').onclick = () => {
         window.location.href = '/practice';
       };
     }
   });
+}
+
+function scrollToHowItWorks() {
+  const el = document.getElementById('how-it-works');
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 }
 
 onMounted(async () => {
