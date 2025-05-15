@@ -58,21 +58,11 @@
     <!-- 统计数据 -->
     <section class="bg-[#F7F9FA] py-8">
       <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-        <div>
-          <div class="text-[50px] font-bold text-[#009FE8]">500+</div>
-          <div class="text-gray-700 text-sm mt-1">lesson videos</div>
-        </div>
-        <div>
-          <div class="text-[50px] font-bold text-[#009FE8]">2,000+</div>
-          <div class="text-gray-700 text-sm mt-1">student</div>
-        </div>
-        <div>
-          <div class="text-[50px] font-bold text-[#009FE8]">10k+</div>
-          <div class="text-gray-700 text-sm mt-1">lessos booked</div>
-        </div>
-        <div>
-          <div class="text-[50px] font-bold text-[#009FE8]">10M+</div>
-          <div class="text-gray-700 text-sm mt-1">follower</div>
+        <div v-for="(stat, index) in stats" :key="index" class="relative">
+          <div class="stat-container relative">
+            <div class="text-[50px] font-bold text-[#009FE8]">{{ stat.value }}</div>
+          </div>
+          <div class="text-gray-700 text-sm mt-1">{{ stat.label }}</div>
         </div>
       </div>
     </section>
@@ -107,57 +97,70 @@
     <section class="max-w-3xl mx-auto text-center py-6 px-4">
       <h2 ref="title" class="text-[50px] font-bold mb-2 opacity-0 transform -translate-x-20 transition-all duration-1000">Master Mandarin with <span class="text-[#009FE8]">Confidence</span></h2>
       <p ref="description" class="text-[16px] text-gray-700 opacity-0 transform -translate-x-20">
-        My courses are designed to meet you where you are and take you where you want to go. From everyday communication to specialized topics like travel, business, or exam preparation, each lesson is tailored to your learning style. With clear goals, engaging methods, and personalized support, I'll help you unlock the full potential of your Chinese language journey.
+        My courses are designed to meet you where you are and take you where you want to go. From everyday communication to specialized topics like travel, business, or exam preparation, each lesson is tailored to your learning style. With clear goals, engaging methods, andpersonalized support, I'll help you unlock the full potential of your Chinese language journey.
       </p>
     </section>
 
     <!-- How it works -->
     <section class="max-w-5xl mx-auto py-8 px-4">
-      <h2 class="text-2xl text-[50px] font-bold text-center mb-6 transition-all duration-1000">
-        How <span class="text-[#F9B233]">it works</span>
-      </h2>
-      <div class="grid md:grid-cols-3 gap-8 text-gray-700 text-sm">
-        <div>
-          <span class="font-bold text-[#009FE8]">1.</span> Select the course you want to take, if you choose the recorded courses, we will automatically send the video file to your email after payment.
+      <div class="flex flex-col items-center justify-center mb-10">
+        <h2 class="text-2xl text-[50px] font-bold text-center mb-6 transition-all duration-1000">
+          How <span class="text-[#F9B233]">it works</span>
+        </h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        <div class="flex flex-col items-center">
+          <div class="flex items-center mb-4">
+            <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#009FE8] text-white text-3xl font-bold mr-2 shadow-lg">1</span>
+            <span class="text-2xl font-bold text-[#009FE8]">Watch</span>
+          </div>
+          <img src="/images/home/pic_how_1@2x.webp" alt="Watch" class="rounded-xl shadow-md mb-4 w-full max-w-[340px] h-[200px] object-cover" />
+          <p class="text-gray-600 text-base">Select the course you want to take, if you choose the recorded courses, we will automatically send the video file to your email after payment.</p>
         </div>
-        <div>
-          <span class="font-bold text-[#009FE8]">2.</span> If you want to take online 1v1 courses, select the type of courses you want to take, and select the number of courses/frequency of classes, choose the time that suits you and pay.
+        <div class="flex flex-col items-center">
+          <div class="flex items-center mb-4">
+            <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#00D2E0] text-white text-3xl font-bold mr-2 shadow-lg">2</span>
+            <span class="text-2xl font-bold text-[#00D2E0]">Practice</span>
+          </div>
+          <img src="/images/home/pic_how_2@2x.webp" alt="Practice" class="rounded-xl shadow-md mb-4 w-full max-w-[340px] h-[200px] object-cover" />
+          <p class="text-gray-600 text-base">if you want to take online 1v1 courses, select the type of courses you want to take, and select the number of courses/frequency of classes, choose the time that suits you and pay.</p>
         </div>
-        <div>
-          <span class="font-bold text-[#009FE8]">3.</span> After payment, your email address will receive a zoom meeting link. Meanwhile, if you are booking my course for the first time, you can leave me a message and tell me about yourself, such as where are you from, whether you have studied Chinese before, and what learning goals you want to achieve. With this information, I can better prepare for our first class!
+        <div class="flex flex-col items-center">
+          <div class="flex items-center mb-4">
+            <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#00C2FF] text-white text-3xl font-bold mr-2 shadow-lg">3</span>
+            <span class="text-2xl font-bold text-[#00C2FF]">Quiz</span>
+          </div>
+          <img src="/images/home/pic_how_3@2x.webp" alt="Quiz" class="rounded-xl shadow-md mb-4 w-full max-w-[340px] h-[200px] object-cover" />
+          <p class="text-gray-600 text-base">After payment, your email address will receive a zoom meeting link. Meanwhile, if you are booking my course for the first time, you can leave me a message and tell me about yourself, such as where are you from, whether you have studied Chinese before, and what learning goals you want to achieve. With this information, I can better prepare for our first class!</p>
         </div>
       </div>
     </section>
+     
 
     <!-- FAQ -->
     <section class="max-w-5xl mx-auto py-8 px-4">
-      <h2 class="text-2xl text-[50px] font-bold text-center mb-6 transition-all duration-1000">
+     <div class="flex flex-col items-center justify-center mb-10">
+      <h2 class="text-2xl text-[50px] font-bold text-center mb-6 transition-all duration-1000 ">
         Frequently Asked <span class="text-[#F9B233]">Questions</span>
       </h2>
+     </div>
       <div class="space-y-4">
-        <div class="bg-[#F7FCFE] border-l-4 border-[#009FE8] rounded p-10">
-          <div class="font-bold text-[22px] text-[#009FE8] mb-1">How fast will I learn basic Chinese using Yoyo Chinese?</div>
-          <div class="text-gray-700 text-[16px]">
-            Fast! In less than 30 days you'll be able to correctly pronounce every possible sound in Chinese (pinyin and tones) and even know how to introduce yourself, count to ten, greet and bid farewell, and many other basic skills! In less than 6 months you'll be proficient in basic conversational Chinese. Hard to believe? Check out the "What our students have to say" section to hear from other Chinese language learners just like you!?
+        <div v-for="(item, idx) in faqs" :key="idx">
+          <div
+            class="flex items-center justify-between cursor-pointer rounded-t-lg px-8 py-6 text-lg font-bold select-none"
+            :class="openFaq === idx ? 'bg-[#F7FCFE] text-[#009FE8]' : 'bg-[#FFF8ED] text-[#222]'"
+            @click="toggleFaq(idx)"
+          >
+            <span>{{ item.q }}</span>
+            <svg :class="['transition-transform duration-300', openFaq === idx ? 'rotate-180' : '']" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
           </div>
-        </div>
-        <div class="bg-[#FFF8ED] border-l-4 border-[#F9B233] rounded p-10">
-          <div class="font-bold text-[22px] text-[#F9B233] mb-1">Does Yoyo Chinese actually work?</div>
-          <div class="text-gray-700 text-[16px]">
-            Yes! And you can read all about the details of why and how here on Yoyo Chinese, but don't just take it from us - check out the "What our students have to say" section and hear it directly from them about how Yoyo Chinese is "the best Chinese language learning program out there", "better than the competition", "highly effective", "super fun to use", "perfect for beginners", and "worth every penny."
-          </div>
-        </div>
-        <div class="bg-[#F7FCFE] border-l-4 border-[#009FE8] rounded p-10">
-          <div class="font-bold text-[22px] text-[#009FE8] mb-1">What makes Yoyo Chinese so much better than the competition?</div>
-          <div class="text-gray-700 text-[16px]">
-            Most Chinese learning apps are a business first and a learning program second - but NOT Yoyo Chinese. We don't use AI and other shortcuts aimed at cutting costs. Instead, our team consists of real live Chinese language experts - both foreign and native - who are truly dedicated to creating the world's best online Chinese learning program. We don't just simply use technology, WE TEACH .
-          </div>
-        </div>
-        <div class="bg-[#FFF8ED] border-l-4 border-[#F9B233] rounded p-10">
-          <div class="font-bold text-[22px] text-[#F9B233] mb-1">Does Yoyo Chinese teach simplified or traditional characters?</div>
-          <div class="text-gray-700 text-[16px] ">
-            While our Chinese Character Courses use simplified Chinese characters in the video lessons, Yoyo Chinese is fully optimized for learning with traditional characters. With just the flip of a switch your flashcards, quiz questions (minus the images), and other features will be in traditional. And guess what? 70% of the 600 characters in our Chinese Character Course are no different in traditional than in simplified!
-          </div>
+          <transition name="faq-fade">
+            <div v-show="openFaq === idx" class="bg-[#F7FCFE] px-8 pb-6 text-gray-700 text-base rounded-b-lg">
+              {{ item.a }}
+            </div>
+          </transition>
         </div>
       </div>
     </section>
@@ -166,9 +169,9 @@
     <section class="bg-[#F7F9FA] py-10">
       <div class="max-w-3xl mx-auto text-center">
         <h2 class="text-[50px] font-bold mb-4 transition-all duration-1000">Join us and have fun learning Chinese!</h2>
-        <Link href="/lessons" class="inline-block bg-[#009FE8] hover:bg-[#007bb5] text-white font-semibold rounded px-8 py-2 transition">
+        <button class="inline-block bg-[#009FE8] hover:bg-[#007bb5] text-white font-semibold rounded px-8 py-2 transition" @click.prevent="showLessonDialog">
           Get started
-        </Link>
+        </button>
       </div>
     </section>
   </div>
@@ -179,17 +182,54 @@
 import Layout from '@/Layouts/App.vue'
 import { Link } from '@inertiajs/vue3';
 import { ref, onMounted, nextTick } from 'vue';
+import Swal from 'sweetalert2';
+
 defineProps({
   config: {
     type: Object,
     required: true
   }
 })
+
 const isPlaying = ref(true);
 const isMuted = ref(false);
 const homeVideo = ref(null);
 const title = ref(null);
 const description = ref(null);
+
+const stats = ref([
+  { value: '500+', label: 'Lessons videos' },
+  { value: '2,000+', label: 'Students' },
+  { value: '10k+', label: 'Lessons bookeds' },
+  { value: '10M+', label: 'Followers' }
+]);
+
+
+
+const faqs = [
+  {
+    q: 'How fast will I learn basic Chinese using Yoyo Chinese?',
+    a: `Fast! In less than 30 days you'll be able to correctly pronounce every possible sound in Chinese (pinyin and tones) and even know how to introduce yourself, count to ten, greet and bid farewell, and many other basic skills! In less than 6 months you'll be proficient in basic conversational Chinese. Hard to believe? Check out the "What our students have to say" section to hear from other Chinese language learners just like you!`
+  },
+  {
+    q: 'Does Yoyo Chinese actually work?',
+    a: `Yes! And you can read all about the details of why and how here on Yoyo Chinese, but don't just take it from us - check out the "What our students have to say" section and hear it directly from them about how Yoyo Chinese is "the best Chinese language learning program out there", "better than the competition", "highly effective", "super fun to use", "perfect for beginners", and "worth every penny." 🙂`
+  },
+  {
+    q: 'What makes Yoyo Chinese so much better than the competition?',
+    a: `Most Chinese learning apps are a business first and a learning program second - but NOT Yoyo Chinese. We don't use AI and other shortcuts aimed at cutting costs. Instead, our team consists of real live Chinese language experts - both foreign and native - who are truly dedicated to creating the world's best online Chinese learning program. We don't just simply use technology, WE TEACH 👩🏻‍🏫.`
+  },
+  {
+    q: 'Does Yoyo Chinese teach simplified or traditional characters?',
+    a: `While our Chinese Character Courses use simplified Chinese characters in the video lessons, Yoyo Chinese is fully optimized for learning with traditional characters. With just the flip of a switch your flashcards, quiz questions (minus the images), and other features will be in traditional. And guess what? 70% of the 600 characters in our Chinese Character Course are no different in traditional than in simplified! 😊`
+  }
+];
+
+const openFaq = ref(null);
+function toggleFaq(idx) {
+  openFaq.value = openFaq.value === idx ? null : idx;
+}
+
 
 async function playVideo() {
   if (homeVideo.value) {
@@ -218,6 +258,51 @@ function animateElement(element) {
       element.style.opacity = '1';
     });
   }
+}
+
+function createFloatingNumber(element) {
+  const number = Math.floor(Math.random() * 6) + 1;
+  const floatingEl = document.createElement('div');
+  floatingEl.textContent = '+' + number;
+  floatingEl.className = 'floating-number';
+  floatingEl.style.left = Math.random() * 270 + 'px';
+  floatingEl.style.bottom = '50px';
+  
+  element.appendChild(floatingEl);
+  
+  setTimeout(() => {
+    floatingEl.remove();
+  }, 1500);
+}
+
+function startAnimation(element) {
+  createFloatingNumber(element);
+  setTimeout(() => {
+    startAnimation(element);
+  }, Math.random() * 2000 + 1000);
+}
+
+function showLessonDialog() {
+  Swal.fire({
+    title: 'Choose a section',
+    showCancelButton: true,
+    showConfirmButton: false,
+    cancelButtonText: 'Close',
+    html: `
+      <div style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
+        <button id="lv1-btn" style="width: 220px; padding: 12px 0; background: #009FE8; color: #fff; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer;">Lv1 Lessons</button>
+        <button id="daily-btn" style="width: 220px; padding: 12px 0; background: #F9B233; color: #fff; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer;">Daily Practice</button>
+      </div>
+    `,
+    didOpen: () => {
+      document.getElementById('lv1-btn').onclick = () => {
+        window.location.href = '/lessons';
+      };
+      document.getElementById('daily-btn').onclick = () => {
+        window.location.href = '/practice';
+      };
+    }
+  });
 }
 
 onMounted(async () => {
@@ -268,6 +353,11 @@ onMounted(async () => {
   // 开始观察元素
   if (title.value) observer.observe(title.value);
   if (description.value) observer.observe(description.value);
+
+  const statElements = document.querySelectorAll('.stat-container');
+  statElements.forEach(element => {
+    startAnimation(element);
+  });
 });
 </script>
 
@@ -277,5 +367,44 @@ onMounted(async () => {
   transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1),
               opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform, opacity;
+}
+
+@keyframes floatNumber {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(30px, -30px) scale(0.5);
+  }
+}
+
+.floating-number {
+  position: absolute;
+  color: #009FE8;
+  font-size: 26px;
+  animation: floatNumber 1.5s ease-out forwards;
+  font-weight: bold;
+}
+
+.faq-fade-enter-active, .faq-fade-leave-active {
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.faq-fade-enter-from, .faq-fade-leave-to {
+  max-height: 0;
+  opacity: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.faq-fade-enter-to, .faq-fade-leave-from {
+  max-height: 500px;
+  opacity: 1;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.space-y-4 > * + * {
+  margin-top: 10px !important;
 }
 </style>
