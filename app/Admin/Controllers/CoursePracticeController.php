@@ -39,6 +39,7 @@ class CoursePracticeController extends AdminController
             $form->file('audio', '课程语音mp3')
             ->autoUpload()
             ->disk('public') // 使用 public 磁盘
+            ->retainable()
             ->name(function ($file) {
                 // 获取扩展名
                 $ext = $file->getClientOriginalExtension();
@@ -48,6 +49,7 @@ class CoursePracticeController extends AdminController
         
         $form->image('cover', '课程封面')
             ->autoUpload()
+            ->retainable()
             ->disk('public') // 使用 public 磁盘
             ->name(function ($file) {
                 $ext = $file->getClientOriginalExtension();

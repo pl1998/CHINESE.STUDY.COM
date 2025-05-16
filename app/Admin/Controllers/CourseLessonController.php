@@ -48,6 +48,7 @@ class CourseLessonController extends AdminController
             // 修改详情页图片上传配置
             $form->image('detail_image', '详情页图片')
                 ->autoUpload()
+                ->retainable()
                 ->disk('public') // 使用 public 磁盘
                 ->dir('images/detail') // 存储目录
                 ->name(function ($file) {
