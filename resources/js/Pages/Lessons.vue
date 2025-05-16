@@ -15,9 +15,9 @@
     <section class="max-w-7xl mx-auto py-16 px-4">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-10"> 
         <div class="bg-white rounded-2xl shadow-lg flex flex-col bg-[#F7FAFC]" v-for="course in courses.data" :key="course.id">
-          <img :src="course.cover" :alt="course.title" class="w-full h-[180px] object-cover" />
+          <img :src="course.cover" :alt="course.name" class="w-full h-[180px] object-cover" />
           <div class="flex-1 flex flex-col p-4">
-            <h3 class="text-[2rem] font-bold text-[#1a2233] mb-4 text-left">HSK 1-6</h3>
+            <h3 class="text-[2rem] font-bold text-[#1a2233] mb-4 text-left">{{ course.name }}</h3>
             <p class="text-[#1a2233] text-base mb-8 text-left leading-relaxed">
              {{ course.description }}
             </p>
