@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\ContactRecord;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\AboutMeNoticeMail;
+use App\Models\ConfigSite;
+use App\Http\Traits\EmailConfig;
 class ContactController extends Controller
 {
+    use EmailConfig;
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -23,11 +27,15 @@ class ContactController extends Controller
             ], 422);
         }
 
-        ContactRecord::create([
+        $id = ContactRecord::insertGetId([
             'name' => $request->name,
             'email' => $request->email,
             'message' => $request->message
         ]);
+        $this->setEmailConfig();
+
+        Mail::to('chineseteacherelena@outlook.com')
+        ->queue(new AboutMeNoticeMail(ContactRecord::find($id),ConfigSite::getConfig()));
 
         return response()->json([
             'success' => true,

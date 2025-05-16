@@ -35,6 +35,10 @@
       <!-- 中间导航菜单，左侧加 margin-left:25px -->
       <nav class="flex items-center space-x-6 ml-[25px]">
         <Link
+        href="#"
+        class="text-[#000] font-bold"
+      >ELENA MANDARIN</Link>
+        <Link
           href="/"
           class="hover:text-[#009FE8]"
           :class="url === '/' ? 'text-[#009FE8] font-bold' : 'text-gray-700'"

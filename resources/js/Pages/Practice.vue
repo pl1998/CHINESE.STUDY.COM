@@ -6,13 +6,10 @@
           <Banner imageSrc="/images/banner/pratice.jpg" alt="Practice Banner" />
         </div>
 
-        <!-- 面包屑导航 -->
-        <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8 px-4">
-          <div class="w-full bg-[#f7f7f7] py-2 px-4 text-sm text-gray-600">
-            Home &gt;&gt; <span class="text-[#009FE8]">1Daily Practice</span>
-          </div>
-        </div>
-
+     
+        <div class="max-w-6xl mx-auto w-full px-4 pb-8">
+          <!-- 面包屑 -->
+          <Breadcrumb :current="'Daily Practice'" />
         <!-- 课程实战卡片 -->
         <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 py-8 px-4">
           <div
@@ -26,8 +23,10 @@
               alt="cover"
               class="w-full h-56 object-cover rounded transition-transform duration-300 group-hover:scale-105"
             />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col items-center  text-white text-center px-4 pb-4">
+              <div class="text-2xl font-bold mt-[100px]">{{ item.name }}</div>
+            </div>
             <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-40 flex flex-col items-center justify-center text-white text-center px-4 transition-all duration-300">
-              <div class="text-2xl font-bold mb-2">{{ item.name }}</div>
               <div v-if="playingId === item.id" class="text-sm flex items-center">
                 <font-awesome-icon :icon="['fas', 'volume-up']" class="mr-1" />
                 正在播放...
@@ -41,6 +40,8 @@
               :ref="el => { if (el) { audioRefs[item.id] = el } else { delete audioRefs[item.id] } }"
               :src="item.audio"
               @ended="playingId = null"
+              @error="handleAudioError"
+              preload="auto"
               style="display:none"
             ></audio>
           </div>
@@ -75,7 +76,7 @@
             @click="goToPage(pagination.last_page)"
           >End</button>
         </div>
-
+</div>
     </div>
   </Layout>
 </template>
@@ -85,6 +86,12 @@ import Layout from '@/Layouts/App.vue'
 import { ref, onMounted, computed, reactive } from 'vue'
 import axios from 'axios'
 import Banner from '@/Components/Banner.vue'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faVolumeUp } from '@fortawesome/free-solid-svg-icons'
+import Breadcrumb from '@/Components/Breadcrumb.vue'
+
+library.add(faVolumeUp)
 
 defineProps({
   config: {
@@ -122,29 +129,47 @@ const goToPage = (page) => {
   fetchPractices(page)
 }
 
-const playAudio = (id) => {
-  // 暂停其他音频
-  Object.keys(audioRefs).forEach(key => {
-    if (audioRefs[key] && key != id) {
-      audioRefs[key].pause()
-      audioRefs[key].currentTime = 0
-    }
-  })
-  
-  const audio = audioRefs[id]
-  
-  if (!audio) {
-    return
-  }
-  
-  if (playingId.value === id) {
-    audio.pause()
-    playingId.value = null
-  } else {
-    audio.play().catch(error => {
-      console.error('Error playing audio:', error)
+const handleAudioError = (error) => {
+  console.error('Audio loading error:', error)
+  playingId.value = null
+}
+
+const playAudio = async (id) => {
+  try {
+    // 暂停其他音频
+    Object.keys(audioRefs).forEach(key => {
+      if (audioRefs[key] && key != id) {
+        audioRefs[key].pause()
+        audioRefs[key].currentTime = 0
+      }
     })
-    playingId.value = id
+    
+    const audio = audioRefs[id]
+    
+    if (!audio) {
+      console.error('Audio element not found')
+      return
+    }
+
+    // 确保音频已加载
+    if (audio.readyState === 0) {
+      await new Promise((resolve, reject) => {
+        audio.addEventListener('canplaythrough', resolve, { once: true })
+        audio.addEventListener('error', reject, { once: true })
+        audio.load()
+      })
+    }
+    
+    if (playingId.value === id) {
+      audio.pause()
+      playingId.value = null
+    } else {
+      await audio.play()
+      playingId.value = id
+    }
+  } catch (error) {
+    console.error('Error playing audio:', error)
+    playingId.value = null
   }
 }
 

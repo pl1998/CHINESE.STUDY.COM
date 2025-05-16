@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CourseReservationMail;
 use App\Http\Traits\EmailConfig;
+use App\Models\ConfigSite;
+use Illuminate\Support\Facades\Log;
 class PaypalController extends Controller
 {
 
@@ -81,30 +83,39 @@ class PaypalController extends Controller
         $token = $request->input('token');
         $response = $provider->capturePaymentOrder($token);
         $reservation = CourseReservation::where('order_no', $orderNo)->first();
-        if ($response['status'] == 'COMPLETED') {
+       try {
+        if (isset($response['status']) && $response['status'] == 'COMPLETED') {
             $reservation->pay_status = 1;
             $reservation->save();
             // 跳转回前端页面并带上参数
             try {
                 $this->setEmailConfig();
-                Mail::to($reservation->email)->send(new CourseReservationMail($reservation));
+                Mail::to($reservation->email)
+                ->queue(new CourseReservationMail($reservation,ConfigSite::getConfig()));
+                Mail::to('chineseteacherelena@outlook.com')
+                ->queue(new CourseReservationMail($reservation,ConfigSite::getConfig()));
             } catch (\Exception $e) {
                 Log::error('CourseReservationMail send failed: ' . $e->getMessage());
             }
             return redirect("/hsk-lesson/{$reservation->course_id}?order_no={$orderNo}&step=6");
         } else {
+            Log::error('Paypal payment failed: ',['response' => $response]);
             $reservation->pay_status = 2;
             $reservation->save();
-            return redirect("/hsk-lesson?order_no={$orderNo}&step=error");
+            return redirect("/hsk-lesson/{$reservation->course_id}?order_no={$orderNo}&step=error");
         }
- 
-        
+       } catch (\Exception $e) {
+        return redirect("/hsk-lesson/{$reservation->course_id}?order_no={$orderNo}&step=error");
+        Log::error('CourseReservation update failed: ' . $e->getMessage());
+       }
+
     }
 
     // 支付取消回调
     public function cancel(Request $request)
     {
         $orderNo = $request->input('order_no');
-        return redirect("/hsk-lesson?order_no={$orderNo}&step=cancel");
+        $reservation = CourseReservation::where('order_no', $orderNo)->first();
+        return redirect("/hsk-lesson/{$reservation->course_id}?order_no={$orderNo}&step=cancel");
     }
 }

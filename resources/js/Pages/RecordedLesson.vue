@@ -7,30 +7,36 @@
           <Banner imageSrc="/images/banner/recorded_lesson.jpg" alt="Recorded Lesson Banner" />
         </div>
       <!-- 课程筛选和列表 -->
-      <div class="max-w-6xl mx-auto w-full px-4 py-8">
+      <div class="max-w-6xl mx-auto w-full px-4 pb-8">
              <!-- 面包屑 -->
-      <div class="w-full bg-[#f7f7f7] py-2 px-4 text-sm text-gray-600">
-        Home &gt;&gt; <span class="text-[#009FE8]">Recorded Lesson</span>
-      </div>
+             <Breadcrumb :current="'Recorded Lesson'" />
         <!-- 筛选标签 -->
         <div class="mb-4 mt-2">
           <button class="border px-4 py-1 rounded bg-white text-gray-700 text-sm">all</button>
           <!-- 可添加更多筛选按钮 -->
         </div>
         <!-- 课程卡片 -->
-        <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 py-8 px-4">
-          <div class="relative group border-2 border-white hover:border-[#009FE8] transition rounded block overflow-hidden">
+        
+        <section  class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 py-16 px-4">
+          <Link
+            href="#"
+            class="relative group border-2 border-white hover:border-[#009FE8] transition rounded block overflow-hidden mt-4"
+          >
             <img 
-              src="/images/lesson_book.png" 
-              alt="course" 
+            src="/images/lesson_book.png" 
+            alt="course" 
               class="w-full h-56 object-cover rounded transition-transform duration-300 group-hover:scale-105" 
             />
-            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-40 flex flex-col items-center justify-center text-white text-center px-4 transition-all duration-300">
-              <div class="text-2xl font-bold mb-2">course</div>
+            <!-- 遮罩层，z-10 -->
+            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-40 transition-all duration-300 z-10"></div>
+            <!-- 文字层，z-20 -->
+            <div class="absolute top-0 left-0 w-full bg-gradient-to-b from-black/80 to-transparent text-white text-center px-4 pt-4 pb-2 z-20">
+              <div class="text-2xl font-bold mt-[50px]">course</div>
+              <div class="text-base font-semibold mt-2 truncate">course description</div>
             </div>
-          </div>
-          <!-- 你可以复制上面div，渲染更多课程 -->
-        </div>
+          </Link>
+        </section>
+
 
         <!-- 分页 -->
         <div class="flex justify-center items-center gap-2 mt-8">
@@ -50,7 +56,7 @@
 import Layout from '@/Layouts/App.vue'
 import Banner from '@/Components/Banner.vue'
 import { usePage } from '@inertiajs/vue3'
-
+import Breadcrumb from '@/Components/Breadcrumb.vue'
 const { lesson } = usePage().props
 
 defineProps({

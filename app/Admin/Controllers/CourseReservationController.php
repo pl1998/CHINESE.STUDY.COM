@@ -12,6 +12,7 @@ use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Admin;
 use App\Mail\ZoomUrlNotificationMail;
 use Illuminate\Support\Facades\Mail;
+use App\Models\ConfigSite;
 class CourseReservationController extends AdminController
 {
     use EmailConfig;
@@ -159,7 +160,9 @@ class CourseReservationController extends AdminController
                 $model = $form->model();
                 if (!empty($model->zoom_url)) {
                     static::setEmailConfig();
-                    Mail::to($model->email)->send(new ZoomUrlNotificationMail($model));
+                    Mail::to($model->email)
+                    ->queue(new ZoomUrlNotificationMail($model,ConfigSite::getConfig())            
+                );
                 }
             });
         });
