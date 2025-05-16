@@ -40,40 +40,22 @@
         <div class="text-center text-white text-lg mb-2 tracking-widest">FAQ</div>
         <div class="text-center text-white text-5xl font-bold mb-12 tracking-wider">QUESTIONS</div>
         <div class="grid md:grid-cols-3 gap-8 text-white">
-          <div>
-            <div class="font-bold mb-2 text-base">WHAT IS THE HSK, AND WHY IS IT IMPORTANT?</div>
-            <div class="text-sm">
-              The HSK (Hanyu Shuiping Kaoshi) is the official Chinese proficiency test recognized internationally. It certifies your Chinese language skills, which can be beneficial for academic, professional, and personal pursuits.
+          <div v-for="(faq, idx) in faqs" :key="faq.question" class="mb-4">
+            <div
+              class="font-bold pt-5 pb-5 text-base flex items-center cursor-pointer select-none border-t border-b border-white"
+              @click="toggle(idx)"
+            >
+              <span>{{ faq.question }}</span>
+              <svg
+                :class="['ml-2 transition-transform', openIndex === idx ? 'rotate-180' : 'rotate-0']"
+                width="20" height="20" fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.085l3.71-3.855a.75.75 0 111.08 1.04l-4.24 4.4a.75.75 0 01-1.08 0l-4.24-4.4a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+              </svg>
             </div>
-          </div>
-          <div>
-            <div class="font-bold mb-2 text-base">HOW LONG DOES IT TAKE TO PREPARE FOR AN HSK EXAM?</div>
-            <div class="text-sm">
-              The time required depends on your starting level and how much time you can dedicate to study. On average, students can prepare for each HSK level within 3-6 months with regular lessons and practice.
-            </div>
-          </div>
-          <div>
-            <div class="font-bold mb-2 text-base">HOW ARE YOUR LESSONS STRUCTURED FOR DIFFERENT HSK LEVELS?</div>
-            <div class="text-sm">
-              Our lessons are tailored to each HSK level, from beginner (HSK 1) to advanced (HSK 6). We focus on building the necessary skills for each level, including listening, reading, writing, and speaking, with practice tests and real-world applications.
-            </div>
-          </div>
-          <div>
-            <div class="font-bold mb-2 text-base">DO YOU PROVIDE HSK EXAM PRACTICE TESTS?</div>
-            <div class="text-sm">
-              Yes, we provide mock exams and practice tests as part of our preparation process to help you become familiar with the exam format and timing.
-            </div>
-          </div>
-          <div>
-            <div class="font-bold mb-2 text-base">WHAT CAN I EXPECT TO ACHIEVE AFTER COMPLETING EACH HSK LEVEL?</div>
-            <div class="text-sm">
-              After completing each level, you will have mastered the corresponding vocabulary, grammar, and language skills, enabling you to pass the HSK exam and communicate effectively at that level.
-            </div>
-          </div>
-          <div>
-            <div class="font-bold mb-2 text-base">CAN I START AT ANY HSK LEVEL, OR DO I NEED TO START FROM LEVEL 1?</div>
-            <div class="text-sm">
-              You can start at any level that matches your current proficiency. We offer an initial assessment to determine the best starting point for you.
+            <div v-show="openIndex === idx" class="text-sm transition-all duration-300 pt-5 pb-5">
+              {{ faq.answer }}
             </div>
           </div>
         </div>
@@ -577,5 +559,38 @@ onMounted(() => {
     })
   }
 })
+
+const faqs = [
+  {
+    question: "Who are these lessons ideal for?",
+    answer: "These lessons are perfect for travelers, expatriates, or anyone who needs to quickly acquire basic Chinese language skills for everyday situations."
+  },
+  {
+    question: "What kind of topics will I learn in Survival Chinese?",
+    answer: "You'll learn essential phrases and vocabulary for daily life, such as ordering food, asking for directions, shopping, and basic greetings."
+  },
+  {
+    question: "How fast can I expect to learn the basics?",
+    answer: "With regular practice, most students can grasp the essentials within a few weeks, making them comfortable with basic interactions in Chinese."
+  },
+  {
+    question: "Do I need prior Chinese knowledge to take these lessons?",
+    answer: "No prior knowledge is required. These lessons are designed for complete beginners who want to quickly acquire practical language skills."
+  },
+  {
+    question: "Will I learn any cultural tips along with the language?",
+    answer: "Yes, our lessons include cultural insights to help you navigate social situations and understand local customs better."
+  },
+  {
+    question: "Can these lessons be customized for specific travel needs?",
+    answer: "Absolutely! We can tailor the lessons to focus on scenarios you are likely to encounter, such as hotel check-ins, transportation, and emergency situations."
+  },
+  // ... 其余 FAQ
+]
+
+const openIndex = ref(null)
+const toggle = idx => {
+  openIndex.value = openIndex.value === idx ? null : idx
+}
 </script>
 

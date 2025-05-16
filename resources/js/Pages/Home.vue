@@ -153,13 +153,24 @@
           </div>
          </div>
           <div class="flex justify-center mt-auto">
-            <Link href="/practice" class="inline-block bg-[#E47938] hover:bg-[#E46416] text-white font-semibold rounded px-8 py-2 transition">
+            <Link href="/recorded" class="inline-block bg-[#E47938] hover:bg-[#E46416] text-white font-semibold rounded px-8 py-2 transition">
               Book now
             </Link>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- How it works -->
+    <div class="max-w-5xl mx-auto flex flex-col items-center justify-center py-16">     
+      <!-- 主标题 -->
+      <h2 class="text-4xl md:text-5xl font-extrabold text-[#1a2233] text-center mb-5 mt-5">
+        Master Mandarin with  <span class="text-[#F9B233]">Confidence</span>
+      </h2>
+      <p class="text-lg text-[#2d3a4a] text-center max-w-2xl">
+        My courses are designed to meet you where you are and take you where you want to go. From everyday communication to specialized topics like travel, business, or exam preparation, each lesson is tailored to your learning style. With clear goals, engaging methods, andpersonalized support, I'll help you unlock the full potential of your Chinese language journey.
+      </p>
+    </div>
  
 
     <!-- How it works -->
@@ -196,7 +207,6 @@
         </div>
       </div>
     </section>
-
 
 
     <!-- FAQ -->

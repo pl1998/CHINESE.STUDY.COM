@@ -10,31 +10,26 @@
       <div class="max-w-6xl mx-auto w-full px-4 pb-8">
            <!-- 面包屑导航 -->
            <Breadcrumb :current="'1V1 LESSON'" />
-          <!-- 课程内容区域 -->
-          <section v-if="courses && courses.data" class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 py-16 px-4">
-            <Link
-              v-for="item in courses.data"
-              :key="item.id"
-              :href="`/hsk-lesson/${item.id}`"
-              class="relative group border-2 border-white hover:border-[#009FE8] transition rounded block overflow-hidden mt-4"
-            >
-              <img 
-                :src="item.cover" 
-                :alt="item.name" 
-                class="w-full h-56 object-cover rounded transition-transform duration-300 group-hover:scale-105" 
-              />
-              <!-- 遮罩层，z-10 -->
-              <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-40 transition-all duration-300 z-10"></div>
-              <!-- 文字层，z-20 -->
-              <div class="absolute top-0 left-0 w-full bg-gradient-to-b from-black/80 to-transparent text-white text-center px-4 pt-4 pb-2 z-20">
-                <div class="text-2xl font-bold mt-[40px]">{{ item.name }}</div>
-                <div class="text-base font-semibold mt-2 truncate">{{ item.description }}</div>
-              </div>
-            </Link>
-          </section>
-          <div v-else class="text-center text-gray-400 py-8">No courses available at the moment</div>
-          <!-- 分页 -->
-          <div class="flex justify-center gap-2 py-8">
+          
+    <!-- 课程内容区域 -->
+    <section class="max-w-7xl mx-auto py-16 px-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10"> 
+        <div class="bg-white rounded-2xl shadow-lg flex flex-col bg-[#F7FAFC]" v-for="course in courses.data" :key="course.id">
+          <img :src="course.cover" :alt="course.title" class="w-full h-[180px] object-cover" />
+          <div class="flex-1 flex flex-col p-4">
+            <h3 class="text-[2rem] font-bold text-[#1a2233] mb-4 text-left">HSK 1-6</h3>
+            <p class="text-[#1a2233] text-base mb-8 text-left leading-relaxed">
+             {{ course.description }}
+            </p>
+           <div class="flex justify-center w-full mt-auto">
+            <Link :href="`/hsk-lesson/${course.id}`" class="block w-full mt-auto w-40 bg-[#1756c2] hover:bg-[#003a8c] text-white font-semibold rounded-lg py-3  tracking-widest text-center transition uppercase">LEARN MORE</Link>
+           </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 分页 -->
+    <div class="flex justify-center gap-2 py-8">
             <template v-for="page in courses.links" :key="page.label">
               <Link
                 v-if="page.url"
