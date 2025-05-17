@@ -1,1 +1,0 @@
-import{_ as r}from"./App-8947e644.js";import{y as a,A as c,Q as o,o as t,c as i}from"./app-07b6806c.js";const _={__name:"PracticeDetail",props:{config:{type:Object,required:!0}},setup(e){return a.add(c),o().props,(n,s)=>(t(),i(r,{config:e.config},null,8,["config"]))}};export{_ as default};
