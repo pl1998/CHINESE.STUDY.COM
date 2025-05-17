@@ -419,7 +419,7 @@ async function submitPackageForm() {
       price: practice.price,
       practice_id: practice.id
     });
-    if (res.data && res.data.pay_url) {
+    if (res.data && res.data.paypal_url) {
       window.location.href = res.data.paypal_url; // 跳转到PayPal支付
     } else {
       Swal.fire({ icon: 'error', title: 'Payment failed', text: 'Failed to obtain the payment link' })
