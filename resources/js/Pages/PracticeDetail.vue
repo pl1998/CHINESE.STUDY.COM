@@ -420,12 +420,12 @@ async function submitPackageForm() {
       practice_id: practice.id
     });
     if (res.data && res.data.pay_url) {
-      window.location.href = res.data.pay_url; // 跳转到PayPal支付
+      window.location.href = res.data.paypal_url; // 跳转到PayPal支付
     } else {
-      alert('支付接口异常');
+      Swal.fire({ icon: 'error', title: 'Payment failed', text: 'Failed to obtain the payment link' })
     }
   } catch (e) {
-    alert(e.response?.data?.message || '支付失败');
+    Swal.fire({ icon: 'error', title: 'Payment failed', text: 'Failed to obtain the payment link' })
   }
 }
   </script>
