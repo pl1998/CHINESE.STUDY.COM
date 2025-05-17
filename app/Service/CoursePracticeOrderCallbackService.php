@@ -32,13 +32,6 @@ class CoursePracticeOrderCallbackService extends PaypalCallback
         $orderInfo->pay_time = time();
         $orderInfo->pay_status = CoursePracticeOrder::PAY_SUCCESS;
         $orderInfo->save();
-        // 发送邮件
-        Mail::to($orderInfo->email)
-            ->queue(new CourseReservationMail($orderInfo,ConfigSite::getConfig()));
-
-        Mail::to(env('SEND_EMAIL'))
-            ->queue(new CourseReservationMail($orderInfo,ConfigSite::getConfig()));
-
         return redirect("/practice-detail/$orderInfo->practice_id?order_no=$orderInfo->order_no&step=success");
     }
 }
