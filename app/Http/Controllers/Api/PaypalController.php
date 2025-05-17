@@ -77,18 +77,31 @@ class PaypalController extends Controller
 
     // 支付成功回调
     public function success(Request $request)
-    {
+    {   
         switch ($request->input('type')) {
             case OderType::LESSON:
-                app()->make(CourseReservationCallbackService::class,['params' => $request->all()])->handle();
+                list(orderInfo,$bool) = app()->make(CourseReservationCallbackService::class,['params' => $request->all()])->handle();
+                if($bool){
+                    return redirect("/hsk-lesson/{$orderInfo->course_id}?order_no={$orderInfo->order_no}&step=6");
+                } else{
+                    return redirect("/hsk-lesson/{$orderInfo->course_id}?order_no={$orderInfo->order_no}&step=error");
+                }
+
                 break;
             case OderType::PRACTICE:
-                app()->make(CoursePracticeOrderCallbackService::class,['params' => $request->all()])->handle();
+                list(orderInfo,$bool) = $orderInfo = app()->make(CoursePracticeOrderCallbackService::class,['params' => $request->all()])->handle();
+               
+                if($bool){
+                    return redirect("/practice-detail/{$orderInfo->practice_id}?order_no={$orderInfo->order_no}&step=success");
+                } else{
+                    return redirect("/practice-detail/{$orderInfo->practice_id}?order_no={$orderInfo->order_no}&step=error");
+                }
                 break;
             default:
                 throw new ApiException("不存在该支付类型");
                 break;
         }
+
     }
 
 

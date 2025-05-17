@@ -41,17 +41,21 @@ abstract class  PaypalCallback
         return false;
     }
 
+  
     /**
-     * @return void
-     * @throws Throwable
+     * 处理支付回调
+     * 
+     * @return bool
      */
-    public function handle(): void
+    public function handle(): bool
     {
         // 订单支付成功
         if($this->paypal()) {
             $this->successCallback();
+            return true;
         } else{
             $this->errorCallback();
+            return false;
         }
     }
 

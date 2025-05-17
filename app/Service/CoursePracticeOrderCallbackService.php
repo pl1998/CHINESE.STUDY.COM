@@ -17,7 +17,7 @@ class CoursePracticeOrderCallbackService extends PaypalCallback
 
     public function errorCallback(){
         $this->getOrderInfo();
-        return redirect("/practice-detail/{$this->orderInfo->practice_id}?order_no={$this->orderInfo->order_no}&step=error");
+        return [ $this->orderInfo,false];
     }
 
     protected function getOrderInfo()
@@ -32,6 +32,6 @@ class CoursePracticeOrderCallbackService extends PaypalCallback
         $orderInfo->pay_time = time();
         $orderInfo->pay_status = CoursePracticeOrder::PAY_SUCCESS;
         $orderInfo->save();
-        return redirect("/practice-detail/$orderInfo->practice_id?order_no=$orderInfo->order_no&step=success");
+        return [ $orderInfo,true];
     }
 }

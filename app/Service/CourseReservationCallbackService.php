@@ -20,7 +20,7 @@ class CourseReservationCallbackService extends PaypalCallback
 
     public function errorCallback(){
         $this->getOrderInfo();
-        return redirect("/hsk-lesson/{$this->orderInfo->course_id}?order_no={$this->orderInfo->order_no}&step=error");
+        return [ $this->orderInfo,false];
     }
 
     protected function getOrderInfo()
@@ -42,6 +42,6 @@ class CourseReservationCallbackService extends PaypalCallback
         Mail::to(env('SEND_EMAIL'))
             ->queue(new CourseReservationMail($orderInfo,ConfigSite::getConfig()));
 
-        return redirect("/hsk-lesson/$orderInfo->course_id?order_no=$orderInfo->order_no&step=6");
+        return [ $orderInfo,true];
     }
 }
