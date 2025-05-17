@@ -20,6 +20,23 @@ class CoursePracticeOrderCallbackService extends PaypalCallback
         return [ $this->orderInfo,false];
     }
 
+      
+    /**
+     * 处理支付回调
+     * 
+     * @return array
+     */
+    public function handle(): array
+    {
+        // 订单支付成功
+        if($this->paypal()) {
+            return $this->successCallback();
+        } else{
+            return $this->errorCallback();
+        
+        }
+    }
+
     protected function getOrderInfo()
     {
         $this->orderInfo = CoursePracticeOrder::query()->where("order_no",$this->params['order_no'])->first();

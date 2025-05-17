@@ -45,17 +45,16 @@ abstract class  PaypalCallback
     /**
      * 处理支付回调
      * 
-     * @return bool
+     * @return array
      */
-    public function handle(): bool
+    public function handle(): array
     {
         // 订单支付成功
         if($this->paypal()) {
-            $this->successCallback();
-            return true;
+            return $this->successCallback();
         } else{
-            $this->errorCallback();
-            return false;
+            return $this->errorCallback();
+        
         }
     }
 
