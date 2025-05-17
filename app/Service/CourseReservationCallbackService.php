@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Mail;
 class CourseReservationCallbackService extends PaypalCallback
 {
 
-    protected Model $orderInfo;
+    public Model $orderInfo;
 
     public function __construct(public array $params){}
 
