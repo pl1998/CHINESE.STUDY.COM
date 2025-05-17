@@ -1,0 +1,47 @@
+<?php
+
+namespace App\Service;
+
+
+
+use App\Mail\CourseReservationMail;
+use App\Models\ConfigSite;
+use App\Models\CourseReservation;
+use App\Service\Paypal\PaypalCallback;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Mail;
+
+class CourseReservationCallbackService extends PaypalCallback
+{
+
+    protected Model $orderInfo;
+
+    public function __construct(public array $params){}
+
+    public function errorCallback(){
+        $this->getOrderInfo();
+        return redirect("/hsk-lesson/{$this->orderInfo->course_id}?order_no={$this->orderInfo->order_no}&step=error");
+    }
+
+    protected function getOrderInfo()
+    {
+        $this->orderInfo = CourseReservation::query()->where("order_no",$this->params['order_no'])->first();
+        return $this->orderInfo;
+    }
+
+    public function successCallback()
+    {
+        $orderInfo = $this->getOrderInfo();
+        $orderInfo->pay_time = time();
+        $orderInfo->pay_status = CourseReservation::PAY_SUCCESS;
+        $orderInfo->save();
+        // 发送邮件
+        Mail::to($orderInfo->email)
+            ->queue(new CourseReservationMail($orderInfo,ConfigSite::getConfig()));
+
+        Mail::to(env('SEND_EMAIL'))
+            ->queue(new CourseReservationMail($orderInfo,ConfigSite::getConfig()));
+
+        return redirect("/hsk-lesson/$orderInfo->course_id?order_no=$orderInfo->order_no&step=6");
+    }
+}

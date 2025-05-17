@@ -5,7 +5,8 @@ namespace App\Models;
 use Dcat\Admin\Traits\HasDateTimeFormatter;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\ConfigEmail;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 class CourseReservation extends Model
 {
 	use HasDateTimeFormatter;
@@ -35,15 +36,20 @@ class CourseReservation extends Model
     }
 
     protected $guarded  = [
-      
+
     ];
     protected $casts = [
         'created_at' => 'datetime:Y-m-d H:i:s',
         'updated_at' => 'datetime:Y-m-d H:i:s',
     ];
 
-    public function courseLesson()
+
+    public function courseLesson(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\CourseLesson::class, 'course_id');
+        return $this->belongsTo(CourseLesson::class, 'course_id');
     }
+    public const PAY_NOT = 0;
+    public const PAY_SUCCESS = 1;
+    public const PAY_CANCEL =2;
+
 }

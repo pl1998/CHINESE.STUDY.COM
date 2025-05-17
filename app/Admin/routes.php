@@ -3,6 +3,7 @@
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use Dcat\Admin\Admin;
+use App\Admin\Controllers\CoursePracticeTopicController;
 
 Admin::routes();
 
@@ -22,4 +23,5 @@ Route::group([
     $router->resource('config/site', 'ConfigSiteController');
     $router->resource('course-practice', 'CoursePracticeController');
     $router->resource('course-lesson', 'CourseLessonController');
+    $router->resource('course-practice-topic', 'CoursePracticeTopicController');
 });

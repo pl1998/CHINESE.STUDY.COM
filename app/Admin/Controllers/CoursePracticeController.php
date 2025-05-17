@@ -19,11 +19,16 @@ class CoursePracticeController extends AdminController
             $grid->column('level_label', '课程等级标签');
             $grid->column('name', '课程名称');
             $grid->column('zh_name', '课程中文名称');
+            $grid->column('level', '难度等级')->display(function($level){
+                return CoursePractice::LEVEL_OPTIONS[$level];
+            });
             // $grid->column('link', '课程链接')->link();
             $grid->column('audio', '课程语音')->display(function($audio){
                 return $audio ? "<audio src='{$audio}' controls></audio>" : '';
             });
             $grid->column('cover', '课程封面')->image('', 100, 60);
+            $grid->column('price', '课程价格');
+            $grid->column('origin_price', '原价');
             $grid->column('created_at');
             $grid->column('updated_at');
             $grid->filter(function (Grid\Filter $filter) {
@@ -74,7 +79,10 @@ class CoursePracticeController extends AdminController
                 return 'audio/' . date('Ymd') . '_' . uniqid() . '.' . $ext;
             });
             $form->select('level_label', '课程等级标签')->options(CoursePractice::ALL_HSK);
+            $form->select('level', '难度等级')->options(CoursePractice::LEVEL_OPTIONS);
             $form->editor('content', '课程描述（富文本）')->options(['height' => 400, 'lang' => 'zh-CN']);
+            $form->decimal('price', '课程价格')->default(0);
+            $form->decimal('origin_price', '原价')->default(0);
         $form->image('cover', '课程封面')
             ->autoUpload()
             ->retainable()

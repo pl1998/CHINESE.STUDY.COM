@@ -24,4 +24,19 @@ trait EmailConfig
          ]);
         }
     }
+
+    public function setConfig()
+    {
+        $config = ConfigPay::first();
+        config([
+            'paypal.mode'    => $config->paypal_mode,
+            'paypal.sandbox.client_id' => $config->paypal_client_id,
+            'paypal.sandbox.client_secret' => $config->paypal_secret,
+            'paypal.sandbox.app_id' => $config->app_name,
+            'paypal.currency' => $config->currency,
+            'paypal.http.verify' => env('APP_ENV') == 'pro' ? true: false,
+        ]);
+        return $config;
+
+    }
 }
