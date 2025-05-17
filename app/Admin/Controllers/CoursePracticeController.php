@@ -6,7 +6,7 @@ use App\Models\CoursePractice;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
-
+use Dcat\Admin\Show;
 class CoursePracticeController extends AdminController
 {
 
@@ -16,8 +16,10 @@ class CoursePracticeController extends AdminController
     {
         return Grid::make(new CoursePractice(), function (Grid $grid) {
             $grid->column('id')->sortable();
+            $grid->column('level_label', '课程等级标签');
             $grid->column('name', '课程名称');
-            $grid->column('link', '课程链接')->link();
+            $grid->column('zh_name', '课程中文名称');
+            // $grid->column('link', '课程链接')->link();
             $grid->column('audio', '课程语音')->display(function($audio){
                 return $audio ? "<audio src='{$audio}' controls></audio>" : '';
             });
@@ -30,12 +32,37 @@ class CoursePracticeController extends AdminController
         });
     }
 
+        /**
+     * Make a show builder.
+     *
+     * @param mixed $id
+     *
+     * @return Show
+     */
+    protected function detail($id)
+    {
+        return Show::make($id, new CoursePractice(), function (Show $show) {
+            $show->field('id');
+            $show->field('level_label', '课程等级标签');
+            $show->field('name', '课程名称');
+            $show->field('zh_name', '课程中文名称');
+            // $show->field('link', '课程链接')->link();
+            // $show->field('audio', '课程语音')->display(function($audio){
+            //     return $audio ? "<audio src='{$audio}' controls></audio>" : '';
+            // });
+            $show->field('cover', '课程封面')->image('', 100, 60);
+           
+            $show->field('created_at');
+            $show->field('updated_at');
+        });
+    }
     protected function form()
     {
         
         return Form::make(new CoursePractice(), function (Form $form) {
             $form->text('name', '课程名称')->required();
-            $form->url('link', '课程链接');
+            $form->text('zh_name', '课程中文名称')->required();
+            // $form->url('link', '课程链接');
             $form->file('audio', '课程语音mp3')
             ->autoUpload()
             ->disk('public') // 使用 public 磁盘
@@ -46,7 +73,8 @@ class CoursePracticeController extends AdminController
                 // 生成日期+随机字符串的文件名
                 return 'audio/' . date('Ymd') . '_' . uniqid() . '.' . $ext;
             });
-        
+            $form->select('level_label', '课程等级标签')->options(CoursePractice::ALL_HSK);
+            $form->editor('content', '课程描述（富文本）')->options(['height' => 400, 'lang' => 'zh-CN']);
         $form->image('cover', '课程封面')
             ->autoUpload()
             ->retainable()
@@ -56,5 +84,6 @@ class CoursePracticeController extends AdminController
                 return 'cover/' . date('Ymd') . '_' . uniqid() . '.' . $ext;
             });
         });
+      
     }
 }

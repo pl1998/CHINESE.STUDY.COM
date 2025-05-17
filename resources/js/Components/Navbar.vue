@@ -35,9 +35,9 @@
       <!-- 中间导航菜单，左侧加 margin-left:25px -->
       <nav class="flex items-center space-x-6 ml-[25px]">
         <Link
-        href="#"
-        class="text-[#000] font-bold"
-      >ELENA MANDARIN</Link>
+          href="#"
+          class="text-[#000] font-bold"
+        >ELENA MANDARIN</Link>
         <Link
           href="/"
           class="hover:text-[#009FE8]"
@@ -53,11 +53,35 @@
           class="hover:text-[#009FE8]"
           :class="url.startsWith('/recorded') ? 'text-[#009FE8] font-bold' : 'text-gray-700'"
         >Recorded Lesson</Link>
-        <Link
-          href="/practice"
-          class="hover:text-[#009FE8]"
-          :class="url.startsWith('/practice') ? 'text-[#009FE8] font-bold' : 'text-gray-700'"
-        >Daily Pratice</Link>
+        
+        <!-- Daily Practice 下拉菜单 -->
+        <div class="relative group">
+          <Link
+            href="#"
+            class="hover:text-[#009FE8] flex items-center"
+            :class="url.startsWith('/practice') ? 'text-[#009FE8] font-bold' : 'text-gray-700'"
+          >
+            Daily Practice
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </Link>
+          
+          <!-- 下拉菜单内容 -->
+          <div class="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+            <div class="py-2">
+              <Link
+                v-for="level in ['HSK1', 'HSK2', 'HSK3', 'HSK4', 'HSK5', 'HSK6']"
+                :key="level"
+                :href="`/practice/${level.toLowerCase()}`"
+                class="block px-4 py-2 text-gray-700 hover:bg-[#009FE8] hover:text-white transition-colors duration-200"
+              >
+                {{ level }}
+              </Link>
+            </div>
+          </div>
+        </div>
+
         <Link
           href="/about"
           class="hover:text-[#009FE8]"
@@ -74,7 +98,9 @@
 </template>
 
 <script setup>
-import { Link, usePage } from '@inertiajs/vue3'
+import { Link } from '@inertiajs/vue3'
+import { computed } from 'vue'
+import { usePage } from '@inertiajs/vue3'
 
 const props = defineProps({
   config: {
@@ -90,5 +116,5 @@ const props = defineProps({
   }
 })
 
-const url = usePage().url
+const url = computed(() => usePage().url)
 </script>

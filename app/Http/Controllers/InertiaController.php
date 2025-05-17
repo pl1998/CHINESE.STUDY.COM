@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 use App\Http\Traits\InertiaTrait;
 use App\Models\CourseLesson;
+use App\Models\CoursePractice;
 class InertiaController extends Controller
 {
     use InertiaTrait;
@@ -31,9 +32,9 @@ class InertiaController extends Controller
 
     }
 
-    public function practice()
+    public function practice($level_label)
     {
-        return $this->inertiaConfig('Practice');
+        return $this->inertiaConfig('Practice', ['level_label' => $level_label]);
 
     }
 
@@ -78,5 +79,11 @@ class InertiaController extends Controller
     {
         return $this->inertiaConfig('Course', ['type' => $type]);
 
+    }
+
+    public function practiceDetail($id)
+    {
+        $practice = CoursePractice::find($id);
+        return $this->inertiaConfig('PracticeDetail', ['practice' => empty($practice) ? [] : $practice->toArray()]);
     }
 }

@@ -20,7 +20,7 @@ Route::get('/lessons', [InertiaController::class, 'lessons']);
 
 Route::get('/recorded', [InertiaController::class, 'recorded']);
 
-Route::get('/practice', [InertiaController::class, 'practice']);
+Route::get('/practice/{level}', [InertiaController::class, 'practice']);
 
 Route::get('/about', [InertiaController::class, 'about']);
 
@@ -39,3 +39,5 @@ Route::get('/courses/{type}', [InertiaController::class, 'courses']);
 Route::get('/paypal/success', [PaypalController::class, 'success']);
 
 Route::get('/paypal/cancel', [PaypalController::class, 'cancel']);
+
+Route::get('/practice-detail/{id}', [InertiaController::class, 'practiceDetail']);
