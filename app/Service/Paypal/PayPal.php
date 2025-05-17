@@ -7,7 +7,7 @@ use App\Exceptions\ApiException;
 use App\Http\Traits\EmailConfig;
 use Illuminate\Support\Str;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
-
+use Illuminate\Support\Facades\Log;
 abstract class PayPal
 {
     use EmailConfig;
@@ -84,6 +84,7 @@ abstract class PayPal
                 }
             }
         }
+        Log::error('Get paypal url errors', ['response' => $response]);
         throw new ApiException('Get paypal url errors');
     }
 
