@@ -14,11 +14,9 @@ use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 use App\Models\CourseReservation;
 
-use Illuminate\Support\Facades\Mail;
-use App\Mail\CourseReservationMail;
+
 use App\Http\Traits\EmailConfig;
-use App\Models\ConfigSite;
-use Illuminate\Support\Facades\Log;
+
 use Throwable;
 
 class PaypalController extends Controller

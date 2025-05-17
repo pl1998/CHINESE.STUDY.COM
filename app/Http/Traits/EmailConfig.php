@@ -2,6 +2,7 @@
 
 namespace App\Http\Traits;
 use App\Models\ConfigEmail;
+use App\Models\ConfigPay;
 trait EmailConfig
 {
     public function setEmailConfig()
