@@ -17,7 +17,7 @@
         <div class="bg-white rounded-2xl shadow-lg flex flex-col bg-[#F7FAFC]" v-for="course in courses.data" :key="course.id">
           <img :src="course.cover" :alt="course.name" class="w-full h-[180px] object-cover" />
           <div class="flex-1 flex flex-col p-4">
-            <h3 class="text-[2rem] font-bold text-[#1a2233] mb-4 text-left">{{ course.name }}</h3>
+            <h4 class="text-[1.2rem] font-bold text-[#1a2233] mb-4 text-left">{{ course.name }}</h4>
             <p class="text-[#1a2233] text-base mb-8 text-left leading-relaxed">
              {{ course.description }}
             </p>

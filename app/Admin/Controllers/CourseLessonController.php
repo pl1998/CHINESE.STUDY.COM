@@ -39,6 +39,7 @@ class CourseLessonController extends AdminController
             // 修改课程封面上传配置
             $form->image('cover', '课程封面')
                 ->autoUpload()
+                ->retainable()
                 ->disk('public') // 使用 public 磁盘
                 ->dir('images/cover') // 存储目录
                 ->name(function ($file) {

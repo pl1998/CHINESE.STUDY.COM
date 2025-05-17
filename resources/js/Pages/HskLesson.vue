@@ -9,8 +9,8 @@
       <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-8 px-4">
         <!-- 左侧标题和图片 -->
         <div class="flex-1 flex flex-col justify-center">
-          <div class="text-[#6b7a8f] text-xs mb-2 tracking-widest">YOUR PATH TO FLUENCY</div>
-          <div class="text-[40px] md:text-[56px] leading-tight font-bold mb-6 text-[#2d3a4a]">
+          <div class="text-[#6b7a8f] text-xs mb-2 tracking-widest"></div>
+          <div class="text-[30px] md:text-[36px] leading-tight font-bold mb-6 text-[#2d3a4a]">
             {{ lesson.name }}
           </div>
           <div class="w-full h-64 bg-white flex items-center justify-center border border-gray-200 rounded mb-6">
@@ -28,7 +28,7 @@
         </div>
         <!-- 右侧介绍 -->
         <div class="flex-1 flex flex-col justify-center">
-          <div class="text-[#2d3a4a] font-semibold mb-2 text-base">{{ lesson.description }}</div>
+          <!-- <div class="text-[#2d3a4a] font-semibold mb-2 text-base">{{ lesson.description }}</div> -->
           <div class="text-gray-700 text-sm leading-relaxed prose max-w-none" v-html="lesson.content"></div>
         </div>
       </div>
