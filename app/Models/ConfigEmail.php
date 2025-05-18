@@ -6,7 +6,7 @@ use Dcat\Admin\Traits\HasDateTimeFormatter;
 use Illuminate\Database\Eloquent\Model;
 use App\Enum\CacheEnum;
 
-class ConfigEmail extends Model
+class ConfigEmail extends BaseModel
 {
 	use HasDateTimeFormatter;
     protected $table = 'config_email';
@@ -19,9 +19,6 @@ class ConfigEmail extends Model
             return self::first()?->toArray();
         });
     }
-    protected $casts = [
-        'created_at' => 'datetime:Y-m-d H:i:s',
-        'updated_at' => 'datetime:Y-m-d H:i:s',
-    ];
-    
+
+
 }

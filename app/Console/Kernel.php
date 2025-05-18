@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->command('app:mail-send-command')->everyFiveMinutes();
+       // $schedule->command('app:mail-send-command')->everyFiveMinutes();
+        $schedule->command("NoticeOfAppointmentCommand")->everyMinute();
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class CoursePracticeOrder extends Model
 {
@@ -22,4 +23,11 @@ class CoursePracticeOrder extends Model
     public const PAY_SUCCESS = 1;
     public const PAY_CANCEL =2;
 
+    /**
+     * @return HasOne
+     */
+    public function course(): HasOne
+    {
+        return $this->hasOne(CourseReservation::class,'id','practice_id');
+    }
 }

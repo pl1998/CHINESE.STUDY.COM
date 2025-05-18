@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 
-class CoursePracticeTopic extends Model
+class CoursePracticeTopic extends BaseModel
 {
     protected $table = 'course_practice_topic';
 
@@ -15,10 +14,6 @@ class CoursePracticeTopic extends Model
         'website',
         'content',
         'is_show',
-    ];
-    protected $casts = [
-        'created_at' => 'datetime:Y-m-d H:i:s',
-        'updated_at' => 'datetime:Y-m-d H:i:s',
     ];
 
     public const IS_SHOW = 1;

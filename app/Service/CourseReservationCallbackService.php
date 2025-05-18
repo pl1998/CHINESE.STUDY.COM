@@ -8,29 +8,31 @@ use App\Mail\CourseReservationMail;
 use App\Models\ConfigSite;
 use App\Models\CourseReservation;
 use App\Service\Paypal\PaypalCallback;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Mail;
+use Throwable;
 
 class CourseReservationCallbackService extends PaypalCallback
 {
     public CourseReservation|null $orderInfo;
 
-    public function errorCallback(){
+    public function errorCallback(): array
+    {
         $this->getOrderInfo();
         return [ $this->orderInfo,false];
     }
 
     protected function getOrderInfo()
     {
-        $this->orderInfo = CourseReservation::query()->where("order_no",$this->params['order_no'])->first();
+        $this->orderInfo = CourseReservation::with('courseLesson')->where("order_no",$this->params['order_no'])->first();
         return $this->orderInfo;
     }
 
-      
+
     /**
      * 处理支付回调
-     * 
+     *
      * @return array
+     * @throws Throwable
      */
     public function handle(): array
     {
@@ -42,7 +44,7 @@ class CourseReservationCallbackService extends PaypalCallback
         }
     }
 
-    public function successCallback()
+    public function successCallback(): array
     {
         $this->orderInfo = $this->getOrderInfo();
         $this->orderInfo->pay_time = time();

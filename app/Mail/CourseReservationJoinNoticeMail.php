@@ -2,21 +2,21 @@
 
 namespace App\Mail;
 
+use App\Models\CourseReservation;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-use App\Models\ContactRecord;
-class AboutMeNoticeMail extends Mailable
+class CourseReservationJoinNoticeMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(public ContactRecord $contactRecord,public  $site)
+    public function __construct(public CourseReservation $courseReservation,public array $config)
     {
         //
     }
@@ -27,14 +27,9 @@ class AboutMeNoticeMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'About Me Notice Mail',
+            subject: 'Course Reservation Join Notice Mail',
         );
     }
-    public function build()
-    {
-    return $this->markdown('email.notice_email');
-    }
-
 
     /**
      * Get the message content definition.
@@ -42,8 +37,13 @@ class AboutMeNoticeMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            markdown: 'email.course_reservation_join_notice',
         );
+    }
+
+    public function build()
+    {
+        return $this->markdown('email.course_reservation_join_notice');
     }
 
     /**

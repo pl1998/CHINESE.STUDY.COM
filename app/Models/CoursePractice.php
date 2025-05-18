@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class CoursePractice extends Model
+class CoursePractice extends BaseModel
 {
     protected $table = 'course_practice';
     protected $fillable = ['name', 'link', 'audio', 'cover', 'content', 'level_label', 'zh_name', 'price', 'level','origin_price'];
@@ -24,10 +24,6 @@ class CoursePractice extends Model
         }
         return $value;
     }
-    protected $casts = [
-        'created_at' => 'datetime:Y-m-d H:i:s',
-        'updated_at' => 'datetime:Y-m-d H:i:s',
-    ];
     /**
      *  所有hsk标签
      * @var array

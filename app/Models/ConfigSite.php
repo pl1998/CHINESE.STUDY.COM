@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Enum\CacheEnum;
-class ConfigSite extends Model
+class ConfigSite extends BaseModel
 {
     protected $fillable = [
         'instagram_url',
@@ -14,10 +14,6 @@ class ConfigSite extends Model
         'email'
     ];
 
-    protected $casts = [
-        'created_at' => 'datetime:Y-m-d H:i:s',
-        'updated_at' => 'datetime:Y-m-d H:i:s',
-    ];
 
     public static function getConfig()
     {

@@ -5,7 +5,7 @@ namespace App\Models;
 use Dcat\Admin\Traits\HasDateTimeFormatter;
 use Illuminate\Database\Eloquent\Model;
 use App\Enum\CacheEnum;
-class ConfigPay extends Model
+class ConfigPay extends BaseModel
 {
 	use HasDateTimeFormatter;
     protected $table = 'config_pay';
@@ -18,8 +18,4 @@ class ConfigPay extends Model
             return self::first()?->toArray();
         });
     }
-    protected $casts = [
-        'created_at' => 'datetime:Y-m-d H:i:s',
-        'updated_at' => 'datetime:Y-m-d H:i:s',
-    ];
 }
