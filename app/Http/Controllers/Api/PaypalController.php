@@ -80,16 +80,16 @@ class PaypalController extends Controller
     {   
         switch ($request->input('type')) {
             case OderType::LESSON:
-                list(orderInfo,$bool) = app()->make(CourseReservationCallbackService::class,['params' => $request->all()])->handle();
+       
+                [$orderInfo, $bool] = (new CourseReservationCallbackService($request->all()))->handle();
                 if($bool){
                     return redirect("/hsk-lesson/{$orderInfo->course_id}?order_no={$orderInfo->order_no}&step=6");
                 } else{
                     return redirect("/hsk-lesson/{$orderInfo->course_id}?order_no={$orderInfo->order_no}&step=error");
                 }
-
                 break;
             case OderType::PRACTICE:
-                list(orderInfo,$bool) = $orderInfo = app()->make(CoursePracticeOrderCallbackService::class,['params' => $request->all()])->handle();
+                [$orderInfo, $bool] = (new CoursePracticeOrderCallbackService($request->all()))->handle();
                
                 if($bool){
                     return redirect("/practice-detail/{$orderInfo->practice_id}?order_no={$orderInfo->order_no}&step=success");

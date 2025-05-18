@@ -13,10 +13,7 @@ use Illuminate\Support\Facades\Mail;
 
 class CourseReservationCallbackService extends PaypalCallback
 {
-
-    public Model $orderInfo;
-
-    public function __construct(public array $params){}
+    public CourseReservation|null $orderInfo;
 
     public function errorCallback(){
         $this->getOrderInfo();
@@ -47,17 +44,17 @@ class CourseReservationCallbackService extends PaypalCallback
 
     public function successCallback()
     {
-        $orderInfo = $this->getOrderInfo();
-        $orderInfo->pay_time = time();
-        $orderInfo->pay_status = CourseReservation::PAY_SUCCESS;
-        $orderInfo->save();
+        $this->orderInfo = $this->getOrderInfo();
+        $this->orderInfo->pay_time = time();
+        $this->orderInfo->pay_status = CourseReservation::PAY_SUCCESS;
+        $this->orderInfo->save();
         // 发送邮件
-        Mail::to($orderInfo->email)
-            ->queue(new CourseReservationMail($orderInfo,ConfigSite::getConfig()));
+        Mail::to($this->orderInfo->email)
+            ->queue(new CourseReservationMail($this->orderInfo,ConfigSite::getConfig()));
 
         Mail::to(env('SEND_EMAIL'))
-            ->queue(new CourseReservationMail($orderInfo,ConfigSite::getConfig()));
+            ->queue(new CourseReservationMail($this->orderInfo,ConfigSite::getConfig()));
 
-        return [ $orderInfo,true];
+        return [ $this->orderInfo,true];
     }
 }

@@ -10,9 +10,7 @@ abstract class  PaypalCallback
 {
     use EmailConfig;
 
-    /** @var array 参数 */
-    public array $params = [];
-
+    public function __construct(public array $params){}
     /**
      * @return bool
      * @throws Throwable

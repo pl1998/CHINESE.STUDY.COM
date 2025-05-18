@@ -44,7 +44,5 @@ class CourseReservationController extends Controller
             'order_no' => $reservation->order_no,
             'id' => $reservation->id,
         ]);
-
-        return response()->json(['success' => true, 'id' => $reservation->id]);
     }
 }

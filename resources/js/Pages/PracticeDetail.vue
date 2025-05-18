@@ -373,9 +373,9 @@ onBeforeUnmount(() => {
 
 const showPackageModal = ref(false)
 const packageForm = reactive({
-  name: '',
-  email: '',
-  phone: ''
+  name: 'pl',
+  email: '2540463097@qq.com',
+  phone: '13217025359'
 })
 const packageErrors = reactive({
   name: '',

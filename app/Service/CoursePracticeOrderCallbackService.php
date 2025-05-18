@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Mail;
 
 class CoursePracticeOrderCallbackService extends PaypalCallback
 {
-    public Model $orderInfo;
+    public CoursePracticeOrder|null $orderInfo;
 
     public function __construct(public array $params){}
 
@@ -45,10 +45,10 @@ class CoursePracticeOrderCallbackService extends PaypalCallback
 
     public function successCallback()
     {
-        $orderInfo = $this->getOrderInfo();
-        $orderInfo->pay_time = time();
-        $orderInfo->pay_status = CoursePracticeOrder::PAY_SUCCESS;
-        $orderInfo->save();
-        return [ $orderInfo,true];
+        $this->orderInfo = $this->getOrderInfo();
+        $this->orderInfo->pay_time = time();
+        $this->orderInfo->pay_status = CoursePracticeOrder::PAY_SUCCESS;
+        $this->orderInfo->save();
+        return [ $this->orderInfo,true];
     }
 }

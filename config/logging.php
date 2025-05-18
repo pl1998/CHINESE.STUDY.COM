@@ -65,13 +65,12 @@ return [
             'replace_placeholders' => true,
             'days' => 14, // 保留14天的日志
         ],
-
         'daily' => [
-            'driver' => 'single',
+            'driver' => 'daily',
             'path' => storage_path('logs/laravel.log'),
-            'level' => env('LOG_LEVEL', 'debug'),
-            'replace_placeholders' => true,
-            'days' => 14, // 保留14天的日志
+            'level' => 'debug',
+            'days' => 14,
+            'tap' => [App\Logging\CustomizeDailyLogFilename::class], 
         ],
 
         'slack' => [
