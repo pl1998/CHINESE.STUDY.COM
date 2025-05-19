@@ -79,7 +79,7 @@ const handleSubmit = async () => {
     const response = await axios.post('/api/subscribe', {
       email: email.value
     })
-    if (response.data.state == 200) {
+    if (response.data.status == 200) {
       Swal.fire({ icon: 'success', title: 'Subscription successful', text: 'Welcome to subscribe. We will push the first consultation to you immediately' })
       email.value = ''
     } else {

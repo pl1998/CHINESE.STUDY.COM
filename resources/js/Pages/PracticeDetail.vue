@@ -119,6 +119,42 @@
           </form>
         </div>
       </div>
+      <!-- 支付成功弹窗 -->
+      <div v-if="showSuccessModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
+        <div class="bg-white rounded-lg shadow-lg p-8 w-full max-w-md relative">
+          <button class="absolute top-2 right-2 text-gray-400 hover:text-gray-700 text-2xl" @click="showSuccessModal = false">&times;</button>
+          <div class="text-center">
+            <div class="text-green-500 text-6xl mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Payment Successful!</h3>
+            <p class="text-gray-600 mb-6">Thank you for your purchase. You can now access all the premium content, Please pay attention to checking your email. </p>
+            <button @click="showSuccessModal = false" class="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition-colors">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- 支付失败弹窗 -->
+      <div v-if="showErrorModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
+        <div class="bg-white rounded-lg shadow-lg p-8 w-full max-w-md relative">
+          <button class="absolute top-2 right-2 text-gray-400 hover:text-gray-700 text-2xl" @click="showErrorModal = false">&times;</button>
+          <div class="text-center">
+            <div class="text-red-500 text-6xl mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Payment Failed</h3>
+            <p class="text-gray-600 mb-6">Sorry, your payment could not be processed. Please try again or contact customer support if the problem persists.</p>
+            <button @click="showErrorModal = false" class="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600 transition-colors">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
       <!-- 评论区 --> 
       <div class="mb-6">
         <div class="flex gap-2 mb-2">
@@ -372,10 +408,12 @@ onBeforeUnmount(() => {
 })
 
 const showPackageModal = ref(false)
+const showSuccessModal = ref(false)
+const showErrorModal = ref(false)
 const packageForm = reactive({
-  name: 'pl',
-  email: '2540463097@qq.com',
-  phone: '13217025359'
+  name: '',
+  email: '',
+  phone: ''
 })
 const packageErrors = reactive({
   name: '',
@@ -428,6 +466,21 @@ async function submitPackageForm() {
     Swal.fire({ icon: 'error', title: 'Payment failed', text: 'Failed to obtain the payment link' })
   }
 }
+
+onMounted(() => {
+  // 检查URL参数
+  const urlParams = new URLSearchParams(window.location.search);
+  const orderNo = urlParams.get('order_no');
+  const step = urlParams.get('step');
+  
+  if (orderNo) {
+    if (step === 'success') {
+      showSuccessModal.value = true;
+    } else if (step === 'error') {
+      showErrorModal.value = true;
+    }
+  }
+})
   </script>
 
 <style scoped>
