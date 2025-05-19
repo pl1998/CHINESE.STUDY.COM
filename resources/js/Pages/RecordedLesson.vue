@@ -40,7 +40,15 @@
 
           <!-- 实际内容 -->
           <template v-else>
-            <Link  :href="`${lesson.link}`" v-for="lesson in lessons.data" :key="lesson.id" class="bg-white rounded-2xl shadow-lg flex flex-col bg-[#F7FAFC]" target="_blank">
+            <Link  
+              :href="lesson.link" 
+              v-for="lesson in lessons.data" 
+              :key="lesson.id" 
+              class="bg-white rounded-2xl shadow-lg flex flex-col bg-[#F7FAFC] hover:shadow-xl transition-shadow duration-300" 
+              target="_blank"
+              rel="noopener noreferrer"
+              @click="openExternalLink(lesson.link)"
+            >
               <img 
                 :src="lesson.cover" 
                 :alt="lesson.name" 
@@ -106,4 +114,13 @@ onMounted(() => {
     loading.value = false
   }, 500)
 })
+
+// 添加打开外部链接的方法
+const openExternalLink = (url) => {
+  // 可以在这里添加额外的逻辑，比如：
+  // 1. 记录点击事件
+  // 2. 检查链接是否有效
+  // 3. 显示加载状态
+  window.open(url, '_blank', 'noopener,noreferrer')
+}
 </script>
