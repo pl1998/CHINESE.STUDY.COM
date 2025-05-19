@@ -24,4 +24,6 @@ Route::group([
     $router->resource('course-practice', 'CoursePracticeController');
     $router->resource('course-lesson', 'CourseLessonController');
     $router->resource('course-practice-topic', 'CoursePracticeTopicController');
+    $router->resource('course-practice-order', 'CoursePracticeOrderController')->only(['index','show']);
+    $router->resource('recorded-lesson', 'RecordedLessonController');
 });

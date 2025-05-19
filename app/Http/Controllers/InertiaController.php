@@ -9,6 +9,8 @@ use Inertia\Inertia;
 use App\Http\Traits\InertiaTrait;
 use App\Models\CourseLesson;
 use App\Models\CoursePractice;
+use App\Models\RecordedLesson;
+
 class InertiaController extends Controller
 {
     use InertiaTrait;
@@ -28,7 +30,8 @@ class InertiaController extends Controller
 
     public function recorded()
     {
-        return $this->inertiaConfig('RecordedLesson');
+        $lessons = RecordedLesson::orderBy('id', 'desc')->paginate(9);
+        return $this->inertiaConfig('RecordedLesson', ['lessons' => $lessons]);
 
     }
 

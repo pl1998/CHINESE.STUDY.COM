@@ -7,7 +7,7 @@
         <!-- 左侧主内容 -->
         <div class="flex-1 min-w-0 md:pl-8">
           <div class="flex items-center gap-2 mb-2 text-sm">
-            <span class="text-white/80 flex items-center"><FontAwesomeIcon :icon="['fas', 'bookmark']" class="mr-1"/>Beginner</span>
+            <span class="text-white/80 flex items-center"><FontAwesomeIcon :icon="['fas', 'bookmark']" class="mr-1"/>{{practice.level}}</span>
             <span class="text-white/80">Fun, {{practice.level_label.toUpperCase()}}</span>
           </div>
           <h1 class="text-white text-4xl md:text-5xl font-bold mb-2 mt-2" style="letter-spacing:0.5px;">{{practice.name}}</h1>

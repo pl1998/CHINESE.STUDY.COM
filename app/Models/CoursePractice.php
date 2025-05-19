@@ -46,5 +46,8 @@ class CoursePractice extends BaseModel
         3 => 'Advanced ',
         0 => '-'
     ];
-
+    public function getLevelAttribute($value): string
+    {
+        return self::LEVEL_OPTIONS[$value] ?? '-';
+    }
 }

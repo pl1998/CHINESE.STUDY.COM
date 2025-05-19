@@ -34,6 +34,7 @@ class CoursePracticeTopicController extends AdminController
             $grid->disableEditButton();
             $grid->disableDeleteButton();
             $grid->disableBatchDelete();
+            $grid->model()->orderBy('id', 'desc');
         });
     }
 

@@ -56,34 +56,57 @@
 
         <!-- 课程实战卡片 -->
         <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 py-8 px-4">
-          <Link
-            v-for="item in practices"
-            :key="item.id"
-            :href="`/practice-detail/${item.id}`"
-            class="bg-white rounded border border-gray-300 shadow-lg hover:shadow-2xl overflow-hidden transition cursor-pointer"
-            @click="playAudio(item.id)"
-          >
-            <!-- 顶部标签 -->
-            <div class="flex items-center px-4 pt-4 pb-2">
-              <svg class="w-4 h-4 text-[#2196f3] mr-1" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M6 2a1 1 0 00-1 1v14l5-3 5 3V3a1 1 0 00-1-1H6z"/>
-              </svg>
-              <span class="text-[#2196f3] text-sm font-medium">
-                {{ item.level_label }}, Story
-              </span>
+          <!-- 骨架屏 -->
+          <template v-if="loading">
+            <div v-for="n in 6" :key="n" class="bg-white rounded border border-gray-300 shadow-lg overflow-hidden">
+              <div class="animate-pulse">
+                <!-- 顶部标签骨架 -->
+                <div class="flex items-center px-4 pt-4 pb-2">
+                  <div class="w-4 h-4 bg-gray-200 rounded mr-1"></div>
+                  <div class="h-4 bg-gray-200 rounded w-24"></div>
+                </div>
+                <!-- 封面图骨架 -->
+                <div class="bg-gray-200 h-40 w-full"></div>
+                <!-- 标题和描述骨架 -->
+                <div class="px-4 py-3">
+                  <div class="h-5 bg-gray-200 rounded w-3/4 mb-2"></div>
+                  <div class="h-4 bg-gray-200 rounded w-1/2"></div>
+                </div>
+              </div>
             </div>
-            <!-- 封面图 -->
-            <img
-              :src="item.cover"
-              alt="cover"
-              class="w-full h-40 object-cover"
-            />
-            <!-- 标题和描述 -->
-            <div class="px-4 py-3">
-              <div class="font-semibold text-base text-gray-800 mb-1">{{ item.name }}</div>
-              <div class="text-gray-600 text-sm">{{ item.zh_name }}</div>
-            </div>
-          </Link>
+          </template>
+
+          <!-- 实际内容 -->
+          <template v-else>
+            <Link
+              v-for="item in practices"
+              :key="item.id"
+              :href="`/practice-detail/${item.id}`"
+              class="bg-white rounded border border-gray-300 shadow-lg hover:shadow-2xl overflow-hidden transition cursor-pointer"
+              @click="playAudio(item.id)"
+            >
+              <!-- 顶部标签 -->
+              <div class="flex items-center px-4 pt-4 pb-2">
+                <svg class="w-4 h-4 text-[#2196f3] mr-1" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M6 2a1 1 0 00-1 1v14l5-3 5 3V3a1 1 0 00-1-1H6z"/>
+                </svg>
+                <span class="text-[#2196f3] text-sm font-medium">
+                  {{ item.level_label }}, Story
+                </span>
+              </div>
+              <!-- 封面图 -->
+              <img
+                :src="item.cover"
+                alt="cover"
+                class="w-full h-40 object-cover"
+              />
+              <!-- 标题和描述 -->
+              <div class="px-4 py-3">
+                <div class="font-semibold text-base text-gray-800 mb-1">{{ item.name }}</div>
+                <div class="text-gray-600 text-sm">{{ item.zh_name }}</div>
+              </div>
+            </Link>
+          </template>
         </div>
 
         <!-- 分页组件 -->
@@ -163,6 +186,7 @@ const level = ref('')
 const progress = ref('')
 
 const courses = ref([]) // 搜索结果
+const loading = ref(true)
 
 const fetchPractices = async (page = 1) => {
   const res = await axios.get(`/api/course-practices?page=${page}&per_page=${pagination.value.per_page}&level_label=${level_label}`)
@@ -176,7 +200,13 @@ const fetchPractices = async (page = 1) => {
   }
 }
 
-onMounted(() => fetchPractices())
+onMounted(async () => {
+  await fetchPractices()
+  // 模拟加载延迟
+  setTimeout(() => {
+    loading.value = false
+  }, 500)
+})
 
 const goToPage = (page) => {
   if (page < 1 || page > pagination.value.last_page) return

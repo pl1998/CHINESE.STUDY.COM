@@ -17,34 +17,61 @@
         </div>
         <!-- 课程卡片 -->
         
-        <section  class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 py-16 px-4">
-          <Link
-            href="#"
-            class="relative group border-2 border-white hover:border-[#009FE8] transition rounded block overflow-hidden mt-4"
-          >
-            <img 
-            src="/images/lesson_book.png" 
-            alt="course" 
-              class="w-full h-56 object-cover rounded transition-transform duration-300 group-hover:scale-105" 
-            />
-            <!-- 遮罩层，z-10 -->
-            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-40 transition-all duration-300 z-10"></div>
-            <!-- 文字层，z-20 -->
-            <div class="absolute top-0 left-0 w-full bg-gradient-to-b from-black/80 to-transparent text-white text-center px-4 pt-4 pb-2 z-20">
-              <div class="text-2xl font-bold mt-[50px]">course</div>
-              <div class="text-base font-semibold mt-2 truncate">course description</div>
+        <section class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-16 px-4">
+          <!-- 骨架屏 -->
+          <template v-if="loading">
+            <div v-for="n in 9" :key="n" class="bg-white rounded-2xl shadow-lg flex flex-col bg-[#F7FAFC]">
+              <div class="animate-pulse">
+                <div class="bg-gray-200 h-[180px] w-full"></div>
+                <div class="p-4">
+                  <div class="h-6 bg-gray-200 rounded w-3/4 mb-4"></div>
+                  <div class="space-y-3">
+                    <div class="h-4 bg-gray-200 rounded w-full"></div>
+                    <div class="h-4 bg-gray-200 rounded w-5/6"></div>
+                    <div class="h-4 bg-gray-200 rounded w-4/6"></div>
+                  </div>
+                  <div class="mt-8">
+                    <div class="h-10 bg-gray-200 rounded w-40 mx-auto"></div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </Link>
+          </template>
+
+          <!-- 实际内容 -->
+          <template v-else>
+            <Link  :href="`${lesson.link}`" v-for="lesson in lessons.data" :key="lesson.id" class="bg-white rounded-2xl shadow-lg flex flex-col bg-[#F7FAFC]" target="_blank">
+              <img 
+                :src="lesson.cover" 
+                :alt="lesson.name" 
+                class="w-full h-[180px] object-cover" 
+              />
+              <div class="flex-1 flex flex-col p-4">
+                <h4 class="text-[1.2rem] font-bold text-[#1a2233] mb-4 text-left">{{ lesson.name }}</h4>
+                <p class="text-[#1a2233] text-base mb-8 text-left leading-relaxed">
+                  {{ lesson.description }}
+                </p>
+              </div>
+            </Link>
+          </template>
         </section>
 
-
         <!-- 分页 -->
-        <div class="flex justify-center items-center gap-2 mt-8">
-          <button class="border px-2 py-1 text-xs rounded bg-gray-100 text-gray-500" disabled>Home</button>
-          <button class="border px-2 py-1 text-xs rounded bg-gray-100 text-gray-500" disabled>Previous</button>
-          <span class="border px-2 py-1 text-xs rounded bg-[#f7f7f7] text-gray-700">1</span>
-          <button class="border px-2 py-1 text-xs rounded bg-gray-100 text-gray-500" disabled>Next</button>
-          <button class="border px-2 py-1 text-xs rounded bg-gray-100 text-gray-500" disabled>End</button>
+        <div class="flex justify-center gap-2 py-8">
+          <template v-for="page in lessons.links" :key="page.label">
+            <Link
+              v-if="page.url"
+              :href="page.url"
+              v-html="page.label"
+              :class="['px-3 py-1 rounded', { 'bg-[#009FE8] text-white': page.active, 'text-gray-500': !page.active }]"
+              preserve-scroll
+            />
+            <span
+              v-else
+              v-html="page.label"
+              class="px-3 py-1 rounded text-gray-300 cursor-not-allowed"
+            />
+          </template>
         </div>
       </div>
     </div>
@@ -57,12 +84,26 @@ import Layout from '@/Layouts/App.vue'
 import Banner from '@/Components/Banner.vue'
 import { usePage } from '@inertiajs/vue3'
 import Breadcrumb from '@/Components/Breadcrumb.vue'
-const { lesson } = usePage().props
+import { ref, onMounted } from 'vue'
+import { Link } from '@inertiajs/vue3'
 
-defineProps({
+const props = defineProps({
   config: {
     type: Object,
     required: true
+  },
+  lessons: {
+    type: Object,
+    required: true
   }
+})
+
+const loading = ref(true)
+
+onMounted(() => {
+  // 模拟加载延迟
+  setTimeout(() => {
+    loading.value = false
+  }, 500)
 })
 </script>

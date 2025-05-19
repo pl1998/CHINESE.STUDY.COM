@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\CoursePracticeController;
 use App\Http\Controllers\Api\CoursePracticeTopicController;
 use App\Http\Controllers\Api\PracticePayController;
+use App\Http\Controllers\Api\RecordedLessonController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,4 @@ Route::post('/contact', [App\Http\Controllers\ContactController::class, 'store']
 Route::get('course-practices', [CoursePracticeController::class, 'index']);
 Route::post('/course_practice_topic', [CoursePracticeTopicController::class, 'store']);
 Route::post('/practice/paypal', [PracticePayController::class, 'paypal']);
+Route::get('/recorded-lessons', [RecordedLessonController::class, 'index']);

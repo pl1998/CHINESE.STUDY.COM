@@ -20,7 +20,7 @@ class CoursePracticeController extends AdminController
             $grid->column('name', '课程名称');
             $grid->column('zh_name', '课程中文名称');
             $grid->column('level', '难度等级')->display(function($level){
-                return CoursePractice::LEVEL_OPTIONS[$level];
+                return CoursePractice::LEVEL_OPTIONS[$level] ?? '-';
             });
             // $grid->column('link', '课程链接')->link();
             $grid->column('audio', '课程语音')->display(function($audio){
