@@ -72,7 +72,7 @@
       <div class="flex-1 flex flex-col items-start h-full">
         <div class="relative w-[680px] h-[380px] rounded-lg flex items-center justify-center group overflow-hidden">
           <span class="text-gray-400">
-            <img src="/images/home_left.jpg" alt="home1" class="w-full h-full object-cover" />
+            <img src="/images/home/home_left.jpg" alt="home1" class="w-full h-full object-cover" />
           </span>
           <!-- 悬浮文字层 -->
           <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -117,7 +117,7 @@
       <div class="flex-1 flex flex-col items-start h-full">
         <div class="relative w-[680px] h-[380px] rounded-lg flex items-center justify-center group overflow-hidden">
           <span class="text-gray-400">
-            <img src="/images/home_right.png" alt="home2" class="w-full h-full object-cover" />
+            <img src="/images/home/home_right.jpg" alt="home2" class="w-full h-full object-cover" />
           </span>
           <!-- 悬浮文字层 -->
           <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -172,6 +172,86 @@
       </p>
     </div>
  
+     <!-- 底部内容 -->
+     <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start py-12 px-2 md:px-0 mt-8">
+      <!-- 能力介绍 2x2 卡片 -->
+      <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-white rounded-2xl shadow-md p-8 flex items-start space-x-4">
+          <img src="/images/about/icon_speakiing@2x.webp" alt="Speaking" class="w-12 h-12 mt-1" />
+          <div>
+            <div class="font-bold text-base mb-1">Speaking</div>
+            <ul class="text-gray-700 text-sm list-disc pl-4">
+              <li>Pronounce all possible pinyin sounds and 4 tones with ease</li>
+              <li>Go beyond simple introductions and handle basic topics</li>
+            </ul>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl shadow-md p-8 flex items-start space-x-4">
+          <img src="/images/about/icon_listening@2x.webp" alt="Listening" class="w-12 h-12 mt-1" />
+          <div>
+            <div class="font-bold text-lg mb-2">Listening</div>
+            <ul class="text-gray-700 text-base list-disc pl-5 space-y-1">
+              <li>Understand all essential everyday Chinese</li>
+              <li>Get used to real-world Chinese as it's really spoken</li>
+            </ul>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl shadow-md p-8 flex items-start space-x-4">
+          <img src="/images/about/icon_reading@2x.webp" alt="Reading & Writing" class="w-12 h-12 mt-1" />
+          <div>
+            <div class="font-bold text-lg mb-2">Reading & Writing</div>
+            <ul class="text-gray-700 text-base list-disc pl-5 space-y-1">
+              <li>Recognize and spell any Chinese word using pinyin</li>
+              <li>Type in Chinese using pinyin on your keyboard</li>
+            </ul>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl shadow-md p-8 flex items-start space-x-4">
+          <img src="/images/about/icon_grammar@2x.webp" alt="Grammar" class="w-12 h-12 mt-1" />
+          <div>
+            <div class="font-bold text-lg mb-2">Grammar</div>
+            <ul class="text-gray-700 text-base list-disc pl-5 space-y-1">
+              <li>Understand and utilize essential sentence structures</li>
+              <li>Form your own simple sentences and express yourself</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- 统计项卡片 -->
+      <div class="bg-white rounded-2xl shadow-md p-8 flex flex-col justify-start items-stretch md:ml-12 mt-8 md:mt-0 min-w-[220px]">
+        <div class="flex items-center space-x-4 py-2">
+          <img src="/images/about/icon_video@2x.webp" alt="Videos" class="w-10 h-10" />
+          <div>
+            <div class="font-bold text-3xl leading-none">73</div>
+            <div class="text-gray-500 text-base font-medium">Videos</div>
+          </div>
+        </div>
+        <div class="border-t my-2"></div>
+        <div class="flex items-center space-x-4 py-2">
+          <img src="/images/about/icon_flashcard@2x.webp" alt="Flashcards" class="w-10 h-10" />
+          <div>
+            <div class="font-bold text-3xl leading-none">646</div>
+            <div class="text-gray-500 text-base font-medium">Flashcards</div>
+          </div>
+        </div>
+        <div class="border-t my-2"></div>
+        <div class="flex items-center space-x-4 py-2">
+          <img src="/images/about/icon_audio@2x.webp" alt="Audios" class="w-10 h-10" />
+          <div>
+            <div class="font-bold text-3xl leading-none">61</div>
+            <div class="text-gray-500 text-base font-medium">Audios</div>
+          </div>
+        </div>
+        <div class="border-t my-2"></div>
+        <div class="flex items-center space-x-4 py-2">
+          <img src="/images/about/icon_quiz@2x.webp" alt="Quiz Questions" class="w-10 h-10" />
+          <div>
+            <div class="font-bold text-3xl leading-none">730</div>
+            <div class="text-gray-500 text-base font-medium">Quiz Questions</div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- How it works -->
     <section id="how-it-works" class="max-w-5xl mx-auto py-8 px-4">
@@ -184,26 +264,35 @@
         <div class="flex flex-col items-center">
           <div class="flex items-center mb-4">
             <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#009FE8] text-white text-3xl font-bold mr-2 shadow-lg">1</span>
-            <span class="text-2xl font-bold text-[#009FE8]">Watch</span>
+            <span class="text-2xl font-bold text-[#009FE8]">Choose a Course Type</span>
           </div>
-          <img src="/images/home/pic_how_1@2x.webp" alt="Watch" class="rounded-xl shadow-md mb-4 w-full max-w-[340px] h-[200px] object-cover" />
+          <img src="/images/home/study1.jpeg" alt="Watch" class="rounded-xl shadow-md mb-4 w-full max-w-[340px] h-[200px] object-cover" />
           <p class="text-gray-600 text-base">Select the course you want to take, if you choose the recorded courses, we will automatically send the video file to your email after payment.</p>
         </div>
         <div class="flex flex-col items-center">
           <div class="flex items-center mb-4">
             <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#00D2E0] text-white text-3xl font-bold mr-2 shadow-lg">2</span>
-            <span class="text-2xl font-bold text-[#00D2E0]">Practice</span>
+            <span class="text-2xl font-bold text-[#00D2E0]">Make a Study Plan</span>
           </div>
-          <img src="/images/home/pic_how_2@2x.webp" alt="Practice" class="rounded-xl shadow-md mb-4 w-full max-w-[340px] h-[200px] object-cover" />
+          <img src="/images/home/study2.jpeg" alt="Practice" class="rounded-xl shadow-md mb-4 w-full max-w-[340px] h-[200px] object-cover" />
           <p class="text-gray-600 text-base">if you want to take online 1v1 courses, select the type of courses you want to take, and select the number of courses/frequency of classes, choose the time that suits you and pay.</p>
         </div>
         <div class="flex flex-col items-center">
           <div class="flex items-center mb-4">
             <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#00C2FF] text-white text-3xl font-bold mr-2 shadow-lg">3</span>
-            <span class="text-2xl font-bold text-[#00C2FF]">Quiz</span>
+            <span class="text-2xl font-bold text-[#00C2FF]">Complete The Payment</span>
           </div>
-          <img src="/images/home/pic_how_3@2x.webp" alt="Quiz" class="rounded-xl shadow-md mb-4 w-full max-w-[340px] h-[200px] object-cover" />
-          <p class="text-gray-600 text-base">After payment, your email address will receive a zoom meeting link. Meanwhile, if you are booking my course for the first time, you can leave me a message and tell me about yourself, such as where are you from, whether you have studied Chinese before, and what learning goals you want to achieve. With this information, I can better prepare for our first class!</p>
+          <img src="/images/home/study3.jpeg" alt="Quiz" class="rounded-xl shadow-md mb-4 w-full max-w-[340px] h-[200px] object-cover" />
+          <p class="text-gray-600 text-base">After payment, we will send u a meeting code via voov in 24 hours,kindly download voov on your laptop or ipad for our classroom tool and try to enter it with the code, make sure it works before our lesson time. </p>
+        </div>
+
+        <div class="flex flex-col items-center">
+          <div class="flex items-center mb-4">
+            <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#E34040] text-white text-3xl font-bold mr-2 shadow-lg">4</span>
+            <span class="text-2xl font-bold text-[#E34040]">More Help</span>
+          </div>
+          <img src="/images/home/study4.jpeg" alt="Quiz" class="rounded-xl shadow-md mb-4 w-full max-w-[340px] h-[200px] object-cover" />
+          <p class="text-gray-600 text-base">If you need to reschedule or receive any other assistance after making a reservation, please contact us by email and we will reply to your message promptly! </p>
         </div>
       </div>
     </section>
@@ -276,6 +365,32 @@ const stats = ref([
   { value: '10M+', label: 'Followers' }
 ]);
 
+const aboutSections = [
+  {
+    key: 'curriculum',
+    title: 'A clearly structured curriculum',
+    desc: `Follow our guided study schedule and you'll always know what to do next. No more feeling lost!`,
+    img: '/images/about/about_left.png',
+  },
+  {
+    key: 'need',
+    title: 'Everything you need',
+    desc: `1,000+ lessons in 6+ comprehensive courses means you can go from true newbie to speaking and reading Chinese all in one place.`,
+    img: '/images/about/about_left_1.png',
+  },
+  {
+    key: 'results',
+    title: 'See real results',
+    desc: `With as little as 45 mins a day, we guarantee you'll see real progress on Yoyo Chinese. It's that good!`,
+    img: '/images/about/about_left_2.png',
+  },
+  {
+    key: 'lifetime',
+    title: 'A lifetime of learning',
+    desc: `With many years worth of study materials - including 15K+ vocab/flashcards, 10K+ quiz questions, and much more - you can easily review the Chinese you learn so you never lose it again!`,
+    img: '/images/about/about_left.png',
+  },
+]
 
 
 const faqs = [
@@ -362,9 +477,8 @@ function showLessonDialog() {
     cancelButtonText: 'Close',
     html: `
       <div style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
-        <button id="lv1-btn" style="width: 220px; padding: 12px 0; background: #009FE8; color: #fff; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer;">Lv1 Lessons</button>
+        <button id="lv1-btn" style="width: 220px; padding: 12px 0; background: #009FE8; color: #fff; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer;">1v1 Lessons</button>
         <button id="recorded-btn" style="width: 220px; padding: 12px 0; background: #F9B233; color: #fff; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer;">Recorded Lesson</button>
-        <button id="daily-btn" style="width: 220px; padding: 12px 0; background: #00C2FF; color: #fff; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer;">Daily Practice</button>
       </div>
     `,
     didOpen: () => {

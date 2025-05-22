@@ -37,86 +37,7 @@
         </div>
       </div>
     </div>
-    <!-- 底部内容 -->
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start py-12 px-2 md:px-0 mt-8">
-      <!-- 能力介绍 2x2 卡片 -->
-      <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="bg-white rounded-2xl shadow-md p-8 flex items-start space-x-4">
-          <img src="/images/about/icon_speakiing@2x.webp" alt="Speaking" class="w-12 h-12 mt-1" />
-          <div>
-            <div class="font-bold text-base mb-1">Speaking</div>
-            <ul class="text-gray-700 text-sm list-disc pl-4">
-              <li>Pronounce all possible pinyin sounds and 4 tones with ease</li>
-              <li>Go beyond simple introductions and handle basic topics</li>
-            </ul>
-          </div>
-        </div>
-        <div class="bg-white rounded-2xl shadow-md p-8 flex items-start space-x-4">
-          <img src="/images/about/icon_listening@2x.webp" alt="Listening" class="w-12 h-12 mt-1" />
-          <div>
-            <div class="font-bold text-lg mb-2">Listening</div>
-            <ul class="text-gray-700 text-base list-disc pl-5 space-y-1">
-              <li>Understand all essential everyday Chinese</li>
-              <li>Get used to real-world Chinese as it's really spoken</li>
-            </ul>
-          </div>
-        </div>
-        <div class="bg-white rounded-2xl shadow-md p-8 flex items-start space-x-4">
-          <img src="/images/about/icon_reading@2x.webp" alt="Reading & Writing" class="w-12 h-12 mt-1" />
-          <div>
-            <div class="font-bold text-lg mb-2">Reading & Writing</div>
-            <ul class="text-gray-700 text-base list-disc pl-5 space-y-1">
-              <li>Recognize and spell any Chinese word using pinyin</li>
-              <li>Type in Chinese using pinyin on your keyboard</li>
-            </ul>
-          </div>
-        </div>
-        <div class="bg-white rounded-2xl shadow-md p-8 flex items-start space-x-4">
-          <img src="/images/about/icon_grammar@2x.webp" alt="Grammar" class="w-12 h-12 mt-1" />
-          <div>
-            <div class="font-bold text-lg mb-2">Grammar</div>
-            <ul class="text-gray-700 text-base list-disc pl-5 space-y-1">
-              <li>Understand and utilize essential sentence structures</li>
-              <li>Form your own simple sentences and express yourself</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <!-- 统计项卡片 -->
-      <div class="bg-white rounded-2xl shadow-md p-8 flex flex-col justify-start items-stretch md:ml-12 mt-8 md:mt-0 min-w-[220px]">
-        <div class="flex items-center space-x-4 py-2">
-          <img src="/images/about/icon_video@2x.webp" alt="Videos" class="w-10 h-10" />
-          <div>
-            <div class="font-bold text-3xl leading-none">73</div>
-            <div class="text-gray-500 text-base font-medium">Videos</div>
-          </div>
-        </div>
-        <div class="border-t my-2"></div>
-        <div class="flex items-center space-x-4 py-2">
-          <img src="/images/about/icon_flashcard@2x.webp" alt="Flashcards" class="w-10 h-10" />
-          <div>
-            <div class="font-bold text-3xl leading-none">646</div>
-            <div class="text-gray-500 text-base font-medium">Flashcards</div>
-          </div>
-        </div>
-        <div class="border-t my-2"></div>
-        <div class="flex items-center space-x-4 py-2">
-          <img src="/images/about/icon_audio@2x.webp" alt="Audios" class="w-10 h-10" />
-          <div>
-            <div class="font-bold text-3xl leading-none">61</div>
-            <div class="text-gray-500 text-base font-medium">Audios</div>
-          </div>
-        </div>
-        <div class="border-t my-2"></div>
-        <div class="flex items-center space-x-4 py-2">
-          <img src="/images/about/icon_quiz@2x.webp" alt="Quiz Questions" class="w-10 h-10" />
-          <div>
-            <div class="font-bold text-3xl leading-none">730</div>
-            <div class="text-gray-500 text-base font-medium">Quiz Questions</div>
-          </div>
-        </div>
-      </div>
-    </div>
+   
   </div>
 </Layout>
 </template>
@@ -132,7 +53,6 @@ defineProps({
     required: true
   }
 })
-
 const aboutSections = [
   {
     key: 'curriculum',

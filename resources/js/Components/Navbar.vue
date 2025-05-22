@@ -40,26 +40,26 @@
         >ELENA MANDARIN</Link>
         <Link
           href="/"
-          class="hover:text-[#009FE8]"
-          :class="url === '/' ? 'text-[#009FE8] font-bold' : 'text-gray-700'"
+          class="hover:text-[#FFD700]"
+          :class="url === '/' ? 'text-[#FFD700] font-bold' : 'text-gray-700'"
         >Home</Link>
         <Link
           href="/lessons"
-          class="hover:text-[#009FE8]"
-          :class="url.startsWith('/lessons') ? 'text-[#009FE8] font-bold' : 'text-gray-700'"
+          class="hover:text-[#FFD700]"
+          :class="url.startsWith('/lessons') ? 'text-[#FFD700] font-bold' : 'text-gray-700'"
         >1V1 LESSON</Link>
         <Link
           href="/recorded"
-          class="hover:text-[#009FE8]"
-          :class="url.startsWith('/recorded') ? 'text-[#009FE8] font-bold' : 'text-gray-700'"
+          class="hover:text-[#FFD700]"
+          :class="url.startsWith('/recorded') ? 'text-[#FFD700] font-bold' : 'text-gray-700'"
         >Recorded Lesson</Link>
         
         <!-- Daily Practice 下拉菜单 -->
         <div class="relative group">
           <Link
             href="#"
-            class="hover:text-[#009FE8] flex items-center"
-            :class="url.startsWith('/practice') ? 'text-[#009FE8] font-bold' : 'text-gray-700'"
+            class="hover:text-[#FFD700] flex items-center"
+            :class="url.startsWith('/practice') ? 'text-[#FFD700] font-bold' : 'text-gray-700'"
           >
             Daily Practice
             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -74,7 +74,7 @@
                 v-for="level in ['HSK1', 'HSK2', 'HSK3', 'HSK4', 'HSK5', 'HSK6']"
                 :key="level"
                 :href="`/practice/${level.toLowerCase()}`"
-                class="block px-4 py-2 text-gray-700 hover:bg-[#009FE8] hover:text-white transition-colors duration-200"
+                class="block px-4 py-2 text-gray-700 hover:bg-[#FFD700] hover:text-white transition-colors duration-200"
               >
                 {{ level }}
               </Link>
@@ -84,13 +84,13 @@
 
         <Link
           href="/about"
-          class="hover:text-[#009FE8]"
-          :class="url.startsWith('/about') ? 'text-[#009FE8] font-bold' : 'text-gray-700'"
+          class="hover:text-[#FFD700]"
+          :class="url.startsWith('/about') ? 'text-[#FFD700] font-bold' : 'text-gray-700'"
         >About Me</Link>
         <Link
           href="/contact"
-          class="hover:text-[#009FE8]"
-          :class="url.startsWith('/contact') ? 'text-[#009FE8] font-bold' : 'text-gray-700'"
+          class="hover:text-[#FFD700]"
+          :class="url.startsWith('/contact') ? 'text-[#FFD700] font-bold' : 'text-gray-700'"
         >Contact</Link>
       </nav>
     </div>
