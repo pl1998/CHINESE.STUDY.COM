@@ -57,7 +57,8 @@ class CourseReservationController extends Controller
             'name' => 'required|string|max:50',
             'email' => 'required|email',
             'phone' => 'nullable|string|max:30',
-            'package_type' => 'required|in:0,1'
+            'package_type' => 'required|in:0,1',
+            'course_id' => 'required|integer'
         ]);
         $data = $request->all();
         $data['order_no'] = 'ORD' . date('YmdHis') . rand(1000, 9999);
