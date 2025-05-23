@@ -4,6 +4,8 @@ use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use Dcat\Admin\Admin;
 use App\Admin\Controllers\CoursePracticeTopicController;
+use Illuminate\Http\Request;
+use App\Models\CoursePracticeTopic;
 
 Admin::routes();
 
@@ -26,4 +28,5 @@ Route::group([
     $router->resource('course-practice-topic', 'CoursePracticeTopicController');
     $router->resource('course-practice-order', 'CoursePracticeOrderController')->only(['index','show']);
     $router->resource('recorded-lesson', 'RecordedLessonController');
+    $router->post('course-practice-topic/reply', 'CoursePracticeTopicController@reply');
 });

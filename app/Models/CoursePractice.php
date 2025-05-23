@@ -36,7 +36,8 @@ class CoursePractice extends BaseModel
      */
     public function topics()
     {
-        return $this->hasMany(CoursePracticeTopic::class, 'practice_id', 'id')->where('is_show', CoursePracticeTopic::IS_SHOW)->orderBy('created_at', 'desc');
+        return $this->hasMany(CoursePracticeTopic::class, 'practice_id', 'id')->where('topic_id',0)->where('is_show', CoursePracticeTopic::IS_SHOW)
+        ->orderBy('created_at', 'desc');
     }
 
     /** @var string[] 难度等级 */

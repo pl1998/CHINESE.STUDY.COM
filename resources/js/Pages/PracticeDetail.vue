@@ -167,6 +167,14 @@
           <div class="font-semibold text-pink-700">{{topic.name}}</div>
           <div class="text-xs text-gray-400">{{topic.created_at}}</div>
           <div class="text-gray-700">{{topic.content}}</div>
+          <!-- 二级回复展示 -->
+          <div v-if="topic.topic" class="pl-4 mt-2 border-l-2 border-gray-200">
+            <div  :key="topic.topic.id" class="mb-2">
+              <div class="font-semibold text-blue-700">{{topic.topic.name}}</div>
+              <div class="text-xs text-gray-400">{{topic.topic.created_at}}</div>
+              <div class="text-gray-700">{{topic.topic.content}}</div>
+            </div>
+          </div>
         </div>
       </div>
       <!-- 留言表单 -->

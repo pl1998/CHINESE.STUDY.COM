@@ -86,7 +86,7 @@ class InertiaController extends Controller
 
     public function practiceDetail($id)
     {
-        $practice = CoursePractice::with('topics')->find($id);
+        $practice = CoursePractice::with('topics.topic')->find($id);
         return $this->inertiaConfig('PracticeDetail', ['practice' => empty($practice) ? [] : $practice->toArray()]);
     }
 }
