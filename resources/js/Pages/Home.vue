@@ -10,7 +10,7 @@
           <span class="text-[#009FE8]">in <span class="text-[#F9B233]">6 months</span> or less!</span>
         </h1>
         <p class="text-gray-700 mb-4">With the internet's <b>BEST</b> Chinese lessons!</p>
-        <button class="inline-block bg-[#009FE8] hover:bg-[#007bb5] text-white font-semibold rounded px-6 py-2 transition" @click="scrollToHowItWorks">
+        <button class="inline-block bg-[#009FE8] hover:bg-[#007bb5] text-white font-semibold rounded px-10 py-4 text-xl mt-5 transition" @click="scrollToHowItWorks">
           Check detail
         </button>
       </div>
@@ -57,16 +57,15 @@
     </section>
     <!-- 统计数据 -->
     <section class="bg-[#F7F9FA] py-8">
-      <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
         <div v-for="(stat, index) in stats" :key="index" class="relative">
-          <div class="stat-container relative">
-            <div class="text-[50px] font-bold text-[#009FE8]">{{ stat.value }}</div>
+          <div class="text-[50px] font-bold text-[#009FE8]">
+            {{ animatedStats[index] }}{{ stat.suffix }}
           </div>
           <div class="text-gray-700 text-sm mt-1">{{ stat.label }}</div>
         </div>
       </div>
     </section>
-
     <!-- 图片区域 -->
     <section class="max-w-5xl mx-auto flex flex-col md:flex-row items-start justify-center gap-8 py-8 px-4">
       <div class="flex-1 flex flex-col items-start h-full">
@@ -80,35 +79,35 @@
           </div>
         </div>
         <!-- 新内容模块 -->
-        <div class="w-full text-left mt-8 flex flex-col h-full">
+        <div class="bg-white rounded-2xl shadow-lg shadow-[#00000022] p-8 w-full text-left mt-8 flex flex-col h-full">
           <div class="h-[560px]">
           <div class="mb-2">
-            <div class="text-[1.5rem] font-extrabold text-gray-800 mb-1">1. Personalized Attention:</div>
+            <div class="text-[1.2rem] font-extrabold text-gray-800 mb-1">1. Personalized Attention:</div>
             <div class="text-gray-500 text-base">Personalized Attention: Each lesson is tailored to your specific needs, goals, and learning pace, ensuring maximum progress.</div>
           </div>
           <div class="mb-2">
-            <div class="text-[1.5rem] font-extrabold text-gray-800 mb-1">2. Interactive Learning:</div>
+            <div class="text-[1.2rem] font-extrabold text-gray-800 mb-1">2. Interactive Learning:</div>
             <div class="text-gray-500 text-base"> Real-time feedback and conversations with a professional teacher help you improve quickly and confidently.</div>
           </div>
           <div class="mb-2">
-            <div class="text-[1.5rem] font-extrabold text-gray-800 mb-1">3. Flexible Scheduling:</div>
+            <div class="text-[1.2rem] font-extrabold text-gray-800 mb-1">3. Flexible Scheduling:</div>
             <div class="text-gray-500 text-base"> Choose lesson times that fit your busy lifestyle, making it easy to balance learning with other commitments.</div>
           </div>
           <div class="mb-2"> 
-            <div class="text-[1.5rem] font-extrabold text-gray-800 mb-1">4. Cultural Immersion: </div>
+            <div class="text-[1.2rem] font-extrabold text-gray-800 mb-1">4. Cultural Immersion: </div>
             <div class="text-gray-500 text-base">Learn not just the language but also the cultural nuances directly from a native speaker. </div>
           </div>
           <div class="mb-2">
-            <div class="text-[1.5rem] font-extrabold text-gray-800 mb-1">5. Motivation and Accountability: </div>
+            <div class="text-[1.2rem] font-extrabold text-gray-800 mb-1">5. Motivation and Accountability: </div>
             <div class="text-gray-500 text-base">Regular sessions with a dedicated teacher keep you motivated and on track with your goals.  </div>
           </div>
           <div class="mb-2">
-            <div class="text-[1.5rem] font-extrabold text-gray-800 mb-1">6. Ideal for： </div>
+            <div class="text-[1.2rem] font-extrabold text-gray-800 mb-1">6. Ideal for： </div>
             <div class="text-gray-500 text-base">Beginners who need guidance, advanced learners aiming for fluency, or anyone seeking a structured and interactive learning experience.  </div>
           </div>
           </div>
           <div class="flex justify-center mt-auto">
-            <Link  href="/lessons"  class="inline-block bg-[#00D2E0] hover:bg-[#05BFCC] text-white font-semibold rounded px-8 py-2 transition">
+            <Link  href="/lessons"  class="inline-block bg-[#00D2E0] hover:bg-[#05BFCC] text-white font-semibold rounded px-8 py-4 text-xl transition">
               Book now
             </Link>
           </div>
@@ -125,35 +124,35 @@
           </div>
         </div>
         <!-- 新内容模块 -->
-        <div class="w-full text-left mt-8 flex flex-col h-full">
+        <div class="bg-white rounded-2xl shadow-lg shadow-[#00000022] p-8 w-full text-left mt-8 flex flex-col h-full">
           <div class="h-[560px]">
           <div class="mb-2">
-            <div class="text-[1.5rem] font-extrabold text-gray-800 mb-1">1. Learn at Your Own Pace</div>
-            <div class="text-gray-500 text-base">1.Study whenever and wherever you want, fitting lessons into your schedule without pressure.</div>
+            <div class="text-[1.2rem] font-extrabold text-gray-800 mb-1">1. Learn at Your Own Pace</div>
+            <div class="text-gray-500 text-base">Study whenever and wherever you want, fitting lessons into your schedule without pressure.</div>
           </div>
           <div class="mb-2">
-            <div class="text-[1.5rem] font-extrabold text-gray-800 mb-1">2. Affordable and Accessible:</div>
+            <div class="text-[1.2rem] font-extrabold text-gray-800 mb-1">2. Affordable and Accessible:</div>
             <div class="text-gray-500 text-base">High-quality lessons at a lower cost, available for repeated viewing to reinforce learning.</div>
           </div>
           <div class="mb-2">
-            <div class="text-[1.5rem] font-extrabold text-gray-800 mb-1">3. Flexible Content：</div>
+            <div class="text-[1.2rem] font-extrabold text-gray-800 mb-1">3. Flexible Content：</div>
             <div class="text-gray-500 text-base">Choose topics or skills you want to focus on, from grammar to pronunciation, at your convenience. </div>
           </div>
           <div class="mb-2">
-            <div class="text-[1.5rem] font-extrabold text-gray-800 mb-1">4. No Time Constraints:</div>
+            <div class="text-[1.2rem] font-extrabold text-gray-800 mb-1">4. No Time Constraints:</div>
             <div class="text-gray-500 text-base">Pause, rewind, or replay lessons as needed, ensuring you fully understand each concept. </div>
           </div>
           <div class="mb-2">
-            <div class="text-[1.5rem] font-extrabold text-gray-800 mb-1">5. Self-directed Learning: </div>
+            <div class="text-[1.2rem] font-extrabold text-gray-800 mb-1">5. Self-directed Learning: </div>
             <div class="text-gray-500 text-base">Perfect for independent learners who prefer to take control of their own study process.  </div>
           </div>
           <div class="mb-2">
-            <div class="text-[1.5rem] font-extrabold text-gray-800 mb-1">6. Ideal for: </div>
+            <div class="text-[1.2rem] font-extrabold text-gray-800 mb-1">6. Ideal for: </div>
             <div class="text-gray-500 text-base">Busy professionals, self-motivated learners, or those who prefer a more flexible and budget-friendly approach to learning.   </div>
           </div>
          </div>
           <div class="flex justify-center mt-auto">
-            <Link href="/recorded" class="inline-block bg-[#E47938] hover:bg-[#E46416] text-white font-semibold rounded px-8 py-2 transition">
+            <Link href="/recorded" class="inline-block bg-[#E47938] hover:bg-[#E46416] text-white font-semibold rounded px-8 py-4 text-xl transition">
               Book now
             </Link>
           </div>
@@ -162,18 +161,23 @@
     </section>
 
     <!-- How it works -->
-    <div class="max-w-5xl mx-auto flex flex-col items-center justify-center py-16">     
-      <!-- 主标题 -->
-      <h2 class="text-4xl md:text-5xl font-extrabold text-[#1a2233] text-center mb-5 mt-5">
-        Master Mandarin with  <span class="text-[#F9B233]">Confidence</span>
-      </h2>
-      <p class="text-lg text-[#2d3a4a] text-center max-w-2xl">
-        My courses are designed to meet you where you are and take you where you want to go. From everyday communication to specialized topics like travel, business, or exam preparation, each lesson is tailored to your learning style. With clear goals, engaging methods, andpersonalized support, I'll help you unlock the full potential of your Chinese language journey.
-      </p>
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center py-16">
+      <!-- 左侧图片 -->
+      <div class="w-full md:w-1/2 flex justify-left  md:mb-0">
+        <img src="/images/home/tanxun.png" alt="探寻" class="rounded-2xl w-full max-w-[500px] object-cover shadow-md" />
+      </div>
+      <!-- 右侧文章 -->
+      <div class="w-full md:w-1/2 flex flex-col items-center justify-center">
+        <h2 class="text-4xl md:text-5xl font-extrabold text-[#1a2233] text-center mb-5 mt-5">
+          Master Mandarin with <span class="text-[#F9B233]">Confidence</span>
+        </h2>
+        <p class="text-lg text-[#2d3a4a] text-center max-w-2xl">
+          My courses are designed to meet you where you are and take you where you want to go. From everyday communication to specialized topics like travel, business, or exam preparation, each lesson is tailored to your learning style. With clear goals, engaging methods, and personalized support, I'll help you unlock the full potential of your Chinese language journey.
+        </p>
+      </div>
     </div>
  
-     <!-- 底部内容 -->
-     <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start py-12 px-2 md:px-0 mt-8">
+     <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start py-12 px-2 md:px-0 mt-8">
       <!-- 能力介绍 2x2 卡片 -->
       <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-8">
         <div class="bg-white rounded-2xl shadow-md p-8 flex items-start space-x-4">
@@ -218,7 +222,7 @@
         </div>
       </div>
       <!-- 统计项卡片 -->
-      <div class="bg-white rounded-2xl shadow-md p-8 flex flex-col justify-start items-stretch md:ml-12 mt-8 md:mt-0 min-w-[220px]">
+      <div class="bg-white rounded-2xl shadow-md p-8 flex flex-col justify-start items-stretch md:ml-12 mt-8 md:mt-0 min-w-[220px] h-[405px]">
         <div class="flex items-center space-x-4 py-2">
           <img src="/images/about/icon_video@2x.webp" alt="Videos" class="w-10 h-10" />
           <div>
@@ -254,17 +258,17 @@
     </div>
 
     <!-- How it works -->
-    <section id="how-it-works" class="max-w-5xl mx-auto py-8 px-4">
+    <section id="how-it-works" class="max-w-7xl mx-auto py-8 px-4">
       <div class="flex flex-col items-center justify-center mb-10">
         <h2 class="text-2xl text-[50px] font-bold text-center mb-6 transition-all duration-1000">
           How <span class="text-[#F9B233]">it works</span>
         </h2>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
         <div class="flex flex-col items-center">
           <div class="flex items-center mb-4">
             <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#009FE8] text-white text-3xl font-bold mr-2 shadow-lg">1</span>
-            <span class="text-2xl font-bold text-[#009FE8]">Choose a Course Type</span>
+            <span class="font-bold text-[#009FE8]">Choose a Course Type</span>
           </div>
           <img src="/images/home/study1.jpeg" alt="Watch" class="rounded-xl shadow-md mb-4 w-full max-w-[340px] h-[200px] object-cover" />
           <p class="text-gray-600 text-base">Select the course you want to take, if you choose the recorded courses, we will automatically send the video file to your email after payment.</p>
@@ -272,7 +276,7 @@
         <div class="flex flex-col items-center">
           <div class="flex items-center mb-4">
             <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#00D2E0] text-white text-3xl font-bold mr-2 shadow-lg">2</span>
-            <span class="text-2xl font-bold text-[#00D2E0]">Make a Study Plan</span>
+            <span class="font-bold text-[#00D2E0]">Make a Study Plan</span>
           </div>
           <img src="/images/home/study2.jpeg" alt="Practice" class="rounded-xl shadow-md mb-4 w-full max-w-[340px] h-[200px] object-cover" />
           <p class="text-gray-600 text-base">if you want to take online 1v1 courses, select the type of courses you want to take, and select the number of courses/frequency of classes, choose the time that suits you and pay.</p>
@@ -280,7 +284,7 @@
         <div class="flex flex-col items-center">
           <div class="flex items-center mb-4">
             <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#00C2FF] text-white text-3xl font-bold mr-2 shadow-lg">3</span>
-            <span class="text-2xl font-bold text-[#00C2FF]">Complete The Payment</span>
+            <span class="font-bold text-[#00C2FF]">Complete The Payment</span>
           </div>
           <img src="/images/home/study3.jpeg" alt="Quiz" class="rounded-xl shadow-md mb-4 w-full max-w-[340px] h-[200px] object-cover" />
           <p class="text-gray-600 text-base">After payment, we will send u a meeting code via voov in 24 hours,kindly download voov on your laptop or ipad for our classroom tool and try to enter it with the code, make sure it works before our lesson time. </p>
@@ -289,17 +293,16 @@
         <div class="flex flex-col items-center">
           <div class="flex items-center mb-4">
             <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#E34040] text-white text-3xl font-bold mr-2 shadow-lg">4</span>
-            <span class="text-2xl font-bold text-[#E34040]">More Help</span>
+            <span class="font-bold text-[#E34040]">More Help</span>
           </div>
           <img src="/images/home/study4.jpeg" alt="Quiz" class="rounded-xl shadow-md mb-4 w-full max-w-[340px] h-[200px] object-cover" />
           <p class="text-gray-600 text-base">If you need to reschedule or receive any other assistance after making a reservation, please contact us by email and we will reply to your message promptly! </p>
         </div>
       </div>
     </section>
-
-
+    
     <!-- FAQ -->
-    <section class="max-w-5xl mx-auto py-8 px-4">
+    <section class="max-w-7xl mx-auto py-8 px-4">
      <div class="flex flex-col items-center justify-center mb-10">
       <h2 class="text-2xl text-[50px] font-bold text-center mb-6 transition-all duration-1000 ">
         Frequently Asked <span class="text-[#F9B233]">Questions</span>
@@ -327,10 +330,10 @@
     </section>
 
     <!-- CTA -->
-    <section class="bg-[#F7F9FA] py-10">
+    <section class="bg-[#F7F9FA] py-10 ">
       <div class="max-w-3xl mx-auto text-center">
         <h2 class="text-[50px] font-bold mb-4 transition-all duration-1000">Join us and have fun learning Chinese!</h2>
-        <button class="inline-block bg-[#009FE8] hover:bg-[#007bb5] text-white font-semibold rounded px-8 py-2 transition" @click.prevent="showLessonDialog">
+        <button class="inline-block bg-[#009FE8] hover:bg-[#007bb5] text-white font-semibold rounded-lg px-10 py-4 text-xl transition" @click.prevent="showLessonDialog">
           Get started
         </button>
       </div>
@@ -358,57 +361,47 @@ const homeVideo = ref(null);
 const title = ref(null);
 const description = ref(null);
 
-const stats = ref([
-  { value: '500+', label: 'Lessons videos' },
-  { value: '2,000+', label: 'Students' },
-  { value: '10k+', label: 'Lessons bookeds' },
-  { value: '10M+', label: 'Followers' }
-]);
+const stats = [
+  { value: 500, label: 'Lesson Videos', suffix: '+' },
+  { value: 2000, label: 'Students', suffix: 'K+' },
+  { value: 10000, label: 'Lessons Learned', suffix: 'K+' },
+  { value: 10000000, label: 'YouTube Views', suffix: 'M+' }
+];
 
-const aboutSections = [
-  {
-    key: 'curriculum',
-    title: 'A clearly structured curriculum',
-    desc: `Follow our guided study schedule and you'll always know what to do next. No more feeling lost!`,
-    img: '/images/about/about_left.png',
-  },
-  {
-    key: 'need',
-    title: 'Everything you need',
-    desc: `1,000+ lessons in 6+ comprehensive courses means you can go from true newbie to speaking and reading Chinese all in one place.`,
-    img: '/images/about/about_left_1.png',
-  },
-  {
-    key: 'results',
-    title: 'See real results',
-    desc: `With as little as 45 mins a day, we guarantee you'll see real progress on Yoyo Chinese. It's that good!`,
-    img: '/images/about/about_left_2.png',
-  },
-  {
-    key: 'lifetime',
-    title: 'A lifetime of learning',
-    desc: `With many years worth of study materials - including 15K+ vocab/flashcards, 10K+ quiz questions, and much more - you can easily review the Chinese you learn so you never lose it again!`,
-    img: '/images/about/about_left.png',
-  },
-]
+const animatedStats = stats.map(() => ref(0));
 
+function animateValue(refValue, target, duration = 1200) {
+  const start = 0;
+  const startTime = performance.now();
+  function update(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    refValue.value = Math.floor(progress * (target - start) + start);
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    } else {
+      refValue.value = target;
+    }
+  }
+  requestAnimationFrame(update);
+}
 
 const faqs = [
   {
-    q: 'How fast will I learn basic Chinese using Yoyo Chinese?',
+    q: 'How fast will I learn basic Chinese using Elena Mandarin?',
     a: `Fast! In less than 30 days you'll be able to correctly pronounce every possible sound in Chinese (pinyin and tones) and even know how to introduce yourself, count to ten, greet and bid farewell, and many other basic skills! In less than 6 months you'll be proficient in basic conversational Chinese. Hard to believe? Check out the "What our students have to say" section to hear from other Chinese language learners just like you!`
   },
   {
-    q: 'Does Yoyo Chinese actually work?',
-    a: `Yes! And you can read all about the details of why and how here on Yoyo Chinese, but don't just take it from us - check out the "What our students have to say" section and hear it directly from them about how Yoyo Chinese is "the best Chinese language learning program out there", "better than the competition", "highly effective", "super fun to use", "perfect for beginners", and "worth every penny." 🙂`
+    q: 'What makes Elena Mandarin so much better than the competition?',
+    a: `Most Chinese learning apps are a business first and a learning program second - but NOT Elena Mandarin. We don't use AI and other shortcuts aimed at cutting costs. Instead, our team consists of real live Chinese language experts - both foreign and native - who are truly dedicated to creating the world's best online Chinese learning program. We don't just simply use technology, WE TEACH 👩🏻‍🏫.`
   },
   {
-    q: 'What makes Yoyo Chinese so much better than the competition?',
-    a: `Most Chinese learning apps are a business first and a learning program second - but NOT Yoyo Chinese. We don't use AI and other shortcuts aimed at cutting costs. Instead, our team consists of real live Chinese language experts - both foreign and native - who are truly dedicated to creating the world's best online Chinese learning program. We don't just simply use technology, WE TEACH 👩🏻‍🏫.`
+    q: 'Will Elena Mandarin help me prepare for the Hanyu Shuiping Kaoshi (HSK)?',
+    a: `Yes! Although Elena Mandarin wasn't made specifically for the HSK, our course material does intentionally overlap so well with HSK prep that students of ours have gone on to ace the test using ONLY their experience on Elena Mandarin. To find out more check out this helpful guide here.`
   },
   {
-    q: 'Does Yoyo Chinese teach simplified or traditional characters?',
-    a: `While our Chinese Character Courses use simplified Chinese characters in the video lessons, Yoyo Chinese is fully optimized for learning with traditional characters. With just the flip of a switch your flashcards, quiz questions (minus the images), and other features will be in traditional. And guess what? 70% of the 600 characters in our Chinese Character Course are no different in traditional than in simplified! 😊`
+    q: 'How long does it take to learn Chinese?',
+    a: `As you may already know, you'll find all kinds of different answers to this question. But the truth is that it doesn't have to take NEARLY as long to learn basic Chinese as most programs out there say it does. 📣We can confidently say that if you use Elena Mandarin and follow our recommended study schedule of just 30 minutes per day, you can be speaking beginner level (basic) conversational Chinese with ease in 6 months or less! Try it and see for yourself!`
   }
 ];
 
@@ -416,7 +409,6 @@ const openFaq = ref(null);
 function toggleFaq(idx) {
   openFaq.value = openFaq.value === idx ? null : idx;
 }
-
 
 async function playVideo() {
   if (homeVideo.value) {
@@ -551,9 +543,12 @@ onMounted(async () => {
   if (title.value) observer.observe(title.value);
   if (description.value) observer.observe(description.value);
 
-  const statElements = document.querySelectorAll('.stat-container');
-  statElements.forEach(element => {
-    startAnimation(element);
+  stats.forEach((stat, i) => {
+    let target = stat.value;
+    // 处理K/M后缀
+    if (stat.suffix === 'K+') target = Math.floor(stat.value / 1000);
+    if (stat.suffix === 'M+') target = Math.floor(stat.value / 1000000);
+    animateValue(animatedStats[i], target);
   });
 });
 </script>

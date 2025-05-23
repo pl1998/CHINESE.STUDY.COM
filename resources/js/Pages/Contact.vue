@@ -11,7 +11,7 @@
     <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 px-4">
       <!-- Whatsapp -->
       <div class="bg-white border rounded shadow-sm flex flex-col items-center py-8">
-        <div class="bg-[#009FE8] rounded-full w-16 h-16 flex items-center justify-center mb-3">
+        <div class="bg-[#FFD700] rounded-full w-16 h-16 flex items-center justify-center mb-3">
           <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path d="M6.62 10.79a15.053 15.053 0 0 0 6.59 6.59l2.2-2.2a1.003 1.003 0 0 1 1.11-.21c1.12.45 2.33.69 3.48.69a1 1 0 0 1 1 1v3.5a1 1 0 0 1-1 1C6.48 22 2 17.52 2 12.5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.15.24 2.36.69 3.48a1.003 1.003 0 0 1-.21 1.11l-2.2 2.2z"/>
           </svg>
@@ -21,7 +21,7 @@
       </div>
       <!-- Email -->
       <div class="bg-white border rounded shadow-sm flex flex-col items-center py-8">
-        <div class="bg-[#009FE8] rounded-full w-16 h-16 flex items-center justify-center mb-3">
+        <div class="bg-[#FFD700] rounded-full w-16 h-16 flex items-center justify-center mb-3">
           <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path d="M4 4h16v16H4z" fill="none"/>
             <path d="M22 6l-10 7L2 6" />
@@ -32,7 +32,7 @@
       </div>
       <!-- 联系人 -->
       <div class="bg-white border rounded shadow-sm flex flex-col items-center py-8">
-        <div class="bg-[#009FE8] rounded-full w-16 h-16 flex items-center justify-center mb-3">
+        <div class="bg-[#FFD700] rounded-full w-16 h-16 flex items-center justify-center mb-3">
           <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <circle cx="12" cy="8" r="4"/>
             <path d="M2 20c0-4 8-6 10-6s10 2 10 6" />

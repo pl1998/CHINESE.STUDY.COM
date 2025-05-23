@@ -281,7 +281,7 @@ const applyFilters = async () => {
       level: level.value,
       hsk: hsk.value,
       progress: progress.value,
-      level_label: level.value,
+      level_label: level_label.value,
     }
   })
   practices.value = res.data.data

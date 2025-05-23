@@ -15,9 +15,7 @@ class ConfigEmail extends BaseModel
 
     public static function getConfig()
     {
-        return cache()->remember(CacheEnum::CONFIG_EMAIL, 3600, function () {
-            return self::first()?->toArray();
-        });
+        return self::first()?->toArray();
     }
 
 
