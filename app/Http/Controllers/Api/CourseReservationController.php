@@ -45,4 +45,36 @@ class CourseReservationController extends Controller
             'id' => $reservation->id,
         ]);
     }
+
+    /**
+     * 购买课程包
+     * @param \Illuminate\Http\Request $request
+     * @return mixed|\Illuminate\Http\JsonResponse
+     */
+    public function purchaseoursepackages(Request $request)
+    {
+        $data = $request->validate([
+            'name' => 'required|string|max:50',
+            'email' => 'required|email',
+            'phone' => 'nullable|string|max:30',
+            'package_type' => 'required|in:0,1'
+        ]);
+        $data = $request->all();
+        $data['order_no'] = 'ORD' . date('YmdHis') . rand(1000, 9999);
+        $reservation = CourseReservation::create([
+            'fisrt_name' => $data['name'], // 注意你的表字段是 fisrt_name
+            'email' => $data['email'],
+            'phone' => $data['phone'] ?? '',
+            'pay_price' => $data['package_type'] == 1 ? 45 : 45*6,
+            'pay_status' => 0, // 默认未支付
+            'status' => 0,     // 默认未开始
+            'order_no' => $data['order_no'],
+            'course_id' => $data['course_id'] ?? 0,
+            'course_type' =>$data['package_type']
+        ]);
+        return response()->json([
+            'order_no' => $reservation->order_no,
+            'id' => $reservation->id,
+        ]);
+    }
 }

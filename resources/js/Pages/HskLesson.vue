@@ -23,8 +23,10 @@
           </div>
           <button
             class="bg-[#6ec1e4] text-white px-8 py-2 rounded font-semibold hover:bg-[#009FE8] transition text-lg shadow-md"
-            @click="scrollToBooking"
-          >book now</button>
+            @click="showLessonModal = true"
+          >
+            book now
+          </button>
         </div>
         <!-- 右侧介绍 -->
         <div class="flex-1 flex flex-col justify-center">
@@ -317,6 +319,95 @@
     </section>
   </div>
   </div>
+
+  <!-- 静态弹窗 -->
+  <div v-if="showLessonModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
+    <div class="bg-transparent rounded-lg shadow-lg p-0 w-full max-w-4xl relative">
+      <button class="absolute top-2 right-2 text-gray-400 hover:text-gray-700 text-2xl z-10" @click="showLessonModal = false">&times;</button>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 p-8">
+        <!-- 卡片1 -->
+        <div class="rounded-2xl overflow-hidden shadow-lg bg-white flex flex-col h-full">
+          <div class="h-40 bg-cover bg-center flex items-center justify-center" style="background-image:url('/images/lessons/a.png')"></div>
+          <div class="flex-1 flex flex-col items-center justify-center p-6">
+            <div class="text-lg font-bold mb-2">One trial class</div>
+            <div class="text-2xl text-[#003a8c] font-bold mb-2">45 USD</div>
+            <div class="text-gray-500 mb-2">45 mins</div>
+            <button class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded mt-2 transition" @click="openCardForm(1)">Select</button>
+          </div>
+        </div>
+        <!-- 卡片2 -->
+        <div class="rounded-2xl overflow-hidden shadow-lg bg-white flex flex-col h-full">
+          <div class="h-40 bg-cover bg-center flex items-center justify-center" style="background-image:url('/images/lessons/c.png')"></div>
+          <div class="flex-1 flex flex-col items-center justify-center p-6">
+            <div class="text-lg font-bold mb-2">Class hour package（6 lessons）</div>
+            <div class="text-2xl text-[#003a8c] font-bold mb-2">40 USD/45 mins</div>
+            <div class="text-gray-500 mb-2">45 mins</div>
+            <button class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded mt-2 transition" @click="openCardForm(2)">Select</button>
+          </div>
+        </div>
+        <!-- 卡片3 -->
+        <div class="rounded-2xl overflow-hidden shadow-lg bg-white flex flex-col h-full">
+          <div class="h-40 bg-cover bg-center flex items-center justify-center" style="background-image:url('/images/lessons/b.png')"></div>
+          <div class="flex-1 flex flex-col items-center justify-center p-6">
+            <div class="text-lg font-bold mb-2">I want to study regularly</div>
+            <div class="text-gray-700 mb-2">Every class <span class="text-[#003a8c] font-bold">38 USD</span> / 45 mins</div>
+            <button @click="scrollToBooking" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded mt-2 transition">Select</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 选择卡片1/2弹出表单静态框 -->
+  <div v-if="showCardForm" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
+    <div class="bg-white rounded-lg shadow-lg p-8 w-full max-w-md relative">
+      <button class="absolute top-2 right-2 text-gray-400 hover:text-gray-700 text-2xl z-10" @click="showCardForm = false">&times;</button>
+      <form @submit.prevent="submitCardForm">
+        <div v-if="coursePackage==1" class="rounded-2xl overflow-hiddenflex flex-col h-full">
+          <div class="h-40 w-full flex items-center justify-center ">
+            <img src="/images/lessons/a.png" alt="" class="h-full max-h-40 w-auto object-contain" />
+          </div>
+          <div class="flex-1 flex flex-col items-center justify-center p-6">
+            <div class="text-lg font-bold mb-2">One trial class</div>
+            <div class="text-2xl text-[#003a8c] font-bold mb-2">45 USD</div>
+            <div class="text-gray-500 mb-2">45 mins</div>
+                  <span>The course package will be sent to you by email. Please make sure to fill in your email address and check it!!</span>
+          </div>
+        </div>
+        <!-- 卡片2 -->
+        <div  v-if="coursePackage==2"  class="rounded-2xl overflow-hidden  flex flex-col h-full">
+          <div class="h-40 w-full flex items-center justify-center ">
+            <img src="/images/lessons/c.png" alt="" class="h-full max-h-40 w-auto object-contain" />
+          </div>
+          <div class="flex-1 flex flex-col items-center justify-center p-6">
+            <div class="text-lg font-bold mb-2">Class hour package（6 lessons）</div>
+            <div class="text-2xl text-[#003a8c] font-bold mb-2">40 USD/45 mins</div>
+            <div class="text-gray-500 mb-2">45 mins</div>
+            <span>The course package will be sent to you by email. Please make sure to fill in your email address and check it!!</span>
+          </div>
+        </div>
+        <div class="mb-4">
+          <label class="block mb-1 font-semibold">Name *</label>
+          <input v-model="cardForm.name" class="border rounded px-2 py-2 w-full" />
+          <div v-if="cardFormErrors.name" class="text-red-500 text-xs mt-1">{{ cardFormErrors.name }}</div>
+        </div>
+        <div class="mb-4">
+          <label class="block mb-1 font-semibold">Email *</label>
+          <input v-model="cardForm.email" class="border rounded px-2 py-2 w-full" type="email" />
+          <div v-if="cardFormErrors.email" class="text-red-500 text-xs mt-1">{{ cardFormErrors.email }}</div>
+        </div>
+        <div class="mb-6">
+          <label class="block mb-1 font-semibold">Phone *</label>
+          <input v-model="cardForm.phone" class="border rounded px-2 py-2 w-full" />
+          <div v-if="cardFormErrors.phone" class="text-red-500 text-xs mt-1">{{ cardFormErrors.phone }}</div>
+        </div>
+        <button type="submit" class="w-full bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 rounded flex items-center justify-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M22.5 6.5a2.5 2.5 0 0 0-2.5-2.5h-16A2.5 2.5 0 0 0 1.5 6.5v11A2.5 2.5 0 0 0 4 20h16a2.5 2.5 0 0 0 2.5-2.5v-11ZM4 5h16a1.5 1.5 0 0 1 1.5 1.5V8H2.5V6.5A1.5 1.5 0 0 1 4 5Zm16 14H4A1.5 1.5 0 0 1 2.5 17.5V9H21.5v8.5A1.5 1.5 0 0 1 20 19Z"/><path d="M7.5 15.5a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 1 1 0v2a.5.5 0 0 1-.5.5Zm3.5 0a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 1 1 0v2a.5.5 0 0 1-.5.5Zm3.5 0a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 1 1 0v2a.5.5 0 0 1-.5.5Z"/></svg>
+          Pay with PayPal
+        </button>
+      </form>
+    </div>
+  </div>
 </Layout>
 </template>
 
@@ -545,6 +636,7 @@ const bookingSectionRef = ref(null)
 
 // 滚动函数
 function scrollToBooking() {
+  showLessonModal.value = false
   bookingSectionRef.value?.scrollIntoView({ behavior: 'smooth' })
 }
 
@@ -591,6 +683,79 @@ const faqs = [
 const openIndex = ref(null)
 const toggle = idx => {
   openIndex.value = openIndex.value === idx ? null : idx
+}
+
+const showLessonModal = ref(false)
+const weeklyLessons = ref(2)
+const selectedDays = ref([])
+
+const showCardForm = ref(false)
+const cardFormTitle = ref('')
+const cardForm = ref({
+  name: 'PL',
+  email: '2540463097@qq.com',
+  phone: '13217025359',
+})
+const coursePackage = ref(1)
+const cardFormErrors = ref({})
+
+function openCardForm(cardIndex) {
+
+  coursePackage.value = cardIndex
+
+  showLessonModal.value = false
+  cardFormTitle.value = cardIndex === 1 ? 'One trial class' : 'Class hour package（6 lessons）'
+  showCardForm.value = true
+}
+
+async function submitCardForm() {
+  cardFormErrors.value = {}
+
+  if (!cardForm.value.name) {
+    cardFormErrors.value.name = 'Name is required'
+  }
+  if (!cardForm.value.email) {
+    cardFormErrors.value.email = 'Email is required'
+  }
+  if (!cardForm.value.phone) {
+    cardFormErrors.value.phone = 'Phone is required'
+  }
+
+  if (Object.keys(cardFormErrors.value).length > 0) {
+    return
+  }
+
+  try {
+    // 1. 创建订单
+    const res = await axios.post('/api/course-reservation/purchase-course-packages', {
+      name: cardForm.value.name,
+      email: cardForm.value.email,
+      phone: cardForm.value.phone,
+      package_type: coursePackage.value, // 1 or 2
+    })
+    const orderNo = res.data.order_no
+
+    // 2. 拉起 PayPal 支付
+    const payRes = await axios.post('/api/paypal/pay', { order_no: orderNo })
+    if (payRes.data.paypal_url) {
+      window.location.href = payRes.data.paypal_url
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Payment Failed',
+        text: 'Failed to get PayPal payment link',
+        confirmButtonColor: '#3487fe'
+      })
+    }
+    showCardForm.value = false
+  } catch (e) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Operation Failed',
+      text: 'Order creation or payment failed, please try again',
+      confirmButtonColor: '#3487fe'
+    })
+  }
 }
 </script>
 

@@ -24,4 +24,5 @@
     - [Youtube Calendar](#{{ $site['youtube_url'] ?? '' }})
     Thank you.<br>
     {{ config('app.name') }}
+
 </x-mail::message>
