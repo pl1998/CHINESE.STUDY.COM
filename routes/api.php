@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\CoursePracticeTopicController;
 use App\Http\Controllers\Api\PracticePayController;
 use App\Http\Controllers\Api\RecordedLessonController;
 use App\Http\Controllers\Api\CourseReservationController;
+use App\Http\Controllers\Api\CalendarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,3 +32,5 @@ Route::post('/course_practice_topic', [CoursePracticeTopicController::class, 'st
 Route::post('/practice/paypal', [PracticePayController::class, 'paypal']);
 Route::get('/recorded-lessons', [RecordedLessonController::class, 'index']);
 Route::post('/course-reservation/purchase-course-packages', [CourseReservationController::class, 'purchaseoursepackages']);
+Route::get('/calendar-data', [CalendarController::class, 'getCalendarData']);
+Route::get('/time-slots', [CalendarController::class, 'getTimeSlots']);

@@ -83,9 +83,9 @@ class PaypalController extends Controller
        
                 [$orderInfo, $bool] = (new CourseReservationCallbackService($request->all()))->handle();
                 if($bool){
-                    return redirect("/hsk-lesson/{$orderInfo->course_id}?order_no={$orderInfo->order_no}&step=6");
+                    return redirect("/hsk-lesson/{$orderInfo->course_id}?order_no={$orderInfo->order_no}&step=6&course_type={$orderInfo->course_type}");
                 } else{
-                    return redirect("/hsk-lesson/{$orderInfo->course_id}?order_no={$orderInfo->order_no}&step=error");
+                    return redirect("/hsk-lesson/{$orderInfo->course_id}?order_no={$orderInfo->order_no}&step=error&course_type={$orderInfo->course_type}");
                 }
                 break;
             case OderType::PRACTICE:
@@ -111,7 +111,7 @@ class PaypalController extends Controller
         switch ($request->input('type')) {
             case OderType::LESSON:
                 $reservation = CourseReservation::where('order_no', $orderNo)->first();
-                return redirect("/hsk-lesson/{$reservation->course_id}?order_no={$orderNo}&step=cancel");
+                return redirect("/hsk-lesson/{$reservation->course_id}?order_no={$orderNo}&step=cancel&course_type={$reservation->course_type}");
                 break;
             case OderType::PRACTICE:
                 $orderInfo = CoursePracticeOrder::where('order_no', $orderNo)->first();

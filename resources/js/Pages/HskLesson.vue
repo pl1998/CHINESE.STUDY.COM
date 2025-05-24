@@ -110,62 +110,73 @@
           <!-- 步骤1：选择日期 -->
           <div v-if="currentStep === 0">
             <div class="text-xl font-bold mb-4">Date & Time</div>
-            <div class="flex items-center gap-4 mb-6">
-              <select v-model="calendarMonth" class="border rounded px-2 py-1">
-                <option v-for="(m, i) in months" :key="i" :value="i">{{ m }}</option>
-              </select>
-              <select v-model="calendarYear" class="border rounded px-2 py-1">
-                <option v-for="y in years" :key="y" :value="y">{{ y }}</option>
-              </select>
-              <span class="text-xs text-gray-500">Asia/Shanghai</span>
+            <div v-if="!selectedDate">
+              <Calendar v-model="selectedDate" />
             </div>
-            <div class="grid grid-cols-7 gap-2 text-center">
-              <div v-for="d in weekDays" :key="d" class="font-semibold text-gray-600">{{ d }}</div>
-              <template v-for="cell in calendarCells">
+            <div v-else>
+              <div class="flex items-center justify-between mb-4">
+                <div class="text-lg">
+                  Selected Date: <span class="font-semibold">{{ selectedDate }}</span>
+                </div>
+                <button 
+                  class="text-[#3487fe] hover:text-[#2a6cd4]"
+                  @click="selectedDate = ''"
+                >
+                  Change Date
+                </button>
+              </div>
+              <TimeSlotSelector
+                v-model="selectedTime"
+                :selected-date="selectedDate"
+              />
+              <div class="mt-8 flex justify-end">
                 <button
-                  v-if="cell"
-                  :key="cell.date"
-                  class="py-2 rounded transition border"
-                  :class="{
-                    'bg-[#eaf2f3] text-gray-400 cursor-not-allowed': cell.disabled,
-                    'bg-[#3487fe] text-white font-bold border-[#3487fe]': selectedDate === cell.date,
-                    'hover:bg-[#eaf2f3]': !cell.disabled && selectedDate !== cell.date
-                  }"
-                  :disabled="cell.disabled"
-                  @click="selectDate(cell.date)"
-                >{{ cell.day }}</button>
-                <div v-else :key="Math.random()"></div>
-              </template>
-            </div>
-            <div class="mt-8 flex justify-end">
-              <button
-                class="px-6 py-2 bg-[#3487fe] text-white rounded"
-                :disabled="!selectedDate"
-                @click="nextStep"
-              >Continue</button>
+                  class="px-6 py-2 bg-[#3487fe] text-white rounded"
+                  :disabled="!selectedTime"
+                  @click="nextStep"
+                >Continue</button>
+              </div>
             </div>
           </div>
           <!-- 步骤2：选择时间段 -->
           <div v-else-if="currentStep === 1">
-            <div class="text-xl font-bold mb-4">Select Time Slot</div>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-              <button
-                v-for="slot in timeSlots"
-                :key="slot"
-                class="py-2 rounded border transition"
-                :class="{
-                  'bg-[#3487fe] text-white font-bold border-[#3487fe]': selectedTime === slot,
-                  'hover:bg-[#eaf2f3]': selectedTime !== slot
-                }"
-                @click="selectTime(slot)"
-              >{{ slot }}</button>
+            <div class="text-xl font-bold mb-4">Recurring Appointment</div>
+            <div class="flex items-center gap-4 mb-4">
+              <span>Repeat every</span>
+              <input type="number" min="1" v-model.number="repeatEvery" class="border rounded px-2 py-1 w-16" />
+              <select v-model="repeatUnit" class="border rounded px-2 py-1">
+                <option value="day">day</option>
+                <option value="week">week</option>
+              </select>
+            </div>
+            <div class="mb-4">
+              <span>Ends:</span>
+              <label class="ml-4">
+                <input type="radio" v-model="repeatEndType" value="date" />
+                <span class="ml-1">On</span>
+                <input
+                  type="date"
+                  v-model="repeatEndDate"
+                  :disabled="repeatEndType !== 'date'"
+                  class="border rounded px-2 py-1 ml-2"
+                />
+              </label>
+              <label class="ml-4">
+                <input type="radio" v-model="repeatEndType" value="count" />
+                <span class="ml-1">After</span>
+                <input
+                  type="number"
+                  min="1"
+                  v-model.number="repeatCount"
+                  :disabled="repeatEndType !== 'count'"
+                  class="border rounded px-2 py-1 ml-2 w-16"
+                />
+                <span class="ml-1">Occurrences</span>
+              </label>
             </div>
             <div class="mt-8 flex justify-between">
               <button class="px-6 py-2 border rounded" @click="prevStep">Back</button>
-              <button
-                class="px-6 py-2 bg-[#3487fe] text-white rounded"
-                @click="nextStep"
-              >Continue</button>
+              <button class="px-6 py-2 bg-[#3487fe] text-white rounded" @click="nextStep">Continue</button>
             </div>
           </div>
           <!-- 步骤3：选择天数和是否重复 -->
@@ -414,11 +425,13 @@
 <script setup>
 import Layout from '@/Layouts/App.vue'
 import { usePage } from '@inertiajs/vue3'
-import { ref, computed, onMounted, nextTick } from 'vue'
+import { ref, computed, onMounted, nextTick, watch } from 'vue'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import { VueTelInput } from 'vue-tel-input'
 import 'vue-tel-input/vue-tel-input.css';
+import Calendar from '@/Components/Calendar.vue'
+import TimeSlotSelector from '@/Components/TimeSlotSelector.vue'
 
 const { lesson } = usePage().props
 
@@ -443,39 +456,38 @@ const selectedDate = ref('')
 const months = ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月']
 const years = Array.from({length: 2}, (_,i)=>today.getFullYear()+i)
 const weekDays = ['周一','周二','周三','周四','周五','周六','周日']
+const calendarCells = ref([])
+const timeSlots = ref([])
 
-function getCalendarCells() {
-  const firstDay = new Date(calendarYear.value, calendarMonth.value, 1)
-  const lastDay = new Date(calendarYear.value, calendarMonth.value + 1, 0)
-  const startDay = (firstDay.getDay() + 6) % 7 // 以周一为第一天
-  const days = []
-  for (let i = 0; i < startDay; i++) days.push(null)
-  for (let d = 1; d <= lastDay.getDate(); d++) {
-    const dateStr = `${calendarYear.value}-${String(calendarMonth.value+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`
-    const dateObj = new Date(calendarYear.value, calendarMonth.value, d)
-    const isDisabled = dateObj <= today
-    days.push({
-      day: d,
-      date: dateStr,
-      disabled: isDisabled,
+async function fetchCalendarData() {
+  try {
+    const response = await axios.get('/api/calendar-data', {
+      params: {
+        year: calendarYear.value,
+        month: calendarMonth.value + 1
+      }
     })
+    calendarCells.value = response.data.days
+    timeSlots.value = response.data.time_slots
+  } catch (error) {
+    console.error('Failed to fetch calendar data:', error)
   }
-  return days
 }
-const calendarCells = computed(getCalendarCells)
+
+// 监听年月变化
+watch([calendarYear, calendarMonth], () => {
+  fetchCalendarData()
+})
+
+onMounted(() => {
+  fetchCalendarData()
+})
+
 function selectDate(date) {
   selectedDate.value = date
 }
 
 // 时间段
-const timeSlots = [
-  '12:00 - 13:00', '12:30 - 13:30', '13:00 - 14:00',
-  '15:00 - 16:00', '15:30 - 16:30', '16:00 - 17:00',
-  '16:30 - 17:30', '17:00 - 18:00', '17:30 - 18:30',
-  '18:30 - 19:30', '18:00 - 19:00', '19:30 - 20:30',
-  '21:00 - 22:00', '21:30 - 22:30', '22:00 - 23:00',
-  '22:30 - 23:00'
-]
 const selectedTime = ref('')
 function selectTime(slot) {
   selectedTime.value = slot
@@ -643,7 +655,16 @@ function scrollToBooking() {
 onMounted(() => {
   // 检查 URL 参数，支付成功后自动跳到完成页
   const params = new URLSearchParams(window.location.search)
-  if (params.get('step') == 6) {
+  if (params.get('step') == 6 && params.get('course_type') != 0) {
+    Swal.fire({
+        icon: 'success',
+        title: 'Payment Success',
+        text: 'The payment was successful. Please check your email',
+        confirmButtonColor: '#3487fe'
+      })
+
+  }
+  if (params.get('step') == 6 && params.get('course_type') == 0) {
     currentStep.value = 5
     // 滚动到预约部分
     nextTick(() => {
@@ -732,6 +753,7 @@ async function submitCardForm() {
       email: cardForm.value.email,
       phone: cardForm.value.phone,
       package_type: coursePackage.value, // 1 or 2
+      course_id: lesson.id,
     })
     const orderNo = res.data.order_no
 
@@ -757,5 +779,10 @@ async function submitCardForm() {
     })
   }
 }
+
+// 当日期改变时，清空已选择的时间
+watch(selectedDate, () => {
+  selectedTime.value = ''
+})
 </script>
 

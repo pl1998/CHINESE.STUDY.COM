@@ -50,4 +50,24 @@ class CourseReservation extends BaseModel
     public const NOTICE_NO = 0;
     public const NOTICE_OK = 1;
 
+
+    public const COURSE_TYPE_MAPS = [
+        0 => '预约每周课程',
+        1 => '试听课',
+        2 => '课程包（6节）',
+    ];
+    public const PAY_STATUS_MAPS = [
+        0 => '未支付',
+        1 => '已支付',
+        2 => '支付失败',
+        3 => '已退款'
+    ];
+    
+    public function appointDate()
+    {
+        return $this->hasMany(CourseReservation::class,'appoint_id','id');
+    }
+
+
+
 }

@@ -20,6 +20,7 @@ Route::group([
     $router->resource('course_reservation', 'CourseReservationController')->only(['show','index','destroy','edit','update']);
     $router->resource('config/pay', 'ConfigPayController');   
     $router->resource('config/email', 'ConfigEmailController');
+    $router->resource('config/vacation', 'VacationSettingController');
     $router->get('feedback/subscribes', 'SubscribeController@index');
     $router->get('feedback/contact-records', 'ContactRecordController@index');
     $router->resource('config/site', 'ConfigSiteController');
@@ -29,4 +30,7 @@ Route::group([
     $router->resource('course-practice-order', 'CoursePracticeOrderController')->only(['index','show']);
     $router->resource('recorded-lesson', 'RecordedLessonController');
     $router->post('course-practice-topic/reply', 'CoursePracticeTopicController@reply');
+    $router->post('course-reservations/{id}/refund','CourseReservationController@refund');
+    $router->post('course-reservations/{id}/update-zoom','CourseReservationController@updateZoom');
+    
 });
