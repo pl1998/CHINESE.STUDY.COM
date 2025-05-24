@@ -37,4 +37,6 @@ class VacationSetting extends Model
     {
         $this->attributes['end_date'] = strtotime($this->convertToUtc($value));
     }
+
+    
 } 

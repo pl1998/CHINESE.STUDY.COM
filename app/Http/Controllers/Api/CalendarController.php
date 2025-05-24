@@ -31,6 +31,7 @@ class CalendarController extends Controller
             ->orderBy('start_date', 'asc')
             ->get();
      
+      
         
         // 生成日历数据
         $firstDay = $monthStart;
@@ -45,28 +46,52 @@ class CalendarController extends Controller
 
         // 生成日期数据
         for ($d = 1; $d <= $lastDay->day; $d++) {
+            $isDisabled = false;
             $date = Carbon::create($year, $month, $d, 0, 0, 0, 'UTC');
             $dateStr = $date->format('Y-m-d');
-            
-            // 转换为上海时区检查是否是周末
-            $shanghaiDate = $date->copy()->setTimezone('Asia/Shanghai');
-            $isWeekend = $shanghaiDate->isWeekend();
-            
-            // 检查是否是假期
-            $isVacation = $settings->contains(function ($setting) use ($date) {
-                $startDate = Carbon::createFromTimestamp($setting->start_date, 'UTC');
-                $endDate = Carbon::createFromTimestamp($setting->end_date, 'UTC');
-                return $date->between($startDate->startOfDay(), $endDate->endOfDay());
-            });
-            
-            // 如果是周末或假期，设置为禁用
-            $isDisabled = $isWeekend || $isVacation || $date->lt(Carbon::now('UTC'));
-            
+            $dateTimestamp = $date->timestamp;
+
+   // 周末直接静默
+   $shanghaiDate = $date->copy()->setTimezone('Asia/Shanghai');
+   $isWeekend = $shanghaiDate->isWeekend();
+            // 小于当前时间戳 静默
+            if(strtotime($dateStr) < strtotime(date('Y-m-d'))){
+                $isDisabled = true;
+                $days[] = [
+                    'day' => $d,
+                    'date' => $dateStr,
+                    'disabled' => $isDisabled,
+                    'is_weekend' => $isWeekend
+                ];
+                continue;
+            }
+
+         
+            if($isWeekend){
+                $isDisabled = true;
+                $days[] = [
+                    'day' => $d,
+                    'date' => $dateStr,
+                    'disabled' => $isDisabled,
+                    'is_weekend' => $isWeekend
+                ];
+                continue;
+            }
+
+
+            foreach($settings as $setting){
+                $startDate = $setting->start_date->timestamp;
+                $endDate = $setting->end_date->timestamp;
+
+                if($dateTimestamp >= $startDate && $dateTimestamp <= $endDate){
+                    $isDisabled = true;
+                    break;
+                }
+            }
             $days[] = [
                 'day' => $d,
                 'date' => $dateStr,
                 'disabled' => $isDisabled,
-                'is_vacation' => $isVacation,
                 'is_weekend' => $isWeekend
             ];
         }
@@ -85,14 +110,7 @@ class CalendarController extends Controller
         $settings = VacationSetting::where('is_active', 1)
             ->where(function ($query) use ($dateCarbon) {
                 $startOfDay = $dateCarbon->copy()->startOfDay()->timestamp;
-                $endOfDay = $dateCarbon->copy()->endOfDay()->timestamp;
-                
-                $query->whereBetween('start_date', [$startOfDay, $endOfDay])
-                    ->orWhereBetween('end_date', [$startOfDay, $endOfDay])
-                    ->orWhere(function ($q) use ($startOfDay, $endOfDay) {
-                        $q->where('start_date', '<=', $startOfDay)
-                          ->where('end_date', '>=', $endOfDay);
-                    });
+                $query->where('start_date', '>=', $startOfDay)->orWhere('end_date', '>=', $startOfDay);
             })
             ->orderBy('start_date', 'asc')
             ->get();
@@ -104,27 +122,28 @@ class CalendarController extends Controller
         
         for ($hour = $startHour; $hour <= $endHour; $hour++) {
             $slotTime = sprintf('%02d:00 - %02d:45', $hour, $hour);
+         
             $isDisabled = false;
+
+               // 获取当前日期的时间段
+               $currentSlotStart = Carbon::createFromFormat('Y-m-d H:i', $date . ' ' . sprintf('%02d:00', $hour))->timestamp;
+               $currentSlotEnd = Carbon::createFromFormat('Y-m-d H:i', $date . ' ' . sprintf('%02d:45', $hour))->timestamp;
+             
             
             // 检查当前时间段是否在假期内
             foreach ($settings as $setting) {
-                $startDate = Carbon::createFromTimestamp($setting->start_date, 'UTC');
-                $endDate = Carbon::createFromTimestamp($setting->end_date, 'UTC');
-                
-                // 获取当前日期的时间段
-                $currentSlotStart = Carbon::createFromFormat('Y-m-d H:i', $date . ' ' . sprintf('%02d:00', $hour), 'UTC');
-                $currentSlotEnd = Carbon::createFromFormat('Y-m-d H:i', $date . ' ' . sprintf('%02d:45', $hour), 'UTC');
-                
-                // 如果当前时间段与假期时间有重叠，则禁用
-                if (
-                    ($currentSlotStart->between($startDate, $endDate)) ||
-                    ($currentSlotEnd->between($startDate, $endDate)) ||
-                    ($startDate->between($currentSlotStart, $currentSlotEnd)) ||
-                    ($endDate->between($currentSlotStart, $currentSlotEnd))
-                ) {
+                $startDate =$setting->start_date->timestamp;
+                $endDate = $setting->end_date->timestamp;
+            
+                if($currentSlotStart >= $startDate || $currentSlotStart <= $endDate){
                     $isDisabled = true;
                     break;
                 }
+                if($currentSlotEnd <= $endDate){
+                    $isDisabled = true;
+                    break;
+                }
+               
             }
             
             $timeSlots[] = [

@@ -46,19 +46,31 @@ class VacationSettingController extends AdminController
         return Form::make(new VacationSetting(), function (Form $form) {
             $form->display('id');
             $form->text('name', '名称')->required();
+            
+            // 如果是编辑模式，将时间戳转换为上海时区
+            $startDate = $form->isEditing() 
+                ?  timezone_to_shanghai($form->model()->start_date->timestamp)
+                : timezone_to_shanghai(Carbon::now()->setTimezone('Asia/Shanghai'));
+                
+            $endDate = $form->isEditing()
+            ?  timezone_to_shanghai($form->model()->end_date)
+                : timezone_to_shanghai(Carbon::now()->setTimezone('Asia/Shanghai'));
+             
+
             $form->datetime('start_date', '开始时间')
                 ->format('YYYY-MM-DD HH:mm:ss')
-                ->default(timezone_to_shanghai(Carbon::now()))
+                ->default($startDate)
                 ->help('中国/上海时间')
                 ->required();
+                
             $form->datetime('end_date', '结束时间')
                 ->format('YYYY-MM-DD HH:mm:ss')
-                ->default(timezone_to_shanghai(Carbon::now()))
+                ->default($endDate)
                 ->help('中国/上海时间')
                 ->required();
+                
             $form->switch('is_active', '是否启用')->default(1);
           
-            
             $form->disableResetButton();
             $form->disableEditingCheck();
             $form->disableCreatingCheck();
