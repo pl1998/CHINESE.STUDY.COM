@@ -31,6 +31,7 @@ class MailSendCommand extends Command
      */
     public function handle()
     {
+        dd(config('paypal'));
         $emailConfig = ConfigEmail::getConfig();
         if(!empty($emailConfig)){
          config([
