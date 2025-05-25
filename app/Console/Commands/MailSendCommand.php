@@ -33,14 +33,14 @@ class MailSendCommand extends Command
     {
 
  
-$response = Http::withBasicAuth(
+$response = Http::withHeaders([
+    'Accept' => 'application/json',
+    'Accept-Language' => 'en_US',
+])->withBasicAuth(
     'Af3jciHfbwVqAdst04P3EC7rzdIWTSzPSAZOdPLILOVuPn5hx79qGhzjnaaYo_9RgTgN7pV-En7lMW-6',  // 你的 PayPal Client ID
     'EHhMRsdk4lzYHGyLFhYX49MZ3CVzwZXZsDddRfeVJelctSlCVdycYV4AsPtwfD_tNba11HhMjSiTqkEm'  // 你的 PayPal Secret
 )->asForm()->post('https://api.paypal.com/v1/oauth2/token', [
     'grant_type' => 'client_credentials'
-])->withHeaders([
-    'Accept' => 'application/json',
-    'Accept-Language' => 'en_US',
 ]);
 
 // 获取响应数据
