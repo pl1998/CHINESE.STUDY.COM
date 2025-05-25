@@ -18,8 +18,10 @@ class CourseReservationController extends Controller
             'phone_dial_code' => 'nullable|string|max:5',
             'start_time' => 'required|string',
             'end_time' => 'required|string',
-            'repeat' => 'nullable|string',
             'pay_price' => 'required|numeric',
+            'every_date' => 'required|numeric',
+            'end_date' => 'date',
+            'recursion_number' => 'numeric'
         ]);
         $data = $request->all();
         $data['order_no'] = 'ORD' . date('YmdHis') . rand(1000, 9999);
@@ -31,15 +33,15 @@ class CourseReservationController extends Controller
             'phone_dial_code' => $data['phone_dial_code'] ?? '',
             'start_time' => strtotime($data['start_time']),
             'end_time' => strtotime($data['end_time']),
-            'repeat' => $data['repeat'] ?? '',
             'pay_price' => $data['pay_price'],
             'pay_status' => 0, // 默认未支付
             'status' => 0,     // 默认未开始
             'order_no' => $data['order_no'],
             'course_id' => $data['course_id'] ?? 0,
+            'every_date' => $data['every_date'],
+            'end_date' => !empty($data['end_date']) ? strtotime($data['end_date']) : null,
+            'recursion_number' => $data['recursion_number']
         ]);
-
-        
         return response()->json([
             'order_no' => $reservation->order_no,
             'id' => $reservation->id,

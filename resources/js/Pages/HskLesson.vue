@@ -118,18 +118,14 @@
                 <div class="text-lg">
                   Selected Date: <span class="font-semibold">{{ selectedDate }}</span>
                 </div>
-                <button 
-                  class="text-[#3487fe] hover:text-[#2a6cd4]"
-                  @click="selectedDate = ''"
-                >
-                  Change Date
-                </button>
+              
               </div>
               <TimeSlotSelector
                 v-model="selectedTime"
                 :selected-date="selectedDate"
               />
-              <div class="mt-8 flex justify-end">
+              <div class="mt-8 flex justify-between">
+                <button class="px-6 py-2 border rounded" @click="selectedDate = ''">Back</button>
                 <button
                   class="px-6 py-2 bg-[#3487fe] text-white rounded"
                   :disabled="!selectedTime"
@@ -184,7 +180,7 @@
             <div class="text-xl font-bold mb-4">Recurring Appointment</div>
             <div class="flex items-center gap-4 mb-4">
               <span>Repeat every</span>
-              <input type="number" min="1" v-model.number="repeatEvery" class="border rounded px-2 py-1 w-16" />
+              <input type="number" min="1" v-model.number="every_date" class="border rounded px-2 py-1 w-16" />
               <select v-model="repeatUnit" class="border rounded px-2 py-1">
                 <option value="day">day</option>
                 <option value="week">week</option>
@@ -193,23 +189,23 @@
             <div class="mb-4">
               <span>Ends:</span>
               <label class="ml-4">
-                <input type="radio" v-model="repeatEndType" value="date" />
+                <input type="radio" v-model="endType" value="date" />
                 <span class="ml-1">On</span>
                 <input
                   type="date"
-                  v-model="repeatEndDate"
-                  :disabled="repeatEndType !== 'date'"
+                  v-model="end_date"
+                  :disabled="endType !== 'date'"
                   class="border rounded px-2 py-1 ml-2"
                 />
               </label>
               <label class="ml-4">
-                <input type="radio" v-model="repeatEndType" value="count" />
+                <input type="radio" v-model="endType" value="count" />
                 <span class="ml-1">After</span>
                 <input
                   type="number"
                   min="1"
-                  v-model.number="repeatCount"
-                  :disabled="repeatEndType !== 'count'"
+                  v-model.number="recursion_number"
+                  :disabled="endType !== 'count'"
                   class="border rounded px-2 py-1 ml-2 w-16"
                 />
                 <span class="ml-1">Occurrences</span>
@@ -496,13 +492,6 @@ const repeatUnit = ref('day')
 const repeatEndType = ref('count')
 const repeatEndDate = ref('')
 const repeatCount = ref(1)
-const repeatSummary = computed(() => {
-  if (repeatEndType.value === 'date' && repeatEndDate.value) {
-    return `Repeat every ${repeatEvery.value} ${repeatUnit.value}(s) until ${repeatEndDate.value}`
-  } else {
-    return `Repeat every ${repeatEvery.value} ${repeatUnit.value}(s), ${repeatCount.value} times`
-  }
-})
 
 // 用户信息
 const userInfo = ref({
@@ -603,7 +592,9 @@ async function submitReservation() {
     phone_dial_code: phoneDialCode.value,
     start_time: selectedDate.value + ' ' + (selectedTime.value ? selectedTime.value.split(' - ')[0] : ''),
     end_time: selectedDate.value + ' ' + (selectedTime.value ? selectedTime.value.split(' - ')[1] : ''),
-    repeat: repeatSummary.value,
+    every_date: every_date.value,
+    end_date: endType.value === 'date' ? end_date.value : null,
+    recursion_number: endType.value === 'count' ? recursion_number.value : null,
     pay_price: totalPrice.value,
   }
   try {
@@ -632,11 +623,11 @@ function resetAll() {
   currentStep.value = 0
   selectedDate.value = ''
   selectedTime.value = ''
-  repeatEvery.value = 1
+  every_date.value = 1
   repeatUnit.value = 'day'
-  repeatEndType.value = 'count'
-  repeatEndDate.value = ''
-  repeatCount.value = 1
+  endType.value = 'count'
+  end_date.value = ''
+  recursion_number.value = 1
   userInfo.value = { firstName: '', lastName: '', email: '', phone: '' }
 }
 
@@ -780,6 +771,21 @@ async function submitCardForm() {
 // 当日期改变时，清空已选择的时间
 watch(selectedDate, () => {
   selectedTime.value = ''
+})
+
+// 在 script setup 部分添加新的响应式变量
+const every_date = ref(1)
+const end_date = ref('')
+const recursion_number = ref(1)
+const endType = ref('count')
+
+// 修改 repeatSummary computed 属性
+const repeatSummary = computed(() => {
+  if (endType.value === 'date' && end_date.value) {
+    return `Repeat every ${every_date.value} ${repeatUnit.value}(s) until ${end_date.value}`
+  } else {
+    return `Repeat every ${every_date.value} ${repeatUnit.value}(s), ${recursion_number.value} times`
+  }
 })
 </script>
 
