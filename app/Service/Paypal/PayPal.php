@@ -60,7 +60,7 @@ abstract class PayPal
             "purchase_units" => [
                 [
                     "amount" => [
-                        "currency_code" => $config->currency,
+                        "currency_code" => config('paypal.currency'),
                         "value" => $this->params['price']
                     ],
                     "description" => "Course Practice Order: " . $this->getOrderNo()

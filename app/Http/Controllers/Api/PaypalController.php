@@ -46,7 +46,7 @@ class PaypalController extends Controller
                 "purchase_units" => [
                     [
                         "amount" => [
-                            "currency_code" => $config->currency,
+                            "currency_code" => config('paypal.currency'),
                             "value" => $reservation->pay_price
                         ],
                         "description" => "Course Reservation Order: " . $orderNo
