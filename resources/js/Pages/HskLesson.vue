@@ -453,9 +453,6 @@ const today = new Date()
 const calendarYear = ref(today.getFullYear())
 const calendarMonth = ref(today.getMonth())
 const selectedDate = ref('')
-const months = ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月']
-const years = Array.from({length: 2}, (_,i)=>today.getFullYear()+i)
-const weekDays = ['周一','周二','周三','周四','周五','周六','周日']
 const calendarCells = ref([])
 const timeSlots = ref([])
 
