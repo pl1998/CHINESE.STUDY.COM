@@ -31,6 +31,7 @@ class MailSendCommand extends Command
      */
     public function handle()
     {
+        $this->paytest();
         $emailConfig = ConfigEmail::getConfig();
         if(!empty($emailConfig)){
          config([
@@ -69,7 +70,7 @@ $response = Http::withHeaders([
 
 // 获取响应数据
 $data = $response->json();
-
+dd($data);
 // 检查是否成功
 if ($response->successful()) {
     // 成功获取 token
