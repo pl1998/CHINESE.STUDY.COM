@@ -18,7 +18,6 @@ abstract class  PaypalCallback
     public function paypal(): bool
     {
         $token = $this->params['token'];
-        $this->setConfig();
         $provider = new PayPalClient;
         $provider->setApiCredentials(config('paypal'));
         $provider->getAccessToken();

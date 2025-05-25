@@ -49,9 +49,6 @@ abstract class PayPal
 
     public function getPaypalUrl(): array
     {
-        // 获取支付配置
-        $config = $this->setConfig();
-
         $provider = new PayPalClient;
         $provider->setApiCredentials(config('paypal'));
         $provider->getAccessToken();

@@ -30,10 +30,6 @@ class PaypalController extends Controller
     {
         $orderNo = $request->input('order_no');
         $reservation = CourseReservation::where('order_no', $orderNo)->firstOrFail();
-        // 读取 config_pay 配置
-        $config = $this->setConfig();
-
-
         $provider = new PayPalClient;
         try {
             $provider->setApiCredentials(config('paypal'));
@@ -101,7 +97,6 @@ class PaypalController extends Controller
                 throw new ApiException("不存在该支付类型");
                 break;
         }
-
     }
 
 
