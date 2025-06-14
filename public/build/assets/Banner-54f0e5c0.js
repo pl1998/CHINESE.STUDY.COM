@@ -1,0 +1,1 @@
+import{b as t,f as r,d as a}from"./app-2f427d3e.js";const c={class:"w-full h-[400px] overflow-hidden"},l=["src","alt"],i={__name:"Banner",props:{imageSrc:{type:String,required:!0},alt:{type:String,default:"Banner"}},setup(e){return(n,s)=>(t(),r("div",c,[a("img",{src:e.imageSrc,alt:e.alt,class:"w-full h-full object-cover object-center"},null,8,l)]))}};export{i as _};

@@ -69,7 +69,9 @@
     <!-- 图片区域 -->
     <section class="max-w-5xl mx-auto flex flex-col md:flex-row items-start justify-center gap-8 py-8 px-4">
       <div class="flex-1 flex flex-col items-start h-full">
+        <div class="w-[100%] text-2xl font-bold text-[#000] mb-2 text-center justify-center">1v1 live lesson</div>
         <div class="relative w-[680px] h-[380px] rounded-lg flex items-center justify-center group overflow-hidden">
+      
           <span class="text-gray-400">
             <img src="/images/home/home_left.jpg" alt="home1" class="w-full h-full object-cover" />
           </span>
@@ -114,6 +116,7 @@
         </div>
       </div>
       <div class="flex-1 flex flex-col items-start h-full">
+        <div class="w-[100%] text-2xl font-bold text-[#000] mb-2 text-center justify-center">recorded lesson</div>
         <div class="relative w-[680px] h-[380px] rounded-lg flex items-center justify-center group overflow-hidden">
           <span class="text-gray-400">
             <img src="/images/home/home_right.jpg" alt="home2" class="w-full h-full object-cover" />

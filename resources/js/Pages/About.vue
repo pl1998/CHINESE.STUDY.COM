@@ -9,7 +9,7 @@
       </div>
 
     <!-- 主体内容 -->
-    <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-end py-12 px-4 min-h-[320px]">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-end py-8 px-4 min-h-[320px]">
       <div class="w-full max-w-[480px] aspect-[1/1] flex items-center justify-center">
         <img :src="aboutSections[hovered !== null ? hovered : selected].img" alt="about-banner" class="max-w-full max-h-full object-contain transition-all duration-300 " />
       </div>
@@ -27,11 +27,13 @@
             <svg v-else width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="14" fill="#F3F4F6"/></svg>
           </span>
           <div>
-            <div :class="['font-bold mb-1 text-lg transition-all', (hovered === idx || selected === idx) ? 'text-[#F9B233]' : 'text-gray-900']">
-              {{ section.title }}
-            </div>
-            <div :class="['text-sm transition-all', (hovered === idx || selected === idx) ? 'font-semibold text-gray-900' : 'text-gray-700']">
-              {{ section.desc }}
+            <div class="flex items-center gap-2">
+              <div :class="['font-bold text-lg transition-all', (hovered === idx || selected === idx) ? 'text-[#F9B233]' : 'text-gray-900']">
+                {{ section.title }}
+              </div>
+              <div :class="['text-sm transition-all', (hovered === idx || selected === idx) ? 'font-semibold text-gray-900' : 'text-gray-700']">
+                {{ section.desc }}
+              </div>
             </div>
           </div>
         </div>
@@ -56,27 +58,42 @@ defineProps({
 const aboutSections = [
   {
     key: 'curriculum',
-    title: 'A clearly structured curriculum',
-    desc: `Follow our guided study schedule and you'll always know what to do next. No more feeling lost!`,
-    img: '/images/about/about_left.png',
+    title: '5 years of teaching experience',
+    desc: `skilled at tailoring lessons for all levels. `,
+    // img: '/images/about/about_left.png',
+    img:'/images/about/teacher.png'
   },
   {
     key: 'need',
-    title: 'Everything you need',
-    desc: `1,000+ lessons in 6+ comprehensive courses means you can go from true newbie to speaking and reading Chinese all in one place.`,
-    img: '/images/about/about_left_1.png',
+    title: 'National Mandarin Level 2-A Certificate',
+    desc: `(top 20% in pronunciation proficiency) `,
+    // img: '/images/about/about_left_1.png',
+     // img: '/images/about/about_left.png',
+    img:'/images/about/teacher.png'
   },
   {
     key: 'results',
-    title: 'See real results',
-    desc: `With as little as 45 mins a day, we guarantee you'll see real progress on Yoyo Chinese. It's that good!`,
-    img: '/images/about/about_left_2.png',
+    title: 'Degree in Linguistics',
+    desc: `with expertise in Chinese grammar & pedagogy`,
+    // img: '/images/about/about_left_2.png',
+     // img: '/images/about/about_left.png',
+    img:'/images/about/teacher.png'
   },
   {
-    key: 'lifetime',
-    title: 'A lifetime of learning',
-    desc: `With many years worth of study materials - including 15K+ vocab/flashcards, 10K+ quiz questions, and much more - you can easily review the Chinese you learn so you never lose it again!`,
-    img: '/images/about/about_left.png',
+    key: 'five',
+    title: 'Fluent in English & Mandarin',
+    desc: `breaks down complex concepts clearly`,
+    // img: '/images/about/about_left.png',
+     // img: '/images/about/about_left.png',
+    img:'/images/about/teacher.png'
+  },
+  {
+    key: 'six',
+    title: '500+ global students',
+    desc: `with proven progress`,
+    // img: '/images/about/about_left.png',
+     // img: '/images/about/about_left.png',
+    img:'/images/about/teacher.png'
   },
 ]
 
