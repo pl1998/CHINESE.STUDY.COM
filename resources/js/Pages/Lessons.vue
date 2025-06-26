@@ -4,7 +4,7 @@
     <div>
        <!-- 顶部大图 -->
        <div class="w-full">
-          <Banner imageSrc="/images/banner/lesson.jpg" alt="Lessons Banner" />
+          <Banner imageSrc="/images/banner/1V1_LESSON.jpg" alt="Lessons Banner" />
         </div>
 
       <div class="max-w-6xl mx-auto w-full px-4 pb-8">

@@ -5,7 +5,7 @@
 
     <!-- 顶部大图 -->
       <div class="w-full">
-        <Banner imageSrc="/images/banner/about.jpg" alt="About Banner" />
+        <Banner imageSrc="/images/banner/About_Me.jpg" alt="About Banner" />
       </div>
 
     <!-- 主体内容 -->

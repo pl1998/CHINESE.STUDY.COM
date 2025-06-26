@@ -3,7 +3,7 @@
       <div class="bg-white pt-[112px]">
         <!-- Brand 图 -->
         <div class="w-full">
-          <Banner imageSrc="/images/banner/pratice.jpg" alt="Practice Banner" />
+          <Banner imageSrc="/images/banner/Daily_Practice.jpg" alt="Practice Banner" />
         </div>
 
      

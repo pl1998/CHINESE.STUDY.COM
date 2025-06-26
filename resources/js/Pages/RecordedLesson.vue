@@ -4,7 +4,7 @@
 
        <!-- Brand 图 -->
        <div class="w-full">
-          <Banner imageSrc="/images/banner/recorded_lesson.jpg" alt="Recorded Lesson Banner" />
+          <Banner imageSrc="/images/banner/Recorded_Lesson.jpg" alt="Recorded Lesson Banner" />
         </div>
       <!-- 课程筛选和列表 -->
       <div class="max-w-6xl mx-auto w-full px-4 pb-8">
