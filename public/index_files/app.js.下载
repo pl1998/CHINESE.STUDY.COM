@@ -1,0 +1,53 @@
+import "/resources/js/bootstrap.js";
+import "/resources/css/app.css";
+
+import { createApp, h } from "/node_modules/.vite/deps/vue.js?v=80edfd01";
+import { createInertiaApp } from "/node_modules/.vite/deps/@inertiajs_vue3.js?v=80edfd01";
+import { resolvePageComponent } from "/node_modules/.vite/deps/laravel-vite-plugin_inertia-helpers.js?v=80edfd01";
+import VueTelInput from "/node_modules/.vite/deps/vue-tel-input.js?v=80edfd01";
+
+
+// 引入 Font Awesome
+import { library } from "/node_modules/.vite/deps/@fortawesome_fontawesome-svg-core.js?v=80edfd01"
+import { FontAwesomeIcon } from "/node_modules/.vite/deps/@fortawesome_vue-fontawesome.js?v=80edfd01"
+import { 
+    faEnvelope, 
+    faPhoneAlt,
+    faCalendarAlt,
+    faUser,
+    faCreditCard,
+    faCheck
+} from "/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons.js?v=80edfd01"
+import { 
+    faInstagram, 
+    faFacebook, 
+    faYoutube,
+    faTiktok
+} from "/node_modules/.vite/deps/@fortawesome_free-brands-svg-icons.js?v=80edfd01"
+
+// 添加图标到库中
+library.add(
+    // 实心图标
+    faEnvelope,
+    faPhoneAlt,
+    faCalendarAlt,
+    faUser,
+    faCreditCard,
+    faCheck,
+    // 品牌图标
+    faInstagram,
+    faFacebook,
+    faYoutube,
+    faTiktok
+)
+
+createInertiaApp({
+    resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, /* #__PURE__ */ Object.assign({"./Pages/About.vue": () => import("/resources/js/Pages/About.vue"),"./Pages/Contact.vue": () => import("/resources/js/Pages/Contact.vue"),"./Pages/Home.vue": () => import("/resources/js/Pages/Home.vue"),"./Pages/HskLesson.vue": () => import("/resources/js/Pages/HskLesson.vue"),"./Pages/Lessons.vue": () => import("/resources/js/Pages/Lessons.vue"),"./Pages/Practice.vue": () => import("/resources/js/Pages/Practice.vue"),"./Pages/PracticeDetail.vue": () => import("/resources/js/Pages/PracticeDetail.vue"),"./Pages/RecordedLesson.vue": () => import("/resources/js/Pages/RecordedLesson.vue")})),
+    setup({ el, App, props, plugin }) {
+        return createApp({ render: () => h(App, props) })
+            .use(plugin)
+            .use(VueTelInput)
+            .component('font-awesome-icon', FontAwesomeIcon)
+            .mount(el)
+    },
+});
