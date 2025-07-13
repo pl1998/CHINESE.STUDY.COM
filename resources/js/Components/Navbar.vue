@@ -36,12 +36,12 @@
       <nav class="flex items-center space-x-6 ml-[25px]">
         <Link
           href="#"
-          class="text-[#000] font-bold"
+          class="text-[#000] font-bold strong"
         >ELENA MANDARIN</Link>
         <Link
           href="/"
           class="hover:text-[#FFD700]"
-          :class="url === '/' ? 'text-[#FFD700] font-bold' : 'text-gray-700'"
+          :class="url === '/' ? 'text-[#FFD700] font-bold ' : 'text-gray-700 '"
         >Home</Link>
         <Link
           href="/lessons"

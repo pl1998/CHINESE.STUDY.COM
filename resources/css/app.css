@@ -6,3 +6,13 @@
 .test-class {
     @apply bg-red-500 p-4 text-white;
 }
+
+strong {
+    font-weight: bolder;
+}
+* {
+    box-sizing: border-box;
+}
+body, h1, h2, h3, strong, .yy-button {
+    font-family: Montserrat;
+}

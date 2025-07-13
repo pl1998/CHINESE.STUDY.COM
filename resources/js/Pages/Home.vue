@@ -367,8 +367,8 @@ const description = ref(null);
 const stats = [
   { value: 500, label: 'Lesson Videos', suffix: '+' },
   { value: 2000, label: 'Students', suffix: 'K+' },
-  { value: 10000, label: 'Lessons Learned', suffix: 'K+' },
-  { value: 10000000, label: 'YouTube Views', suffix: 'M+' }
+  { value: 10000, label: 'Lesson learned', suffix: 'K+' },
+  { value: 10000000, label: 'Followers', suffix: 'M+' }
 ];
 
 const animatedStats = stats.map(() => ref(0));

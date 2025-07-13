@@ -61,13 +61,13 @@
       </div>
       <!-- 会员提示 -->
       <div class="bg-blue-50 border border-blue-200 rounded p-6 flex flex-col items-center mb-8">
-        <div class="text-4xl text-blue-400 mb-2">
+        <!-- <div class="text-4xl text-blue-400 mb-2">
           <svg t="1747460232124" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="10727" width="128" height="128"><path d="M38.04 518.35a475.12 487.33 0 1 0 950.24 0 475.12 487.33 0 1 0-950.24 0Z" fill="#07AA74" p-id="10728"></path><path d="M513.16 18.75C258.74 18.75 52.5 224.99 52.5 479.41s206.25 460.66 460.66 460.66 460.66-206.25 460.66-460.66S767.58 18.75 513.16 18.75z m0 769.72c-170.69 0-309.06-138.37-309.06-309.06s138.37-309.06 309.06-309.06 309.06 138.37 309.06 309.06-138.37 309.06-309.06 309.06z" fill="#56D8B0" p-id="10729"></path><path d="M613.02 448.9c-1.48-0.15-2.97-0.22-4.48-0.22H459.7v-55.3c0-29.47 23.98-53.46 53.46-53.46s53.46 23.99 53.46 53.46v0.18c0 12.76 10.31 23.13 23.07 23.2 12.86 0.07 23.33-10.34 23.33-23.2v0.92c0-54.22-42.79-99.39-96.99-100.92-56.37-1.59-102.73 43.81-102.73 99.82v55.52c-23.44 2.26-41.92 22.17-41.92 46.18V618.9c0 25.52 20.88 46.4 46.4 46.4h190.75c25.52 0 46.4-20.88 46.4-46.4V495.08c0.01-24.01-18.47-43.91-41.91-46.18z m-84.49 125.17v23.8c0 8.49-6.88 15.37-15.37 15.37-8.49 0-15.37-6.88-15.37-15.37v-23.8c-13.46-5.91-22.85-19.36-22.85-35 0-21.11 17.11-38.22 38.22-38.22s38.23 17.11 38.23 38.22c0 15.63-9.4 29.08-22.86 35z" fill="#FFFFFF" p-id="10730"></path></svg>
-        </div>
+        </div> -->
         <div class="text-center text-blue-900 font-semibold mb-2">
           Let us know your problem or give us some feedback
         </div>
-        <a href="#" class="text-pink-600 font-bold" @click.prevent="showPackageModal = true">Unlock the course &gt;&gt;</a>
+        <!-- <a href="#" class="text-pink-600 font-bold" @click.prevent="showPackageModal = true">Unlock the course &gt;&gt;</a> -->
         <!-- <div class="text-xs mt-2 text-gray-500">Already a subscriber? <a href="#" class="underline">Sign in.</a></div> -->
       </div>
       <!-- 套餐弹窗 -->
@@ -193,10 +193,7 @@
             <input v-model="form.email" class="w-full border rounded p-2" type="email" placeholder="Email" />
             <div v-if="errors.email" class="text-red-600 text-xs mt-1">{{ errors.email }}</div>
           </div>
-          <div>
-            <input v-model="form.website" class="w-full border rounded p-2" type="text" placeholder="Website" />
-            <div v-if="errors.website" class="text-red-600 text-xs mt-1">{{ errors.website }}</div>
-          </div>
+
           <div class="flex items-center">
             <input type="checkbox" id="isShow" v-model="form.is_show" true-value="1" false-value="0" class="mr-2" />
             <label for="isShow" class="text-sm">Save my name, email, and website in this browser for the next time I comment.</label>
